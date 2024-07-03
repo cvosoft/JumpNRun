@@ -10,7 +10,6 @@ class World {
   ];
 
   canvas;
-  scaleFactor = 0.375; // macht aus 1920:1080 -> 720:405
   ctx;
 
   constructor(canvas) {
@@ -40,6 +39,6 @@ class World {
   }
 
   addToMap(mo) {
-    this.ctx.drawImage(mo.img, mo.x, mo.y, mo.img.naturalWidth * this.scaleFactor, mo.img.naturalHeight * this.scaleFactor);
+    this.ctx.drawImage(mo.img, mo.x, mo.y - (mo.img.naturalHeight * mo.scaleFactor), mo.img.naturalWidth * mo.scaleFactor, mo.img.naturalHeight * mo.scaleFactor);
   }
 }
