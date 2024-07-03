@@ -1,6 +1,6 @@
 class MovableObject {
   x = 20;
-  y = 360; // gilt für alles auf dem Boden
+  y = 355; // gilt für alles auf dem Boden
   img;
   scaleFactor = 0.175;
 
