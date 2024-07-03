@@ -1,6 +1,6 @@
 class Cloud extends MovableObject {
   x = 0;
-  y = 0;
+  y = 405;
   scaleFactor = 0.375; 
 
   constructor() {
@@ -12,5 +12,6 @@ class Cloud extends MovableObject {
     setInterval(() => {
       this.x -= 0.05;
     }, 60/1000);
+    console.log(this.x);
   }
 }
