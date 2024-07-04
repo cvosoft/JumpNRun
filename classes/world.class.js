@@ -1,7 +1,8 @@
 class World {
   character = new Character();
   enemies = [new Chicken(), new Chicken(), new Chicken()];
-  clouds = [new Cloud()];
+  clouds = [new Cloud("./img/5_background/layers/4_clouds/1.png", 0, 1), new Cloud("./img/5_background/layers/4_clouds/2.png", 720, 2)];
+
   backgroundObjects = [
     new Background("./img/5_background/layers/air.png"),
     new Background("./img/5_background/layers/3_third_layer/1.png"),
@@ -39,6 +40,6 @@ class World {
   }
 
   addToMap(mo) {
-    this.ctx.drawImage(mo.img, mo.x, mo.y - (mo.img.naturalHeight * mo.scaleFactor), mo.img.naturalWidth * mo.scaleFactor, mo.img.naturalHeight * mo.scaleFactor);
+    this.ctx.drawImage(mo.img, mo.x, mo.y - mo.img.naturalHeight * mo.scaleFactor, mo.img.naturalWidth * mo.scaleFactor, mo.img.naturalHeight * mo.scaleFactor);
   }
 }

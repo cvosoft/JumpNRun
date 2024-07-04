@@ -3,23 +3,26 @@ class Cloud extends MovableObject {
   y = 405;
   scaleFactor = 0.375;
 
-  constructor() {
-    super().setImage("./img/5_background/layers/4_clouds/1.png");
-    this.animate();
+  constructor(imagePath, startX, cnt) {
+    super().setImage(imagePath);
+    this.x = startX;
+    this.animate(startX, cnt);
   }
 
-  animate() {
-    setInterval(() => this.moveClouds(), 1000);
+  animate(startX, cnt) {
+    let myInterval = setInterval(() => this.moveClouds(startX, cnt), 100);
   }
 
+  moveClouds(startX, cnt) {
+    this.x -= 20;
 
-  moveClouds(){
-    this.x -= 50;
-    console.log(this.x);
-    if (this.x <= -720) {
-      this.x = 0;
+    console.log(`Wolke ${cnt} (StartX: ${startX}): ${this.x} - ${startX - 720}`);
+
+    if (this.x < startX - 720) {
+      //this.x = startX;
+      //clearInterval(this.myInterval);
+      //console.log("fdsf");
+      this.x = startX;
     }
   }
-
-
 }
