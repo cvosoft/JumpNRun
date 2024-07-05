@@ -2,6 +2,7 @@ class Cloud extends MovableObject {
   x = 0;
   y = 405;
   scaleFactor = 0.375;
+  speed = 0.015;
 
   constructor(imagePath, startX, cnt) {
     super().setImage(imagePath);
@@ -10,14 +11,11 @@ class Cloud extends MovableObject {
   }
 
   animate(startX) {
-    setInterval(() => this.moveClouds(startX), 60/1000);
+    setInterval(() => this.moveClouds(startX), fps);
   }
 
   moveClouds(startX) {
-    this.x -= 0.015;
-
-    //console.log(`Wolke ${cnt} (StartX: ${startX}): ${this.x} - ${startX - 720}`);
-
+    this.x -= this.speed;
     if (this.x < startX - 720) {
       this.x = startX;
     }

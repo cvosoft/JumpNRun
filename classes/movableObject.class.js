@@ -4,6 +4,7 @@ class MovableObject {
   img;
   scaleFactor = 0.175;
   imageCache = {};
+  otherDirection = false;
 
   setImage(path) {
     this.img = new Image();

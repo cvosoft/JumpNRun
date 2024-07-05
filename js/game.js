@@ -1,6 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let fps = 60/1000;
 
 function init() {
   canvas = document.getElementById("canvas");
