@@ -5,6 +5,7 @@ class MovableObject {
   scaleFactor = 0.175;
   imageCache = {};
   otherDirection = false;
+  direction = "left";
 
   setImage(path) {
     this.img = new Image();
@@ -25,5 +26,15 @@ class MovableObject {
 
   moveLeft() {
     console.log("Moving left");
+  }
+
+  isColliding(obj) {
+    //return obj.x >= this.x && obj.x <= (this.x + this.img.naturalWidth * this.scaleFactor);
+    //return obj.x > this.x > obj.x + obj.img.naturalWidth * obj.scaleFactor;
+    return this.inRange(obj.x, this.x, this.x + this.img.naturalWidth*this.scaleFactor*0.7);
+  }
+
+  inRange(x, min, max) {
+    return x >= min && x <= max;
   }
 }

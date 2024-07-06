@@ -1,6 +1,8 @@
 class Character extends MovableObject {
-  x = 20;
+  x = 80;
   y = 360;
+  direction = "right";
+
   IMAGES_IDLE = [
     "./img/2_character_pepe/1_idle/idle/I-1.png",
     "./img/2_character_pepe/1_idle/idle/I-2.png",
