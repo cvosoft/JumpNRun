@@ -8,32 +8,30 @@ function init() {
   world = new World(canvas, keyboard);
 }
 
-document.addEventListener("keydown", (event) => {
+window.addEventListener("keydown", (event) => {
   if (event.key === "ArrowLeft") {
-    keyboard.LEFT == true;
+    keyboard.LEFT = true;
   } else if (event.key === "ArrowRight") {
-    keyboard.RIGHT == true;
-    console.log("moving right");
+    keyboard.RIGHT = true;
   } else if (event.key === "ArrowUp") {
-    keyboard.UP == true;
+    keyboard.UP = true;
   } else if (event.key === "ArrowDown") {
-    keyboard.DOWN == true;
+    keyboard.DOWN = true;
   } else if (event.key === " ") {
-    keyboard.SPACE == true;
+    keyboard.SPACE = true;
   }
 });
 
-document.addEventListener("keyup", (event) => {
+window.addEventListener("keyup", (event) => {
   if (event.key === "ArrowLeft") {
-    keyboard.LEFT == false;
+    keyboard.LEFT = false;
   } else if (event.key === "ArrowRight") {
-    keyboard.RIGHT == false;
-    console.log("stop moving right");
+    keyboard.RIGHT = false;
   } else if (event.key === "ArrowUp") {
-    keyboard.UP == false;
+    keyboard.UP = false;
   } else if (event.key === "ArrowDown") {
-    keyboard.DOWN == false;
+    keyboard.DOWN = false;
   } else if (event.key === " ") {
-    keyboard.SPACE == false;
+    keyboard.SPACE = false;
   }
 });
