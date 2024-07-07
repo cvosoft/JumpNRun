@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let fps = 60/1000;
+let fps = 60 / 1000;
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -9,17 +9,29 @@ function init() {
 }
 
 document.addEventListener("keydown", (event) => {
-  console.log(event.key);
   if (event.key === "ArrowLeft") {
     keyboard.LEFT == true;
+  } else if (event.key === "ArrowRight") {
+    keyboard.RIGHT == true;
+  } else if (event.key === "ArrowUp") {
+    keyboard.UP == true;
+  } else if (event.key === "ArrowDown") {
+    keyboard.DOWN == true;
+  } else if (event.key === " ") {
+    keyboard.SPACE == true;
   }
 });
 
-
-
 document.addEventListener("keyup", (event) => {
-  console.log(event.key);
   if (event.key === "ArrowLeft") {
     keyboard.LEFT == false;
+  } else if (event.key === "ArrowRight") {
+    keyboard.RIGHT == false;
+  } else if (event.key === "ArrowUp") {
+    keyboard.UP == false;
+  } else if (event.key === "ArrowDown") {
+    keyboard.DOWN == false;
+  } else if (event.key === " ") {
+    keyboard.SPACE == false;
   }
 });

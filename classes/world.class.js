@@ -19,7 +19,12 @@ class World {
     this.canvas = canvas;
     this.keyboard = keyboard;
     this.draw();
+    this.setWorld();
     this.checkCollisions();
+  }
+
+  setWorld() {
+    this.character.world = this; // dem charakter muss die world bekannt sein
   }
 
   draw() {
