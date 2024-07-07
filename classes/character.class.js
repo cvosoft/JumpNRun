@@ -1,6 +1,7 @@
 class Character extends MovableObject {
   x = 80;
   y = 360;
+  speed = 10;
   direction = "right";
   world;
 
@@ -31,6 +32,7 @@ class Character extends MovableObject {
   constructor() {
     super().setImage("./img/2_character_pepe/1_idle/idle/I-1.png");
     this.setImages(this.IMAGES_IDLE);
+    this.setImages(this.IMAGES_WALK);
     this.animate();
   }
 
@@ -38,21 +40,25 @@ class Character extends MovableObject {
     setInterval(() => {
       //this.x += 10;
       if (this.world.keyboard.RIGHT) {
-        this.x += 10;
-        this.currentImage = 0;
+        this.x += this.speed;
+        //this.currentImage = 0;
         let i = this.currentImage % this.IMAGES_WALK.length;
         let path = this.IMAGES_WALK[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else if (this.world.keyboard.LEFT) {
-        this.x -= 10;
+        this.x -= this.speed;
+        let i = this.currentImage % this.IMAGES_WALK.length;
+        let path = this.IMAGES_WALK[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
       } else {
         let i = this.currentImage % this.IMAGES_IDLE.length;
         let path = this.IMAGES_IDLE[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       }
-    }, 150);
+    }, 50);
   }
 
   jump() {}
