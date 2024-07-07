@@ -65,24 +65,24 @@ class World {
     setInterval(() => {
       this.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
-          console.log("colision mit pepe");
+          //console.log("colision mit pepe");
           enemy.moveChickenAfterColision(enemy.interval);
         }
 
         if (this.enemies[0].isColliding(this.enemies[1])) {
-          console.log("colision unter huehnerne");
+          //console.log("colision unter huehnerne");
           //this.enemies[0].moveChickenAfterColision(this.enemies[0].interval);
           //this.enemies[1].moveChickenAfterColision(this.enemies[1].interval);
         }
 
         if (this.enemies[1].isColliding(this.enemies[2])) {
-          console.log("colision unter huehnerne");
+          //console.log("colision unter huehnerne");
           //this.enemies[1].moveChickenAfterColision(this.enemies[1].interval);
           //this.enemies[2].moveChickenAfterColision(this.enemies[2].interval);
         }
 
         if (this.enemies[0].isColliding(this.enemies[2])) {
-          console.log("colision unter huehnerne");
+          //console.log("colision unter huehnerne");
           //this.enemies[0].moveChickenAfterColision(this.enemies[0].interval);
           //this.enemies[2].moveChickenAfterColision(this.enemies[2].interval);
         }

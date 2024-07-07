@@ -13,6 +13,7 @@ document.addEventListener("keydown", (event) => {
     keyboard.LEFT == true;
   } else if (event.key === "ArrowRight") {
     keyboard.RIGHT == true;
+    console.log("moving right");
   } else if (event.key === "ArrowUp") {
     keyboard.UP == true;
   } else if (event.key === "ArrowDown") {
@@ -27,6 +28,7 @@ document.addEventListener("keyup", (event) => {
     keyboard.LEFT == false;
   } else if (event.key === "ArrowRight") {
     keyboard.RIGHT == false;
+    console.log("stop moving right");
   } else if (event.key === "ArrowUp") {
     keyboard.UP == false;
   } else if (event.key === "ArrowDown") {
