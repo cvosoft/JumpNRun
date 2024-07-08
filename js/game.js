@@ -60,3 +60,19 @@ function toggleFullscreen() {
   let element = document.getElementById("canvas");
   enterFullscreen(element);
 }
+
+
+function toggle720() {
+  document.getElementById("canvas").setAttribute("width", 720);
+  document.getElementById("canvas").setAttribute("height", 405);
+}
+
+function toggle1440() {
+  document.getElementById("canvas").setAttribute("width", 1440);
+  document.getElementById("canvas").setAttribute("height", 810);
+}
+
+function toggle1920() {
+  document.getElementById("canvas").setAttribute("width", 1920);
+  document.getElementById("canvas").setAttribute("height", 1080);
+}
