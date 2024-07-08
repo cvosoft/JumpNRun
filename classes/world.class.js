@@ -43,14 +43,14 @@ class World {
   }
 
   addToMap(mo) {
-    if (mo.otherDirection) {
+    if (mo.direction == "left") {
       this.ctx.save();
       this.ctx.translate(mo.img.naturalWidth * mo.scaleFactor, 0);
       this.ctx.scale(-1, 1);
       mo.x = -mo.x;
     }
     this.ctx.drawImage(mo.img, mo.x, mo.y - mo.img.naturalHeight * mo.scaleFactor, mo.img.naturalWidth * mo.scaleFactor, mo.img.naturalHeight * mo.scaleFactor);
-    if (mo.otherDirection) {
+    if (mo.direction == "left") {
       this.ctx.restore();
       mo.x = -mo.x;
     }

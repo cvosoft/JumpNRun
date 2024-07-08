@@ -1,7 +1,7 @@
 class Chicken extends MovableObject {
   speed = .4;//Math.random();
   interval;
-  direction = "left";
+  direction = "right";
 
   IMAGES_WALK = [
     "./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png",
@@ -27,7 +27,7 @@ class Chicken extends MovableObject {
     if (this.x < 0) {
       clearInterval(interval);
       this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
-      this.otherDirection = true;
+      this.direction = "left";
     }
   }
 
@@ -41,18 +41,18 @@ class Chicken extends MovableObject {
     if (this.x > 720) {
       clearInterval(interval);
       this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
-      this.otherDirection = false;
+      this.direction = "right";
     }
   }
 
   moveChickenAfterColision(oldInterval) {
     clearInterval(oldInterval);
-    if ((this.otherDirection = true)) {
+    if ((this.direction = "right")) {
       this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
-      this.otherDirection = true;
+      this.direction = "left";
     } else {
       this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
-      this.otherDirection = false;
+      this.direction = "right";
     }
   }
 }
