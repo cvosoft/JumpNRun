@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   x = 0;
   y = 360;
-  speed = 1;
+  speed = .5;
   direction = "right";
   world;
 
@@ -39,13 +39,37 @@ class Character extends MovableObject {
     "./img/2_character_pepe/3_jump/J-39.png",
   ];
 
+  IMAGES_IDLE2 = [];
+  IMAGES_WALK2 = [];
+  IMAGES_JUMP2 = [];
+  reps = 40;
+
   currentImage = 0;
 
   constructor() {
     super().setImage("./img/2_character_pepe/1_idle/idle/I-1.png");
-    this.setImages(this.IMAGES_IDLE);
-    this.setImages(this.IMAGES_WALK);
-    this.setImages(this.IMAGES_JUMP);
+
+    this.IMAGES_IDLE.forEach((element) => {
+      for (let index = 0; index < this.reps; index++) {
+        this.IMAGES_IDLE2.push(element);
+      }
+    });
+
+    this.IMAGES_WALK.forEach((element) => {
+      for (let index = 0; index < this.reps; index++) {
+        this.IMAGES_WALK2.push(element);
+      }
+    });
+
+    this.IMAGES_JUMP.forEach((element) => {
+      for (let index = 0; index < this.reps; index++) {
+        this.IMAGES_JUMP2.push(element);
+      }
+    });
+
+    this.setImages(this.IMAGES_IDLE2);
+    this.setImages(this.IMAGES_WALK2);
+    this.setImages(this.IMAGES_JUMP2);
     this.animate();
   }
 
@@ -56,8 +80,8 @@ class Character extends MovableObject {
         if (this.x < this.world.level.level_end_x) {
           this.x += this.speed;
         }
-        let i = this.currentImage % this.IMAGES_WALK.length;
-        let path = this.IMAGES_WALK[i];
+        let i = this.currentImage % this.IMAGES_WALK2.length;
+        let path = this.IMAGES_WALK2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else if (this.world.keyboard.LEFT) {
@@ -65,24 +89,24 @@ class Character extends MovableObject {
         if (this.x > 0) {
           this.x -= this.speed;
         }
-        let i = this.currentImage % this.IMAGES_WALK.length;
-        let path = this.IMAGES_WALK[i];
+        let i = this.currentImage % this.IMAGES_WALK2.length;
+        let path = this.IMAGES_WALK2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else if (this.world.keyboard.UP) {
         this.y -= this.speed;
-        let i = this.currentImage % this.IMAGES_WALK.length;
-        let path = this.IMAGES_JUMP[i];
+        let i = this.currentImage % this.IMAGES_JUMP2.length;
+        let path = this.IMAGES_JUMP2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else {
-        let i = this.currentImage % this.IMAGES_IDLE.length;
-        let path = this.IMAGES_IDLE[i];
+        let i = this.currentImage % this.IMAGES_IDLE2.length;
+        let path = this.IMAGES_IDLE2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       }
       this.world.camera_x = -this.x + 100;
-    }, 60 / 1000);
+    }, fps);
   }
 
   jump() {}
