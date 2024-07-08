@@ -3,7 +3,8 @@ class Background extends MovableObject {
   x = 0;
   y = 405;
 
-  constructor(imagePath) {
+  constructor(imagePath, x) {
     super().setImage(imagePath);
+    this.x = x;
   }
 }

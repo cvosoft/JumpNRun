@@ -1,5 +1,5 @@
 class Character extends MovableObject {
-  x = 80;
+  x = 0;
   y = 360;
   speed = 10;
   direction = "right";
@@ -79,6 +79,7 @@ class Character extends MovableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
       }
+      this.world.camera_x = -this.x;
     }, 50);
   }
 
