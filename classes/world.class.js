@@ -1,9 +1,7 @@
 class World {
   character = new Character();
 
-  enemies = level1.enemies;
-  clouds = level1.clouds;
-  backgroundObjects = level1.backgroundObjects;
+  level = level1;
 
   canvas;
   ctx;
@@ -28,9 +26,10 @@ class World {
 
     this.ctx.translate(this.camera_x, 0);
 
-    this.addObjectsToMap(this.backgroundObjects);
-    this.addObjectsToMap(this.clouds);
-    this.addObjectsToMap(this.enemies);
+    this.addObjectsToMap(this.level.backgroundObjects);
+    this.addObjectsToMap(this.level.clouds);
+    this.addObjectsToMap(this.level.enemies);
+
     this.addToMap(this.character);
 
     this.ctx.translate(-this.camera_x, 0);
@@ -63,25 +62,25 @@ class World {
 
   checkCollisions() {
     setInterval(() => {
-      this.enemies.forEach((enemy) => {
+      this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           //console.log("colision mit pepe");
           enemy.moveChickenAfterColision(enemy.interval);
         }
 
-        if (this.enemies[0].isColliding(this.enemies[1])) {
+        if (this.level.enemies[0].isColliding(this.level.enemies[1])) {
           //console.log("colision unter huehnerne");
           //this.enemies[0].moveChickenAfterColision(this.enemies[0].interval);
           //this.enemies[1].moveChickenAfterColision(this.enemies[1].interval);
         }
 
-        if (this.enemies[1].isColliding(this.enemies[2])) {
+        if (this.level.enemies[1].isColliding(this.level.enemies[2])) {
           //console.log("colision unter huehnerne");
           //this.enemies[1].moveChickenAfterColision(this.enemies[1].interval);
           //this.enemies[2].moveChickenAfterColision(this.enemies[2].interval);
         }
 
-        if (this.enemies[0].isColliding(this.enemies[2])) {
+        if (this.level.enemies[0].isColliding(this.level.enemies[2])) {
           //console.log("colision unter huehnerne");
           //this.enemies[0].moveChickenAfterColision(this.enemies[0].interval);
           //this.enemies[2].moveChickenAfterColision(this.enemies[2].interval);

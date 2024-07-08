@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   x = 0;
   y = 360;
-  speed = 10;
+  speed = 1;
   direction = "right";
   world;
 
@@ -27,7 +27,6 @@ class Character extends MovableObject {
     "./img/2_character_pepe/2_walk/W-26.png",
   ];
 
-
   IMAGES_JUMP = [
     "./img/2_character_pepe/3_jump/J-31.png",
     "./img/2_character_pepe/3_jump/J-32.png",
@@ -38,8 +37,7 @@ class Character extends MovableObject {
     "./img/2_character_pepe/3_jump/J-37.png",
     "./img/2_character_pepe/3_jump/J-38.png",
     "./img/2_character_pepe/3_jump/J-39.png",
-  ]
-
+  ];
 
   currentImage = 0;
 
@@ -55,14 +53,18 @@ class Character extends MovableObject {
     setInterval(() => {
       if (this.world.keyboard.RIGHT) {
         this.direction = "right";
-        this.x += this.speed;
+        if (this.x < this.world.level.level_end_x) {
+          this.x += this.speed;
+        }
         let i = this.currentImage % this.IMAGES_WALK.length;
         let path = this.IMAGES_WALK[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       } else if (this.world.keyboard.LEFT) {
         this.direction = "left";
-        this.x -= this.speed;
+        if (this.x > 0) {
+          this.x -= this.speed;
+        }
         let i = this.currentImage % this.IMAGES_WALK.length;
         let path = this.IMAGES_WALK[i];
         this.img = this.imageCache[path];
@@ -79,8 +81,8 @@ class Character extends MovableObject {
         this.img = this.imageCache[path];
         this.currentImage++;
       }
-      this.world.camera_x = -this.x;
-    }, 50);
+      this.world.camera_x = -this.x + 100;
+    }, 60 / 1000);
   }
 
   jump() {}
