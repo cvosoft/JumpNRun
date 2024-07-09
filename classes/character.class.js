@@ -44,6 +44,7 @@ class Character extends MovableObject {
   IMAGES_WALK2 = [];
   IMAGES_JUMP2 = [];
   reps = 10;
+  walking_sound = new Audio("./audio/walking.wav");
 
   currentImage = 0;
 
@@ -78,8 +79,10 @@ class Character extends MovableObject {
 
   animate() {
     setInterval(() => {
+      this.walking_sound.pause();
       if (this.world.keyboard.RIGHT) {
         this.direction = "right";
+        this.walking_sound.play();
         if (this.x < this.world.level.level_end_x) {
           this.x += this.speed;
         }
@@ -89,6 +92,7 @@ class Character extends MovableObject {
         this.currentImage++;
       } else if (this.world.keyboard.LEFT) {
         this.direction = "left";
+        this.walking_sound.play();
         if (this.x > 0) {
           this.x -= this.speed;
         }
