@@ -6,6 +6,21 @@ class MovableObject {
   imageCache = {};
   otherDirection = false;
   direction = "right";
+  speedY = 1;
+  acceleration = 0.05;
+
+  applyGravity() {
+    setInterval(() => {
+      if (this.isAboveGround()) {
+        this.y += this.speedY;
+        this.speedY += this.acceleration;
+      }
+    }, fps);
+  }
+
+  isAboveGround() {
+    return this.y < 360;
+  }
 
   setImage(path) {
     this.img = new Image();
@@ -31,7 +46,7 @@ class MovableObject {
   isColliding(obj) {
     //return obj.x >= this.x && obj.x <= (this.x + this.img.naturalWidth * this.scaleFactor);
     //return obj.x > this.x > obj.x + obj.img.naturalWidth * obj.scaleFactor;
-    return this.inRange(obj.x, this.x, this.x + this.img.naturalWidth*this.scaleFactor*0.7);
+    return this.inRange(obj.x, this.x, this.x + this.img.naturalWidth * this.scaleFactor * 0.7);
   }
 
   inRange(x, min, max) {

@@ -1,6 +1,7 @@
 class Character extends MovableObject {
   x = 0;
-  y = 360;
+  //y = 360;
+  y = 200;
   speed = 1;
   direction = "right";
   world;
@@ -42,12 +43,14 @@ class Character extends MovableObject {
   IMAGES_IDLE2 = [];
   IMAGES_WALK2 = [];
   IMAGES_JUMP2 = [];
-  reps = 20;
+  reps = 10;
 
   currentImage = 0;
 
   constructor() {
     super().setImage("./img/2_character_pepe/1_idle/idle/I-1.png");
+
+    this.applyGravity();
 
     this.IMAGES_IDLE.forEach((element) => {
       for (let index = 0; index < this.reps; index++) {
@@ -93,8 +96,8 @@ class Character extends MovableObject {
         let path = this.IMAGES_WALK2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-      } else if (this.world.keyboard.UP) {
-        this.y -= this.speed;
+      } else if (this.world.keyboard.UP || this.isAboveGround()) {
+        this.y -= this.speedY;
         let i = this.currentImage % this.IMAGES_JUMP2.length;
         let path = this.IMAGES_JUMP2[i];
         this.img = this.imageCache[path];
