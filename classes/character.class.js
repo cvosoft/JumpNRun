@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   x = 0;
   y = 360;
-  speed = .5;
+  speed = 1;
   direction = "right";
   world;
 
@@ -42,7 +42,7 @@ class Character extends MovableObject {
   IMAGES_IDLE2 = [];
   IMAGES_WALK2 = [];
   IMAGES_JUMP2 = [];
-  reps = 40;
+  reps = 20;
 
   currentImage = 0;
 
