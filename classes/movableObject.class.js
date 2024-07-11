@@ -10,6 +10,8 @@ class MovableObject {
   acceleration = 0.05;
   interval;
   currentImage = 0;
+
+  
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround()) {
