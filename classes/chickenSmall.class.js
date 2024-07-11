@@ -16,43 +16,4 @@ class ChickenSmall extends MovableObject {
     this.x = 720 * 3 + Math.random() * 500;
     this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
   }
-
-  moveChickenLeft(interval) {
-    let i = this.currentImage % this.IMAGES_WALK.length;
-    let path = this.IMAGES_WALK[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
-
-    this.x -= this.speed;
-    if (this.x < 0) {
-      clearInterval(interval);
-      this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
-      this.direction = "left";
-    }
-  }
-
-  moveChickenRight(interval) {
-    let i = this.currentImage % this.IMAGES_WALK.length;
-    let path = this.IMAGES_WALK[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
-
-    this.x += this.speed;
-    if (this.x > 720) {
-      clearInterval(interval);
-      this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
-      this.direction = "right";
-    }
-  }
-
-  moveChickenAfterColision(oldInterval) {
-    clearInterval(oldInterval);
-    if ((this.direction = "right")) {
-      this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
-      this.direction = "left";
-    } else {
-      this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
-      this.direction = "right";
-    }
-  }
 }

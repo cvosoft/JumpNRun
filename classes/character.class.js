@@ -1,7 +1,7 @@
 class Character extends MovableObject {
   x = 0;
-  //y = 360;
-  y = 200;
+  y = 360;
+  //y = 200;
   speed = 1;
   direction = "right";
   world;
