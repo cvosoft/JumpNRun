@@ -65,7 +65,7 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (this.character.isColliding(enemy)) {
           //console.log("colision mit pepe");
-          enemy.moveChickenAfterColision(enemy.interval);
+          enemy.moveAfterColision(enemy.interval);
         }
 
         if (this.level.enemies[0].isColliding(this.level.enemies[1])) {

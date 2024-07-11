@@ -36,11 +36,21 @@ class MovableObject {
   }
 
   moveRight() {
-    console.log("Moving right");
+    this.x += this.speed;
+    if (this.x > 720) {
+      clearInterval(interval);
+      this.interval = setInterval(() => this.moveLeft(this.interval), fps);
+      this.direction = "right";
+    }
   }
 
   moveLeft() {
-    console.log("Moving left");
+    this.x -= this.speed;
+    if (this.x < 0) {
+      clearInterval(interval);
+      this.interval = setInterval(() => this.moveRight(this.interval), fps);
+      this.direction = "left";
+    }
   }
 
   isColliding(obj) {
@@ -53,41 +63,22 @@ class MovableObject {
     return x >= min && x <= max;
   }
 
-  moveChickenLeft(interval) {
+  animateWalking() {
+    this.setImages(this.IMAGES_WALK);
     let i = this.currentImage % this.IMAGES_WALK.length;
     let path = this.IMAGES_WALK[i];
     this.img = this.imageCache[path];
     this.currentImage++;
-
-    this.x -= this.speed;
-    if (this.x < 0) {
-      clearInterval(interval);
-      this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
-      this.direction = "left";
-    }
   }
 
-  moveChickenRight(interval) {
-    let i = this.currentImage % this.IMAGES_WALK.length;
-    let path = this.IMAGES_WALK[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
 
-    this.x += this.speed;
-    if (this.x > 720) {
-      clearInterval(interval);
-      this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
-      this.direction = "right";
-    }
-  }
-
-  moveChickenAfterColision(oldInterval) {
+  moveAfterColision(oldInterval) {
     clearInterval(oldInterval);
     if ((this.direction = "right")) {
-      this.interval = setInterval(() => this.moveChickenRight(this.interval), fps);
+      this.interval = setInterval(() => this.moveRight(this.interval), fps);
       this.direction = "left";
     } else {
-      this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
+      this.interval = setInterval(() => this.moveLeft(this.interval), fps);
       this.direction = "right";
     }
   }

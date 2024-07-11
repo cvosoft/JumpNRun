@@ -12,8 +12,8 @@ class Chicken extends MovableObject {
 
   constructor() {
     super().setImage("./img/3_enemies_chicken/chicken_normal/1_walk/1_w.png");
-    this.setImages(this.IMAGES_WALK);
+    this.animateWalking();
     this.x = 720 + Math.random() * 500;
-    this.interval = setInterval(() => this.moveChickenLeft(this.interval), fps);
+    this.interval = setInterval(() => this.moveLeft(this.interval), fps);
   }
 }
