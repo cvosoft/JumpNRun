@@ -100,18 +100,21 @@ class Character extends MovableObject {
         let path = this.IMAGES_WALK2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
-      } else if (this.world.keyboard.UP || this.isAboveGround()) {
-        this.y -= this.speedY;
-        let i = this.currentImage % this.IMAGES_JUMP2.length;
-        let path = this.IMAGES_JUMP2[i];
-        this.img = this.imageCache[path];
-        this.currentImage++;
       } else {
         let i = this.currentImage % this.IMAGES_IDLE2.length;
         let path = this.IMAGES_IDLE2[i];
         this.img = this.imageCache[path];
         this.currentImage++;
       }
+
+      if (this.world.keyboard.UP || this.isAboveGround()) {
+        this.y -= this.speedY;
+        let i = this.currentImage % this.IMAGES_JUMP2.length;
+        let path = this.IMAGES_JUMP2[i];
+        this.img = this.imageCache[path];
+        this.currentImage++;
+      }
+
       this.world.camera_x = -this.x + 100;
     }, fps);
   }

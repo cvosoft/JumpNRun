@@ -1,5 +1,5 @@
 class ChickenSmall extends MovableObject {
-  speed = Math.random();
+  speed = 3;
   interval;
   direction = "right";
 
@@ -12,8 +12,8 @@ class ChickenSmall extends MovableObject {
 
   constructor() {
     super().setImage("./img/3_enemies_chicken/chicken_small/1_walk/1_w.png");
-    this.setImages(this.IMAGES_WALK);
-    this.x = 720 * 3 + Math.random() * 500;
+    this.animateWalking();
+    this.x = 2 * 720 + Math.random() * 500;
     this.interval = setInterval(() => this.moveLeft(this.interval), fps);
   }
 }

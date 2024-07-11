@@ -8,7 +8,8 @@ class MovableObject {
   direction = "right";
   speedY = 1;
   acceleration = 0.05;
-
+  interval;
+  currentImage = 0;
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround()) {
@@ -35,7 +36,7 @@ class MovableObject {
     });
   }
 
-  moveRight() {
+  moveRight(interval) {
     this.x += this.speed;
     if (this.x > 720) {
       clearInterval(interval);
@@ -44,7 +45,7 @@ class MovableObject {
     }
   }
 
-  moveLeft() {
+  moveLeft(interval) {
     this.x -= this.speed;
     if (this.x < 0) {
       clearInterval(interval);
@@ -65,12 +66,13 @@ class MovableObject {
 
   animateWalking() {
     this.setImages(this.IMAGES_WALK);
-    let i = this.currentImage % this.IMAGES_WALK.length;
-    let path = this.IMAGES_WALK[i];
-    this.img = this.imageCache[path];
-    this.currentImage++;
+    setInterval(() => {
+      let i = this.currentImage % this.IMAGES_WALK.length;
+      let path = this.IMAGES_WALK[i];
+      this.img = this.imageCache[path];
+      this.currentImage++;
+    }, fps);
   }
-
 
   moveAfterColision(oldInterval) {
     clearInterval(oldInterval);
