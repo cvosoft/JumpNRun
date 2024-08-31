@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jump 'n' Run</title>
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css" />
+    <script src="./classes/keyboard.class.js"></script>
+    <script src="./js/game.js"></script>
+    <script src="./classes/world.class.js"></script>
+    <script src="./classes/movableObject.class.js"></script>
+    <script src="./classes/character.class.js"></script>
+    <script src="./classes/chicken.class.js"></script>
+    <script src="./classes/chickenSmall.class.js"></script>
+    <script src="./classes/chickenBig.class.js"></script>
+    <script src="./classes/clouds.class.js"></script>
+    <script src="./classes/background.class.js"></script>
+    <script src="./classes/level.class.js"></script>
+    <script src="./levels/level1.js"></script>
+  </head>
+  <body onload="init()">
+    <h1>Jump and Run</h1>
+
+    <canvas id="canvas" width="720" height="405"> </canvas>
+    <!-- <div>
+      <button onclick="toggle720()">720x405</button>
+      <button onclick="toggle1440()">1440x810</button>
+      <button onclick="toggle1920()">1920x1080</button>
+    </div> -->
+    <div>
+      <button onclick="toggleFullscreen()">Fullscreen</button>
+    </div>
+    <!-- 16:9 -->
+  </body>
+</html>
