@@ -1,5 +1,5 @@
 class ChickenSmall extends MovableObject {
-  speed = 3;
+  speed = .6;
   interval;
   direction = "right";
 
