@@ -1,4 +1,4 @@
-class MovableObject {
+class MovableObject extends DrawableObject {
   x = 20;
   y = 355; // gilt für alles auf dem Boden
   img;

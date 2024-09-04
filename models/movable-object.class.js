@@ -1,30 +1,16 @@
-class MovableObject {
-    x = 120;
-    y = 280;
-    height = 150;
-    width = 100;
+class MovableObject extends DrawableObject {
+
     speed = 0.15;
-    img;
-    imageCache = {};
-    currentImage = 0;
+
+
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
+    energy = 100;
+    lastHit = 0;
 
 
-    loadImage(path) {
-        this.img = new Image();
-        this.img.src = path;
-    }
 
-    loadImages(arr) {
-        arr.forEach(path => {
-            let img = new Image();
-            img.src = path;
-            this.imageCache[path] = img;
-        });
-
-    }
 
 
     moveRight() {
@@ -61,19 +47,8 @@ class MovableObject {
         this.speedY = 30;
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-    }
 
-    drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
-            ctx.beginPath();
-            ctx.lineWidth = '5';
-            ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.stroke();
-        }
-    }
+
 
     // Formel zur Kollisionsberechnung
     isColliding(mo) {
@@ -91,6 +66,25 @@ class MovableObject {
             (this.y + this.offsetY + this.height) >= mo.y &&
             (this.y + this.offsetY) <= (mo.Y + mo.height) &&
             obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+    }
+
+    hit() {
+        this.energy -= 5;
+        if (this.energy < 0) {
+            this.energy = 0;
+        } else {
+            this.lastHit = new Date().getTime();
+        }
+    }
+
+    isDead() {
+        return this.energy == 0;
+    }
+
+    isHurt() {
+        let timepassed = new Date().getTime() - this.lastHit; // difference in ms
+        timepassed = timepassed / 1000;
+        return timepassed < 1;
     }
 
 }
