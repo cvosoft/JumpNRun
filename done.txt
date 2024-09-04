@@ -1,2 +1,2 @@
 Mathematik
-17 statusbar 3
+20 throw
