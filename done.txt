@@ -1,2 +1,13 @@
-Mathematik
-20 throw
+21 Aufgaben
+
+Start Screen
+Musik+Sounds
+Coins einsammeln
+Flaschen einsammeln
+Flaschen nur werfen wenn sie vorhanden sind
+Collision
+Endgegner besiegen
+Game over Screen
+Fullscreen
+Erklärung (welche Tasten?)
+
