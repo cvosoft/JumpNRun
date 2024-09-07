@@ -1,4 +1,5 @@
-const level1 = new Level(
+
+level1 = new Level(
     [
         new Chicken(),
         new Chicken(),
@@ -50,3 +51,4 @@ const level1 = new Level(
         new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 6),
     ],
 );
+
