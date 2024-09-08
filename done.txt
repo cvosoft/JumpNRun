@@ -1,16 +1,17 @@
 21 Aufgaben
 -----------
 
-
--Start Screen
 -Musik+Sounds
--Jump besser animieren
+    - Coins
+    - Flaschen
 -Coins platzieren und einsammeln können
 -Flaschen platzieren und einsammeln können
 -Flaschen nur werfen wenn sie vorhanden sind
+-Flaschenwurf optimieren
 -Collision Flaschen mit Gegner
 -Endgegner besiegen (Endgegner braucht auch Statusbar)
 -Game over Screen
+-Win Screen
 -Fullscreen - canvas.requestFullscreen()
 -Erklärung (welche Tasten?)
 -Highscore?

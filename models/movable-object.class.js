@@ -8,6 +8,8 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    
+    standingTimeStamp;
 
 
 
@@ -90,6 +92,14 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000;
         return timepassed < 1;
+    }
+
+    isLongIdle() {
+        let timepassed = new Date().getTime() - this.standingTimeStamp; // difference in ms
+        timepassed = timepassed / 1000;
+        console.log(timepassed);
+        
+        return timepassed > 5;
     }
 
 }
