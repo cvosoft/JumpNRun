@@ -15,6 +15,10 @@ class Character extends MovableObject {
 
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-31.png',
+        'img/2_character_pepe/3_jump/J-32.png',
+        'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
         'img/2_character_pepe/3_jump/J-34.png',
@@ -43,7 +47,7 @@ class Character extends MovableObject {
 
     world;
     walking_sound = new Audio('./audio/walking.wav');
-
+    jumping_sound = new Audio('./audio/jump8bit.mp3');
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
@@ -74,6 +78,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+                this.jumping_sound.play();
             }
 
 
@@ -87,6 +92,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             }
             else if (this.isAboveGround()) {
+                this.currentImage = 0;
                 this.playAnimation(this.IMAGES_JUMPING);
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {

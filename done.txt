@@ -4,12 +4,17 @@
 
 -Start Screen
 -Musik+Sounds
--Coins einsammeln
--Flaschen einsammeln
+-Jump besser animieren
+-Coins platzieren und einsammeln können
+-Flaschen platzieren und einsammeln können
 -Flaschen nur werfen wenn sie vorhanden sind
--Collision
--Endgegner besiegen
+-Collision Flaschen mit Gegner
+-Endgegner besiegen (Endgegner braucht auch Statusbar)
 -Game over Screen
--Fullscreen canvas.requestFullscreen()
+-Fullscreen - canvas.requestFullscreen()
 -Erklärung (welche Tasten?)
+-Highscore?
+-Level 2+3?
+-Spiel wiederholen können
+
 

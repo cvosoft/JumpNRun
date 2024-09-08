@@ -6,12 +6,16 @@ let gameRunning = 0;
 function init() {
     canvas = document.getElementById('canvas');
 
+    // intro music
+
+
     // startscreen reinzeichnen
     let ctx = canvas.getContext('2d');
     let startImage = new Image();
     startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
+
     }
 }
 

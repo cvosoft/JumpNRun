@@ -11,6 +11,9 @@ class World {
     statusBar = new StatusBar();
     throwableObjects = [];
 
+    gameMusic = new Audio('./audio/intromusic.mp3');
+   
+
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
         this.canvas = canvas;
@@ -18,6 +21,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
+        this.gameMusic.loop = true;
+        this.gameMusic.play();
 
     }
 
