@@ -15,10 +15,6 @@ class Character extends MovableObject {
 
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
-        'img/2_character_pepe/3_jump/J-31.png',
-        'img/2_character_pepe/3_jump/J-31.png',
-        'img/2_character_pepe/3_jump/J-32.png',
-        'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-32.png',
         'img/2_character_pepe/3_jump/J-33.png',
         'img/2_character_pepe/3_jump/J-34.png',
@@ -92,8 +88,20 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_HURT);
             }
             else if (this.isAboveGround()) {
-                this.currentImage = 0;
+
+                console.log(this.currentImage);
+
+
+                if (this.currentImage > 3 && this.speedY >= 0) {
+                    this.currentImage = 3;
+                } else if (this.currentImage > 4 && this.speedY < 0 && this.speedY > -20) {
+                    this.currentImage = 4;
+                } else if (this.currentImage > this.IMAGES_JUMPING.length && this.speedY < 0) {
+                    this.currentImage = this.IMAGES_JUMPING.length;
+                }
+
                 this.playAnimation(this.IMAGES_JUMPING);
+
             } else {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // walk animaton
