@@ -8,11 +8,13 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    statusBar = new StatusBar();
+    StatusBarHealth = new StatusBarHealth();
+    StatusBarCoin = new StatusBarCoin();
+    StatusBarBottle = new StatusBarBottle();
     throwableObjects = [];
 
     gameMusic = new Audio('./audio/intromusic.mp3');
-   
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -58,20 +60,23 @@ class World {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
         this.ctx.translate(this.camera_x, 0);
-
         this.addObjectsToMap(this.level.backgroundObjects);
-
         this.ctx.translate(-this.camera_x, 0);
-        // fixed objects:
-        this.addToMap(this.statusBar);
+
         this.ctx.translate(this.camera_x, 0);
-
-        this.addToMap(this.character);
-
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.throwableObjects);
+        this.ctx.translate(-this.camera_x, 0);
 
+        // fixed objects:
+        this.addToMap(this.StatusBarHealth);
+        this.addToMap(this.StatusBarCoin);
+        this.addToMap(this.StatusBarBottle);
+
+        // character
+        this.ctx.translate(this.camera_x, 0);
+        this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
 
         // draw() immer wieder aufgerufen

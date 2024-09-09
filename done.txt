@@ -1,9 +1,8 @@
-21 Aufgaben
+Aufgaben
 -----------
-
 -Musik+Sounds
-    - Coins
-    - Flaschen
+    - Coins - kassensound
+    - Flaschen - pling
 -Coins platzieren und einsammeln können
 -Flaschen platzieren und einsammeln können
 -Flaschen nur werfen wenn sie vorhanden sind
@@ -16,6 +15,9 @@
 -Erklärung (welche Tasten?)
 -Highscore?
 -Level 2+3?
+    -Hühner jumpen und sind schneller   
+-Countdown für Level
+-Punkteanzeige
 -Spiel wiederholen können
 
 
