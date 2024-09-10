@@ -1,8 +1,11 @@
 class Character extends MovableObject {
+    x = 120;
+    y = 50;
 
-    height = 250;
-    y = 120;
+    scaleFactor = 0.275;
+
     speed = 10;
+
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
         'img/2_character_pepe/2_walk/W-22.png',
@@ -93,12 +96,14 @@ class Character extends MovableObject {
             this.walking_sound.pause();
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+                this.longidle_sound.pause();
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
                 this.standingTimeStamp = new Date().getTime();
             }
             if (this.world.keyboard.LEFT && this.x > 0) {
+                this.longidle_sound.pause();
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
@@ -106,6 +111,7 @@ class Character extends MovableObject {
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
+                this.longidle_sound.pause();
                 this.jump();
                 this.jumping_sound.play();
                 this.standingTimeStamp = new Date().getTime();

@@ -2,8 +2,7 @@ class Coin extends MovableObject {
 
     x;
     y;
-    width = 100;
-    height = 100;
+    scaleFactor = 0.375; 
 
 
     constructor(x, y) {

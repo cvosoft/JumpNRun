@@ -1,9 +1,8 @@
 class Cloud extends MovableObject {
-
-    x = 0;
+ 
+    x;
     y = 0;
-    width = 720;
-    height = 405;
+    scaleFactor = 0.375;
     speed = .1;
 
 

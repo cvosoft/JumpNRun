@@ -72,5 +72,13 @@ level1 = new Level(
         new Coin(1600,100),
         new Coin(2000,200),
     ],
+    [
+        new Bottle(500),
+        new Bottle(750),
+        new Bottle(900),
+        new Bottle(1200),
+        new Bottle(1600),
+        new Bottle(2000),
+    ]
 );
 

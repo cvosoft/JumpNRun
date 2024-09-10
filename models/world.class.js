@@ -64,6 +64,7 @@ class World {
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
+        this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -108,7 +109,8 @@ class World {
 
     flipImage(mo) {
         this.ctx.save();
-        this.ctx.translate(mo.width, 0);
+        //this.ctx.translate(mo.width, 0);
+        this.ctx.translate(mo.img.naturalWidth * mo.scaleFactor, 0);
         this.ctx.scale(-1, 1);
         mo.x = -mo.x;
     }

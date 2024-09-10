@@ -1,8 +1,8 @@
 class DrawableObject {
-    x = 120;
-    y = 280;
-    height = 150;
-    width = 100;
+
+    x;
+    y;
+    scaleFactor;
     img;
     imageCache = {};
     currentImage = 0;
@@ -22,7 +22,10 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        //ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
+        //this.scaleFactor = 1;
+        ctx.drawImage(this.img, this.x, this.y, this.img.naturalWidth * this.scaleFactor, this.img.naturalHeight * this.scaleFactor);
+
     }
 
 
