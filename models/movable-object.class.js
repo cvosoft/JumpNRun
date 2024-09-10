@@ -97,9 +97,9 @@ class MovableObject extends DrawableObject {
     isLongIdle() {
         let timepassed = new Date().getTime() - this.standingTimeStamp; // difference in ms
         timepassed = timepassed / 1000;
-        console.log(timepassed);
+        //console.log(timepassed);
         
-        return timepassed > 5;
+        return timepassed > 10;
     }
 
 }

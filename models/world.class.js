@@ -61,11 +61,9 @@ class World {
 
         this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.backgroundObjects);
-        this.ctx.translate(-this.camera_x, 0);
-
-        this.ctx.translate(this.camera_x, 0);
         this.addObjectsToMap(this.level.clouds);
         this.addObjectsToMap(this.level.enemies);
+        this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.throwableObjects);
         this.ctx.translate(-this.camera_x, 0);
 
@@ -100,7 +98,7 @@ class World {
         }
         mo.draw(this.ctx);
 
-        mo.drawFrame(this.ctx);
+        //mo.drawFrame(this.ctx);
 
 
         if (mo.otherDirection) {
