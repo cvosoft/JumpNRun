@@ -25,8 +25,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        //this.gameMusic.loop = true;
-        //this.gameMusic.play();
+        this.gameMusic.loop = true;
+        this.gameMusic.play();
 
     }
 
@@ -38,8 +38,24 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 500);
+            this.checkCollectionBottles();
+        }, 200);
     }
+
+
+    checkCollectionBottles() {
+        this.level.bottles.forEach((bottle) => {
+            if (this.character.isColliding(bottle)) {
+                console.log("flasche!");
+                //remove from screen
+                this.level.bottles.splice(bottle, 1);
+                //update counter
+                this.character.collectedBottles += 1;
+            }
+        });
+    }
+
+
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
@@ -51,9 +67,10 @@ class World {
     }
 
     checkThrowObjects() {
-        if (this.keyboard.D) {
+        if (this.keyboard.D && this.character.collectedBottles > 0) {
             let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
             this.throwableObjects.push(bottle);
+            this.character.collectedBottles -= 1;
         }
     }
 

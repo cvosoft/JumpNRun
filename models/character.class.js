@@ -2,11 +2,10 @@ class Character extends MovableObject {
     x = 120;
     y = 370;
 
-    scaleFactor = 0.275;
-
-    
-
+    scaleFactor = 0.275; 
     speed = 10;
+
+    collectedBottles = 0;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
