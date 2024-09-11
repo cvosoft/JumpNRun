@@ -1,7 +1,9 @@
 class Endboss extends MovableObject {
 
     scaleFactor = 0.375;
-    y = 0;
+    y = -60;
+    x = 4000;
+    speed = .5;
 
 
     IMAGES_WALKING = [
@@ -12,14 +14,20 @@ class Endboss extends MovableObject {
     ]
 
     constructor() {
-        super().loadImage(this.IMAGES_WALKING[0]);
+        //super().loadImage(this.IMAGES_WALKING[0]);
+        super();
         this.loadImages(this.IMAGES_WALKING);
-        this.x = 2500;
         this.animate();
     }
 
 
     animate() {
+
+
+        setInterval(() => {
+            this.moveLeft();
+        }, 1000 / 60)
+
 
         setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING)

@@ -15,6 +15,8 @@ class World {
 
     gameMusic = new Audio('./audio/intromusic.mp3');
 
+    fps = 60;
+
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
@@ -23,8 +25,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.gameMusic.loop = true;
-        this.gameMusic.play();
+        //this.gameMusic.loop = true;
+        //this.gameMusic.play();
 
     }
 
@@ -32,7 +34,7 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-        }, 200);
+        }, 500);
     }
 
     checkCollisions() {
