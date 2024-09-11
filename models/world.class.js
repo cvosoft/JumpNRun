@@ -30,6 +30,10 @@ class World {
 
     }
 
+    setWorld() {
+        this.character.world = this;
+    }
+
     run() {
         setInterval(() => {
             this.checkCollisions();
@@ -41,7 +45,7 @@ class World {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.statusBar.setPercentage(this.character.energy);
+                this.StatusBarHealth.setPercentage(this.character.energy);
             }
         });
     }
@@ -54,9 +58,7 @@ class World {
     }
 
 
-    setWorld() {
-        this.character.world = this;
-    }
+
 
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -100,9 +102,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-
-        //mo.drawFrame(this.ctx);
-
+        mo.drawFrame(this.ctx);
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

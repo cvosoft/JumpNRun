@@ -1,9 +1,10 @@
 class StatusBarHealth extends DrawableObject {
 
-    x = 30;
+    x = 25;
     y = 0;
-    width = 200;
-    height = 60;
+    //width = 200;
+    //height = 60;
+    scaleFactor = 0.35;
 
     IMAGES = [
         'img/7_statusbars/1_statusbar/2_statusbar_health/green/0.png', // 0

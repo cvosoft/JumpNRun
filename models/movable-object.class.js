@@ -8,7 +8,7 @@ class MovableObject extends DrawableObject {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-    
+
     standingTimeStamp;
 
 
@@ -58,11 +58,18 @@ class MovableObject extends DrawableObject {
 
 
     // Formel zur Kollisionsberechnung
+    // isColliding(mo) {
+    //     return this.x + this.width > mo.x &&
+    //         this.y + this.height > mo.y &&
+    //         this.x < mo.x &&
+    //         this.y < mo.y + mo.height
+    // }
+
     isColliding(mo) {
-        return this.x + this.width > mo.x &&
-            this.y + this.height > mo.y &&
+        return this.x + this.img.naturalWidth * this.scaleFactor > mo.x &&
+            this.y + this.img.naturalHeight * this.scaleFactor > mo.y &&
             this.x < mo.x &&
-            this.y < mo.y + mo.height
+            this.y < mo.y + mo.img.naturalHeight * this.scaleFactor
     }
 
 
@@ -98,7 +105,7 @@ class MovableObject extends DrawableObject {
         let timepassed = new Date().getTime() - this.standingTimeStamp; // difference in ms
         timepassed = timepassed / 1000;
         //console.log(timepassed);
-        
+
         return timepassed > 10;
     }
 
