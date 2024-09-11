@@ -1,7 +1,7 @@
 class Bottle extends MovableObject {
 
     x;
-    y = 300;
+    y = 360;
     scaleFactor = 0.2;
 
 

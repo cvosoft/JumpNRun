@@ -44,7 +44,7 @@ class MovableObject extends DrawableObject {
         if (this instanceof ThrowableObject) { // always fall
             return true;
         } else {
-            return this.y < 50; // start y des charakters
+            return this.y < 370;   //50; // start y des charakters
         }
     }
 
@@ -84,6 +84,7 @@ class MovableObject extends DrawableObject {
 
     hit() {
         this.energy -= 5;
+        this.scaleFactor = this.scaleFactor / 1.5;
         if (this.energy < 0) {
             this.energy = 0;
         } else {

@@ -1,7 +1,7 @@
 class StatusBarBottle extends DrawableObject {
 
     x = 250;
-    y = 0;
+    y = 400;
 
 
     IMAGES = [

@@ -1,7 +1,7 @@
 class StatusBarHealth extends DrawableObject {
 
-    x = 25;
-    y = 0;
+    x = 20;
+    y =  50;
     //width = 200;
     //height = 60;
     scaleFactor = 0.35;

@@ -24,18 +24,27 @@ class DrawableObject {
     draw(ctx) {
         //ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
         //this.scaleFactor = 1;
-        ctx.drawImage(this.img, this.x, this.y, this.img.naturalWidth * this.scaleFactor, this.img.naturalHeight * this.scaleFactor);
+        //ctx.drawImage(this.img, this.x, this.y, this.img.naturalWidth * this.scaleFactor, this.img.naturalHeight * this.scaleFactor);
 
+
+        ctx.drawImage(this.img,
+            this.x,
+            this.y - this.img.naturalHeight * this.scaleFactor,
+            this.img.naturalWidth * this.scaleFactor,
+            this.img.naturalHeight * this.scaleFactor);
     }
 
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken) {
+        if (this instanceof Character || this instanceof Chicken || this instanceof Endboss) {
             ctx.beginPath();
             ctx.lineWidth = '5';
             ctx.strokeStyle = 'blue';
             //ctx.rect(this.x, this.y, this.width, this.height);
-            ctx.rect(this.x, this.y, this.img.naturalWidth* this.scaleFactor, this.img.naturalHeight * this.scaleFactor);
+            ctx.rect(this.x,
+                this.y - this.img.naturalHeight * this.scaleFactor,
+                this.img.naturalWidth * this.scaleFactor,
+                this.img.naturalHeight * this.scaleFactor);
 
             ctx.stroke();
         }
