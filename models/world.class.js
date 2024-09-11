@@ -11,6 +11,9 @@ class World {
     StatusBarHealth = new StatusBarHealth();
     StatusBarCoin = new StatusBarCoin();
     StatusBarBottle = new StatusBarBottle();
+    CoinStatus = new CoinStatus();
+    BottleStatus = new BottleStatus();
+
     throwableObjects = [];
 
     gameMusic = new Audio('./audio/intromusic.mp3');
@@ -38,12 +41,13 @@ class World {
         setInterval(() => {
             this.checkCollisions();
             this.checkThrowObjects();
-            this.checkCollectionBottles();
+            this.checkCollectionOfBottles();
+            this.checkCollectionOfCoins();
         }, 200);
     }
 
 
-    checkCollectionBottles() {
+    checkCollectionOfBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 console.log("flasche!");
@@ -55,6 +59,17 @@ class World {
         });
     }
 
+    checkCollectionOfCoins() {
+        this.level.coins.forEach((coin) => {
+            if (this.character.isColliding(coin)) {
+                console.log("coin!");
+                //remove from screen
+                this.level.coins.splice(coin, 1);
+                //update counter
+                this.character.collectedCoins += 1;
+            }
+        });
+    }
 
 
     checkCollisions() {
@@ -90,9 +105,13 @@ class World {
         this.ctx.translate(-this.camera_x, 0);
 
         // fixed objects:
-        this.addToMap(this.StatusBarHealth);
-        this.addToMap(this.StatusBarCoin);
-        this.addToMap(this.StatusBarBottle);
+        //this.addToMap(this.StatusBarHealth);
+        //this.addToMap(this.StatusBarCoin);
+        //this.addToMap(this.StatusBarBottle);
+        this.addToMap(this.CoinStatus);
+        this.ctx.fillText(this.character.collectedCoins, 65, 40);
+        this.addToMap(this.BottleStatus);
+        this.ctx.fillText(this.character.collectedBottles, 165, 40);
 
         // character
         this.ctx.translate(this.camera_x, 0);

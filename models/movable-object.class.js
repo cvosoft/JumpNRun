@@ -66,10 +66,10 @@ class MovableObject extends DrawableObject {
     // }
 
     isColliding(mo) {
-        return this.x + this.img.naturalWidth * this.scaleFactor > mo.x &&
-            this.y + this.img.naturalHeight * this.scaleFactor > mo.y &&
-            this.x < mo.x &&
-            this.y < mo.y + mo.img.naturalHeight * this.scaleFactor
+        return this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
+            this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
+            this.y + this.img.naturalHeight * this.scaleFactor >= mo.y &&
+            this.y <= mo.y + mo.img.naturalHeight * mo.scaleFactor
     }
 
 

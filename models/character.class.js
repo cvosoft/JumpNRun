@@ -6,6 +6,7 @@ class Character extends MovableObject {
     speed = 10;
 
     collectedBottles = 0;
+    collectedCoins = 0;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
