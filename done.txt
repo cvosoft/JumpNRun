@@ -3,9 +3,6 @@ Aufgaben
 -Musik+Sounds
     - Coins - kassensound
     - Flaschen - pling
--Coins platzieren und einsammeln können
--Flaschen platzieren und einsammeln können
--Flaschen nur werfen wenn sie vorhanden sind
 -Flaschenwurf optimieren
 -Collision Flaschen mit Gegner
 -Endgegner besiegen (Endgegner braucht auch Statusbar)

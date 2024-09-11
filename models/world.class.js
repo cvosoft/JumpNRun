@@ -8,9 +8,9 @@ class World {
     ctx;
     keyboard;
     camera_x = 0;
-    StatusBarHealth = new StatusBarHealth();
-    StatusBarCoin = new StatusBarCoin();
-    StatusBarBottle = new StatusBarBottle();
+    //StatusBarHealth = new StatusBarHealth();
+    //StatusBarCoin = new StatusBarCoin();
+    //StatusBarBottle = new StatusBarBottle();
     CoinStatus = new CoinStatus();
     BottleStatus = new BottleStatus();
 
@@ -23,6 +23,8 @@ class World {
 
     constructor(canvas, keyboard) {
         this.ctx = canvas.getContext('2d');
+        this.ctx.font = "50px serif";
+        this.ctx.fillStyle = "white";
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
@@ -109,9 +111,9 @@ class World {
         //this.addToMap(this.StatusBarCoin);
         //this.addToMap(this.StatusBarBottle);
         this.addToMap(this.CoinStatus);
-        this.ctx.fillText(this.character.collectedCoins, 65, 40);
+        this.ctx.fillText(this.character.collectedCoins, 65, 48);
         this.addToMap(this.BottleStatus);
-        this.ctx.fillText(this.character.collectedBottles, 165, 40);
+        this.ctx.fillText(this.character.collectedBottles, 165, 48 );
 
         // character
         this.ctx.translate(this.camera_x, 0);
