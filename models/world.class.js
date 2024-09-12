@@ -41,12 +41,15 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            this.checkKillsByJumpingOn();
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
-        }, 200);
+            this.checkCollisions();
+        }, 1000/60);
     }
+
+
 
 
     checkCollectionOfBottles() {
@@ -73,12 +76,21 @@ class World {
         });
     }
 
+    checkKillsByJumpingOn() {
+        this.level.enemies.forEach((enemy) => {
+            if (this.character.isJumpingOn(enemy)) {
+console.log("treffer!");
+this.character.jump();
+this.level.enemies.splice(enemy, 1);
+            }
+        });
+    }
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 this.character.hit();
-                this.StatusBarHealth.setPercentage(this.character.energy);
+                //this.StatusBarHealth.setPercentage(this.character.energy);
             }
         });
     }

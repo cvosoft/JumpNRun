@@ -57,6 +57,7 @@ class MovableObject extends DrawableObject {
 
 
 
+
     // Formel zur Kollisionsberechnung
     // isColliding(mo) {
     //     return this.x + this.width > mo.x &&
@@ -72,6 +73,11 @@ class MovableObject extends DrawableObject {
             this.y <= mo.y + mo.img.naturalHeight * mo.scaleFactor
     }
 
+    isJumpingOn(mo) {
+        return this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
+            this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
+            this.y - this.img.naturalHeight * this.scaleFactor + this.img.naturalHeight * this.scaleFactor >= mo.y - mo.img.naturalHeight * mo.scaleFactor
+    }
 
     // Bessere Formel zur Kollisionsberechnung (Genauer)
     isCollidingNew(mo) {
