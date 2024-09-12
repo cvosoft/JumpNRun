@@ -37,6 +37,9 @@ class MovableObject extends DrawableObject {
             if (this.isAboveGround() || this.speedY > 0) {
                 this.y -= this.speedY;
                 this.speedY -= this.acceleration;
+                if (this.y > 370) {
+                    this.y = 370;
+                }
             }
         }, 25);
     }
@@ -84,7 +87,8 @@ class MovableObject extends DrawableObject {
         //console.log(Math.round(this.y - 15));
         return this.x + 65 >= mo.x &&
             this.x + this.img.naturalWidth * this.scaleFactor - 130 <= mo.x + mo.img.naturalWidth * mo.scaleFactor &&
-            this.y - 15 <= mo.y - mo.img.naturalHeight * mo.scaleFactor
+            this.y - 15 <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
+            this.y - 15 >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
     }
 
     // Bessere Formel zur Kollisionsberechnung (Genauer)
