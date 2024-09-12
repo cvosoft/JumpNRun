@@ -114,7 +114,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.longidle_sound.pause();
-                this.jump();
+                this.jump(30);
                 this.jumping_sound.play();
                 this.standingTimeStamp = new Date().getTime();
             }

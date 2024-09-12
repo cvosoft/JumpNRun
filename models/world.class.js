@@ -46,7 +46,7 @@ class World {
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
             this.checkCollisions();
-        }, 1000/60);
+        }, 1000 / 60);
     }
 
 
@@ -79,9 +79,14 @@ class World {
     checkKillsByJumpingOn() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy)) {
-console.log("treffer!");
-this.character.jump();
-this.level.enemies.splice(enemy, 1);
+                console.log("treffer!");
+                if (this.keyboard.SPACE) {
+                    this.character.jump(40);
+                }
+                else {
+                    this.character.jump(20);
+                }
+                this.level.enemies.splice(enemy, 1);
             }
         });
     }
@@ -125,7 +130,7 @@ this.level.enemies.splice(enemy, 1);
         this.addToMap(this.CoinStatus);
         this.ctx.fillText(this.character.collectedCoins, 65, 48);
         this.addToMap(this.BottleStatus);
-        this.ctx.fillText(this.character.collectedBottles, 165, 48 );
+        this.ctx.fillText(this.character.collectedBottles, 165, 48);
 
         // character
         this.ctx.translate(this.camera_x, 0);

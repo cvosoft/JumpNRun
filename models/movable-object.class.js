@@ -6,7 +6,8 @@ class MovableObject extends DrawableObject {
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-    energy = 100;
+    //energy = 100;
+    energy = 2;
     lastHit = 0;
 
     standingTimeStamp;
@@ -49,9 +50,9 @@ class MovableObject extends DrawableObject {
     }
 
 
-    jump() {
+    jump(speedY) {
         this.currentImage = 0;
-        this.speedY = 30;
+        this.speedY = speedY;
     }
 
 
@@ -89,8 +90,11 @@ class MovableObject extends DrawableObject {
     }
 
     hit() {
-        this.energy -= 5;
-        this.scaleFactor = this.scaleFactor / 1.5;
+        //this.energy -= 5;
+        this.energy -= 1;
+        if (this.energy > 0) {
+            this.scaleFactor = this.scaleFactor / 2;
+        }
         if (this.energy < 0) {
             this.energy = 0;
         } else {
