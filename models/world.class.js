@@ -30,8 +30,8 @@ class World {
         this.draw();
         this.setWorld();
         this.run();
-        this.gameMusic.loop = true;
-        this.gameMusic.play();
+        //this.gameMusic.loop = true;
+        //this.gameMusic.play();
 
     }
 
@@ -57,7 +57,7 @@ class World {
             if (this.character.isColliding(bottle)) {
                 //console.log("flasche!");
                 //remove from screen
-                this.level.bottles.splice(bottle, 1);
+                this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
                 //update counter
                 this.character.collectedBottles += 1;
             }
@@ -69,7 +69,7 @@ class World {
             if (this.character.isColliding(coin)) {
                 //console.log("coin!");
                 //remove from screen
-                this.level.coins.splice(coin, 1);
+                this.level.coins.splice(this.level.coins.indexOf(coin), 1);
                 //update counter
                 this.character.collectedCoins += 1;
             }
@@ -86,7 +86,7 @@ class World {
                 else {
                     this.character.jump(20);
                 }
-                this.level.enemies.splice(enemy, 1);
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
                 //death animation
             }
         });
