@@ -2,7 +2,10 @@ Aufgaben
 -----------
 -Musik+Sounds
     - Coins - kassensound
-    - Flaschen - pling
+    - Flaschen - pling und klirr
+- sterben
+- kleine Hühnis, die springen
+- auf Gegner springen können und dann extra hochspringen können
 -Flaschenwurf optimieren
 -Collision Flaschen mit Gegner
 -Endgegner besiegen (Endgegner braucht auch Statusbar)
@@ -10,11 +13,6 @@ Aufgaben
 -Win Screen
 -Fullscreen - canvas.requestFullscreen()
 -Erklärung (welche Tasten?)
--Highscore?
--Level 2+3?
-    -Hühner jumpen und sind schneller   
--Countdown für Level
--Punkteanzeige
 -Spiel wiederholen können
-
+- Level2?
 
