@@ -74,10 +74,17 @@ class MovableObject extends DrawableObject {
             this.y <= mo.y + mo.img.naturalHeight * mo.scaleFactor
     }
 
+    // isJumpingOn(mo) {
+    //     return  this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
+    //             this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
+    //             this.y - this.img.naturalHeight * this.scaleFactor + this.img.naturalHeight * this.scaleFactor >= mo.y - mo.img.naturalHeight * mo.scaleFactor
+    // }
+
     isJumpingOn(mo) {
-        return this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
-            this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
-            this.y - this.img.naturalHeight * this.scaleFactor + this.img.naturalHeight * this.scaleFactor >= mo.y - mo.img.naturalHeight * mo.scaleFactor
+        //console.log(Math.round(this.y - 15));
+        return this.x + 65 >= mo.x &&
+            this.x + this.img.naturalWidth * this.scaleFactor - 130 <= mo.x + mo.img.naturalWidth * mo.scaleFactor &&
+            this.y - 15 <= mo.y - mo.img.naturalHeight * mo.scaleFactor
     }
 
     // Bessere Formel zur Kollisionsberechnung (Genauer)

@@ -45,7 +45,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
-            this.checkCollisions();
+            //this.checkCollisions();
         }, 1000 / 60);
     }
 
@@ -55,7 +55,7 @@ class World {
     checkCollectionOfBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
-                console.log("flasche!");
+                //console.log("flasche!");
                 //remove from screen
                 this.level.bottles.splice(bottle, 1);
                 //update counter
@@ -67,7 +67,7 @@ class World {
     checkCollectionOfCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
-                console.log("coin!");
+                //console.log("coin!");
                 //remove from screen
                 this.level.coins.splice(coin, 1);
                 //update counter
@@ -87,6 +87,7 @@ class World {
                     this.character.jump(20);
                 }
                 this.level.enemies.splice(enemy, 1);
+                //death animation
             }
         });
     }
