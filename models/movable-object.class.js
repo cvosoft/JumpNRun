@@ -103,18 +103,22 @@ class MovableObject extends DrawableObject {
     hit() {
         //this.energy -= 5;
         this.energy -= 1;
+
+    if (this.isDead()) {
+console.log("tot!");
+
+
+    }
+
         if (this.energy > 0) {
             this.scaleFactor = this.scaleFactor / 2;
-        }
-        if (this.energy < 0) {
-            this.energy = 0;
         } else {
             this.lastHit = new Date().getTime();
         }
     }
 
     isDead() {
-        return this.energy == 0;
+        return this.energy <= 0;
     }
 
     isHurt() {
