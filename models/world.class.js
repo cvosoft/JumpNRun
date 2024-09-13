@@ -13,6 +13,7 @@ class World {
     //StatusBarBottle = new StatusBarBottle();
     CoinStatus = new CoinStatus();
     BottleStatus = new BottleStatus();
+    LivesStatus = new LivesStatus();
 
     throwableObjects = [];
 
@@ -45,7 +46,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
-            //this.checkCollisions();
+            this.checkCollisions();
         }, 1000 / 60);
     }
 
@@ -129,9 +130,11 @@ class World {
         //this.addToMap(this.StatusBarCoin);
         //this.addToMap(this.StatusBarBottle);
         this.addToMap(this.CoinStatus);
-        this.ctx.fillText(this.character.collectedCoins, 65, 48);
+        this.ctx.fillText(this.character.collectedCoins, 265, 48);
         this.addToMap(this.BottleStatus);
         this.ctx.fillText(this.character.collectedBottles, 165, 48);
+        this.addToMap(this.LivesStatus);
+        this.ctx.fillText(this.character.lives, 65, 48);
 
         // character
         this.ctx.translate(this.camera_x, 0);

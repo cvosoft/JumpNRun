@@ -7,6 +7,7 @@ class Character extends MovableObject {
 
     collectedBottles = 0;
     collectedCoins = 0;
+    lives = 2;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -130,6 +131,11 @@ class Character extends MovableObject {
                 this.longidle_sound.play();
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+
+                //restart level
+                this.lives--;
+                
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
             }
