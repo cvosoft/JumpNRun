@@ -45,7 +45,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
-            //this.checkCollisions();
+            this.checkCollisions();
         }, 1000 / 60);
     }
 
