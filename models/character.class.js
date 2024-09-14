@@ -8,7 +8,7 @@ class Character extends MovableObject {
 
     collectedBottles = 0;
     collectedCoins = 0;
-    lives = 2;
+    lives;
 
     offset = {
         top: 100,//130,
@@ -88,9 +88,9 @@ class Character extends MovableObject {
     isHurt_sound = new Audio('./audio/autsch.mp3');
     isDead_sound = new Audio('./audio/pepe_death2.mp3');
 
-    constructor() {
+    constructor(lives) {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
-
+        this.lives = lives;
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);

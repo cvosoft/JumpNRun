@@ -1,7 +1,5 @@
 class World {
 
-    character = new Character();
-
     level = level1;
     level_no = 1;
 
@@ -23,7 +21,10 @@ class World {
     fps = 60;
 
 
-    constructor(canvas, keyboard, level) {
+    constructor(canvas, keyboard, level, lives) {
+
+        this.character = new Character(lives);
+
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
         this.ctx.fillStyle = "white";
@@ -64,7 +65,7 @@ class World {
             // alle intervalle beenden
             clearAllIntervals();
             // neustart aktuelles level
-            world = new World(canvas, keyboard, this.level);
+            world = new World(canvas, keyboard, this.level, world.character.lives);
         }
     }
 
