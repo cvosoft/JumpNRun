@@ -79,8 +79,8 @@ class World {
                 //console.log("flasche!");
                 //remove from screen
                 let index = this.level.bottles.indexOf(bottle);
-                this.level.bottles.splice(index, 1);
                 this.level.bottles[index].collect_sound.play();
+                this.level.bottles.splice(index, 1);
                 //update counter
                 this.character.collectedBottles += 1;
             }
@@ -93,8 +93,8 @@ class World {
                 //console.log("coin!");
                 //remove from screen
                 let index = this.level.coins.indexOf(coin);
-                this.level.coins.splice(index, 1);
                 this.level.coins[index].collect_sound.play();
+                this.level.coins.splice(index, 1);
                 //update counter
                 this.character.collectedCoins += 1;
             }
