@@ -1,7 +1,7 @@
 class Bottle extends MovableObject {
 
     x;
-    y = 360;
+    y = 360; // ground
     scaleFactor = 0.2;
 
     collect_sound = new Audio('./audio/bottle.mp3');
@@ -12,7 +12,7 @@ class Bottle extends MovableObject {
     ];
 
     constructor(x) {
-        super();
+        super().loadImage(this.IMAGES[0]);
         this.loadImages(this.IMAGES);
         this.x = x;
         setInterval(() => {
