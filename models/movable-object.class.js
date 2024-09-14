@@ -94,10 +94,6 @@ class MovableObject extends DrawableObject {
         //this.energy -= 5;
         this.energy -= 1;
 
-        if (this.isDead()) {
-            console.log("tot!");
-        }
-
         if (this.energy > 0) {
             this.scaleFactor = this.scaleFactor / 2;
             this.lastHit = new Date().getTime();

@@ -49,12 +49,9 @@ class World {
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
             this.checkCollisions();
+            this.checkIsDead();
         }, 1000 / 60);
 
-
-        setInterval(() => {
-            this.checkIsDead();
-        }, 500);
     }
 
 
@@ -63,9 +60,14 @@ class World {
             //2 sekunden pause?
 
             // alle intervalle beenden
-            clearAllIntervals();
+
             // neustart aktuelles level
-            world = new World(canvas, keyboard, this.level, world.character.lives);
+            if (world.character.lives >= 1) {
+                world = new World(canvas, keyboard, this.level, world.character.lives);
+            } else {
+                clearAllIntervals();
+            }
+
         }
     }
 
@@ -119,6 +121,8 @@ class World {
             else if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
                 //this.StatusBarHealth.setPercentage(this.character.energy);
+
+
             }
         });
     }
@@ -144,7 +148,10 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
+        this.ctx.fillText(`Level: ${this.level_no}`, 0, this.canvas.height);
         this.ctx.translate(-this.camera_x, 0);
+
+
 
         // fixed objects:
         //this.addToMap(this.StatusBarHealth);
@@ -156,7 +163,7 @@ class World {
         this.ctx.fillText(this.character.collectedBottles, 165, 48);
         this.addToMap(this.LivesStatus);
         this.ctx.fillText(this.character.lives, 65, 48);
-        this.ctx.fillText(`Level: ${this.level_no}`, 0, this.canvas.height);
+
 
 
         // character
