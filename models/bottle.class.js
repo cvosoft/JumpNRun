@@ -4,6 +4,7 @@ class Bottle extends MovableObject {
     y = 360;
     scaleFactor = 0.2;
 
+    collect_sound = new Audio('./audio/bottle.mp3');
 
     IMAGES = [
         'img/6_salsa_bottle/1_salsa_bottle_on_ground.png',

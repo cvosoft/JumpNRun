@@ -4,6 +4,7 @@ class Coin extends MovableObject {
     y;
     scaleFactor = 0.375;
 
+    collect_sound = new Audio('./audio/cash.mp3');
 
     IMAGES = [
         'img/8_coin/coin_1.png',

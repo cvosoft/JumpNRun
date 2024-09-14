@@ -76,7 +76,9 @@ class World {
             if (this.character.isColliding(bottle)) {
                 //console.log("flasche!");
                 //remove from screen
-                this.level.bottles.splice(this.level.bottles.indexOf(bottle), 1);
+                let index = this.level.bottles.indexOf(bottle);
+                this.level.bottles.splice(index, 1);
+                this.level.bottles[index].collect_sound.play();
                 //update counter
                 this.character.collectedBottles += 1;
             }
@@ -88,7 +90,9 @@ class World {
             if (this.character.isColliding(coin)) {
                 //console.log("coin!");
                 //remove from screen
-                this.level.coins.splice(this.level.coins.indexOf(coin), 1);
+                let index = this.level.coins.indexOf(coin);
+                this.level.coins.splice(index, 1);
+                this.level.coins[index].collect_sound.play();
                 //update counter
                 this.character.collectedCoins += 1;
             }
