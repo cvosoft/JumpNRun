@@ -83,10 +83,10 @@ class MovableObject extends DrawableObject {
 
         //y1: links UNTEN!
         //y2 : links oben, also links unten MINUS height
-        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&  // x2_ch > x1_mo
-            this.y + this.offset.top > mo.y - mo.height - mo.offset.bottom && // y1_ch > y2_mo 
+        return this.x + this.width - this.offset.right > mo.x - mo.offset.left &&  // x2_ch > x1_mo
+            this.y - this.offset.bottom > mo.y - mo.height + mo.offset.top && // y1_ch > y2_mo 
             this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // x1_ch < x2_mo
-            this.y - this.height - this.offset.bottom < mo.y + mo.offset.top; // y2_ch > y1_mo
+            this.y - this.height + this.offset.top < mo.y - mo.offset.top; // y2_ch > y1_mo
     }
 
 
@@ -96,13 +96,10 @@ class MovableObject extends DrawableObject {
 
         if (this.isDead()) {
             console.log("tot!");
-
-
         }
 
         if (this.energy > 0) {
             this.scaleFactor = this.scaleFactor / 2;
-        } else {
             this.lastHit = new Date().getTime();
         }
     }

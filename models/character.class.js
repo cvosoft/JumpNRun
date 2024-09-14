@@ -11,10 +11,10 @@ class Character extends MovableObject {
     lives = 2;
 
     offset = {
-        top: 0,//130,
+        top: 100,//130,
         bottom: 0, //145,
-        left: 0, //80,
-        right: 0, //30,
+        left: 20, //30,
+        right: 80 , //80,
     }
 
     IMAGES_WALKING = [
@@ -85,6 +85,8 @@ class Character extends MovableObject {
     walking_sound = new Audio('./audio/walking.wav');
     jumping_sound = new Audio('./audio/jump8bit.mp3');
     longidle_sound = new Audio('./audio/snoring2.mp3');
+    isHurt_sound = new Audio('./audio/autsch.mp3');
+    isDead_sound = new Audio('./audio/pepe_death2.mp3');
 
     constructor() {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
@@ -139,13 +141,14 @@ class Character extends MovableObject {
                 this.longidle_sound.play();
             } else if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.isDead_sound.play();
 
                 //restart level
                 this.lives--;
 
-
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                this.isHurt_sound.play();
             }
             else if (this.isAboveGround()) {
 

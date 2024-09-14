@@ -8,6 +8,8 @@ class SmallChicken extends MovableObject {
 
     speed = 0.15 + Math.random() * 0.5;
 
+    death_sound = new Audio('./audio/chicken.mp3');
+
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
         'img/3_enemies_chicken/chicken_small/1_walk/2_w.png',

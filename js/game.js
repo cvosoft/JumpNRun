@@ -20,6 +20,11 @@ function init() {
 }
 
 
+/* Alternative (quick and dirty), um alle Intervalle zu beenden. */
+function clearAllIntervals() {
+    for (let i = 1; i < 9999; i++) window.clearInterval(i);
+}
+
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
