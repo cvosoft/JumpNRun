@@ -3,6 +3,8 @@ class World {
     character = new Character();
 
     level = level1;
+    level_no = 1;
+
     canvas;
     ctx;
     keyboard;
@@ -153,6 +155,8 @@ class World {
         this.ctx.fillText(this.character.collectedBottles, 165, 48);
         this.addToMap(this.LivesStatus);
         this.ctx.fillText(this.character.lives, 65, 48);
+        this.ctx.fillText(`Level: ${this.level_no}`, 0, this.canvas.height);
+
 
         // character
         this.ctx.translate(this.camera_x, 0);
