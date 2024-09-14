@@ -2,12 +2,20 @@ class Character extends MovableObject {
     x = 120;
     y = 370;
 
-    scaleFactor = 0.275; 
+    scaleFactor = 0.275
+
     speed = 10;
 
     collectedBottles = 0;
     collectedCoins = 0;
     lives = 2;
+
+    offset = {
+        top: 0,//130,
+        bottom: 0, //145,
+        left: 0, //80,
+        right: 0, //30,
+    }
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -115,7 +123,7 @@ class Character extends MovableObject {
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.longidle_sound.pause();
-                this.jump(25);
+                this.jump(45);
                 this.jumping_sound.play();
                 this.standingTimeStamp = new Date().getTime();
             }
@@ -134,7 +142,7 @@ class Character extends MovableObject {
 
                 //restart level
                 this.lives--;
-                
+
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);

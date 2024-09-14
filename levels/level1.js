@@ -69,7 +69,7 @@ level1 = new Level(
         new BackgroundObject('./img/5_background/layers/1_first_layer/1.png', 719 * 6),
     ],
     [
-        new Coin(500, 100),
+        new Coin(500, 300),
         new Coin(750, 150),
         new Coin(900, 100),
         new Coin(1200, 150),

@@ -12,7 +12,12 @@ class MovableObject extends DrawableObject {
 
     standingTimeStamp;
 
-
+    offset = {
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+    }
 
 
 
@@ -60,29 +65,6 @@ class MovableObject extends DrawableObject {
 
 
 
-
-
-    // Formel zur Kollisionsberechnung
-    // isColliding(mo) {
-    //     return this.x + this.width > mo.x &&
-    //         this.y + this.height > mo.y &&
-    //         this.x < mo.x &&
-    //         this.y < mo.y + mo.height
-    // }
-
-    isColliding(mo) {
-        return this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
-            this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
-            this.y + this.img.naturalHeight * this.scaleFactor >= mo.y &&
-            this.y <= mo.y + mo.img.naturalHeight * mo.scaleFactor
-    }
-
-    // isJumpingOn(mo) {
-    //     return  this.x + this.img.naturalWidth * this.scaleFactor >= mo.x &&
-    //             this.x <= (mo.x + mo.img.naturalWidth * mo.scaleFactor) &&
-    //             this.y - this.img.naturalHeight * this.scaleFactor + this.img.naturalHeight * this.scaleFactor >= mo.y - mo.img.naturalHeight * mo.scaleFactor
-    // }
-
     isJumpingOn(mo) {
         //console.log(Math.round(this.y - 15));
         return this.x + 65 >= mo.x &&
@@ -91,24 +73,32 @@ class MovableObject extends DrawableObject {
             this.y - 15 >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
     }
 
-    // Bessere Formel zur Kollisionsberechnung (Genauer)
-    isCollidingNew(mo) {
-        return (this.x + this.width) >= mo.x &&
-            this.x <= (mo.x + mo.width) &&
-            (this.y + this.offsetY + this.height) >= mo.y &&
-            (this.y + this.offsetY) <= (mo.Y + mo.height) &&
-            obj.onCollisionCourse; // Optional: hiermit könnten wir schauen, ob ein Objekt sich in die richtige Richtung bewegt. Nur dann kollidieren wir. Nützlich bei Gegenständen, auf denen man stehen kann.
+
+
+    isColliding(mo) {
+        this.width = this.img.naturalWidth * this.scaleFactor;
+        this.height = this.img.naturalHeight * this.scaleFactor;
+        mo.width = mo.img.naturalWidth * mo.scaleFactor;
+        mo.height = mo.img.naturalHeight * mo.scaleFactor;
+
+        //y1: links UNTEN!
+        //y2 : links oben, also links unten MINUS height
+        return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&  // x2_ch > x1_mo
+            this.y + this.offset.top > mo.y - mo.height - mo.offset.bottom && // y1_ch > y2_mo 
+            this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // x1_ch < x2_mo
+            this.y - this.height - this.offset.bottom < mo.y + mo.offset.top; // y2_ch > y1_mo
     }
+
 
     hit() {
         //this.energy -= 5;
         this.energy -= 1;
 
-    if (this.isDead()) {
-console.log("tot!");
+        if (this.isDead()) {
+            console.log("tot!");
 
 
-    }
+        }
 
         if (this.energy > 0) {
             this.scaleFactor = this.scaleFactor / 2;

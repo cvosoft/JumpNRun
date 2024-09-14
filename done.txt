@@ -1,11 +1,14 @@
 Aufgaben
 -----------
+
+- check is colliding!
+
 -Musik+Sounds
     - Coins - kassensound
     - Flaschen - pling und klirr
 - sterben
-- kleine Hühnis, die springen
-- auf Gegner springen können und dann extra hochspringen können
+
+
 -Flaschenwurf optimieren
 -Collision Flaschen mit Gegner
 -Endgegner besiegen (Endgegner braucht auch Statusbar)

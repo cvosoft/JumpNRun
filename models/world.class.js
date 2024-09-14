@@ -42,12 +42,16 @@ class World {
 
     run() {
         setInterval(() => {
-            this.checkKillsByJumpingOn();
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
             this.checkCollisions();
         }, 1000 / 60);
+
+        // setInterval(() => {
+        //     this.checkKillsByJumpingOn();
+        // }, 1000 / 60);
+
     }
 
 
@@ -95,7 +99,19 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy)) {
+            if (this.character.isJumpingOn(enemy)) {
+                console.log("treffer!");
+                if (this.keyboard.SPACE) {
+                    this.character.jump(40);
+                }
+                else {
+                    this.character.jump(20);
+                }
+                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
+                //death animation
+            }
+
+            else if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
                 //this.StatusBarHealth.setPercentage(this.character.energy);
             }
