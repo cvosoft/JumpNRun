@@ -20,6 +20,8 @@ class World {
 
     fps = 60;
 
+    lastThrow = 0;
+
 
     constructor(canvas, keyboard, level, lives) {
 
@@ -133,9 +135,13 @@ class World {
 
     checkThrowObjects() {
         if (this.keyboard.D && this.character.collectedBottles > 0) {
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-            this.throwableObjects.push(bottle);
-            this.character.collectedBottles -= 1;
+            let actualThrow = new Date().getTime() / 1000; // [s]
+            if (actualThrow - this.lastThrow > 0.5) { // nur alle 0,5s werfen können
+                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                this.lastThrow = actualThrow;
+                this.throwableObjects.push(bottle);
+                this.character.collectedBottles -= 1;
+            }
         }
     }
 
