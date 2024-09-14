@@ -48,10 +48,6 @@ class World {
             this.checkCollisions();
         }, 1000 / 60);
 
-        // setInterval(() => {
-        //     this.checkKillsByJumpingOn();
-        // }, 1000 / 60);
-
     }
 
 
@@ -81,21 +77,7 @@ class World {
         });
     }
 
-    checkKillsByJumpingOn() {
-        this.level.enemies.forEach((enemy) => {
-            if (this.character.isJumpingOn(enemy)) {
-                console.log("treffer!");
-                if (this.keyboard.SPACE) {
-                    this.character.jump(40);
-                }
-                else {
-                    this.character.jump(20);
-                }
-                this.level.enemies.splice(this.level.enemies.indexOf(enemy), 1);
-                //death animation
-            }
-        });
-    }
+
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
