@@ -1,13 +1,12 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let lives = 3;
+let level = 1;
 let gameRunning = 0;
 
 function init() {
     canvas = document.getElementById('canvas');
-
-    // intro music
-
 
     // startscreen reinzeichnen
     let ctx = canvas.getContext('2d');
@@ -17,6 +16,21 @@ function init() {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
 
     }
+}
+
+
+function startGame(level, lives) {
+    clearAllIntervals();
+    initLevel1();
+    world = new World(canvas, keyboard, level1, lives);
+}
+
+function clearAllSounds() {
+    world.character.walking_sound.pause();
+    world.character.jumping_sound.pause();
+    world.character.longidle_sound.pause();
+    world.character.isHurt_sound.pause();
+    world.character.isDead_sound.pause();
 }
 
 
@@ -41,9 +55,11 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 32) {
 
         if (gameRunning == 0) {
-            world = new World(canvas, keyboard, level1, 3);
-            //initLevel();
             gameRunning = 1;
+            startGame(level, lives)
+
+
+
         } else {
             keyboard.SPACE = true;
         }

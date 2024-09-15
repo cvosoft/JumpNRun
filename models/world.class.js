@@ -1,6 +1,6 @@
 class World {
 
-    level = level1;
+    level;
     level_no = 1;
 
     canvas;
@@ -62,13 +62,9 @@ class World {
             //2 sekunden pause?
             world.character.lives--;
 
-            // alle intervalle beenden
-            //clearAllIntervals();
-
             // neustart aktuelles level
             if (world.character.lives >= 1) {
-                clearAllIntervals();
-                world = new World(canvas, keyboard, this.level, world.character.lives);
+                startGame(this.level, this.character.lives)
             } else {
                 clearAllIntervals();
                 //game over
