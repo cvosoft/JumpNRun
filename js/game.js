@@ -41,7 +41,7 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 32) {
 
         if (gameRunning == 0) {
-            world = new World(canvas, keyboard, level1, 2);
+            world = new World(canvas, keyboard, level1, 3);
             //initLevel();
             gameRunning = 1;
         } else {

@@ -60,14 +60,19 @@ class World {
     checkIsDead() {
         if (world.character.isDead()) {
             //2 sekunden pause?
+            world.character.lives--;
 
             // alle intervalle beenden
+            //clearAllIntervals();
 
             // neustart aktuelles level
             if (world.character.lives >= 1) {
+                clearAllIntervals();
                 world = new World(canvas, keyboard, this.level, world.character.lives);
             } else {
                 clearAllIntervals();
+                //game over
+
             }
 
         }
