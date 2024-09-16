@@ -72,8 +72,10 @@ class World {
         if (this.keyboard.F) {
             if (!this.fullscreen) {
                 this.canvas.requestFullscreen();
+                this.fullscreen = true;
             } else {
                 document.exitFullscreen();
+                this.fullscreen = false;
             }
         }
     }
