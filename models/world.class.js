@@ -52,21 +52,26 @@ class World {
             this.checkCollectionOfCoins();
             this.checkCollisions();
             this.checkIsDead();
-        }, 1000 / 60);
+        }, 1000 / 10);
 
     }
 
 
     checkIsDead() {
         if (world.character.isDead()) {
-            //2 sekunden pause?
+            //2 sekunden pause
+            wait(2000);
+
+            //animation?
+
+
             world.character.lives--;
 
             // neustart aktuelles level
             if (world.character.lives >= 1) {
                 startGame(this.level, this.character.lives)
             } else {
-                clearAllIntervals();
+                //clearAllIntervals();
                 //game over
 
             }

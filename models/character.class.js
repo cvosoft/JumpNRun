@@ -14,7 +14,7 @@ class Character extends MovableObject {
         top: 100,//130,
         bottom: 0, //145,
         left: 20, //30,
-        right: 80 , //80,
+        right: 80, //80,
     }
 
     IMAGES_WALKING = [
@@ -106,20 +106,24 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
         setInterval(() => {
 
-            this.walking_sound.pause();
+            //this.walking_sound.pause();
+            //console.log("pausiert");
+
 
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.longidle_sound.pause();
                 this.moveRight();
                 this.otherDirection = false;
-                this.walking_sound.play();
+                //this.walking_sound.play();
+                console.log("played")
+
                 this.standingTimeStamp = new Date().getTime();
             }
-            if (this.world.keyboard.LEFT && this.x > 0) {
+            else if (this.world.keyboard.LEFT && this.x > 0) {
                 this.longidle_sound.pause();
                 this.moveLeft();
                 this.otherDirection = true;
-                this.walking_sound.play();
+                //this.walking_sound.play();
                 this.standingTimeStamp = new Date().getTime();
             }
 
@@ -134,6 +138,7 @@ class Character extends MovableObject {
         }, 1000 / 60); // quasi speed!
 
         setInterval(() => {
+            this.walking_sound.pause();
             this.playAnimation(this.IMAGES_IDLE);
 
             if (this.isLongIdle()) {
@@ -166,6 +171,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // walk animaton
                     this.playAnimation(this.IMAGES_WALKING);
+                    this.walking_sound.play();
 
                 }
             }

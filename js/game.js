@@ -25,6 +25,14 @@ function startGame(level, lives) {
     world = new World(canvas, keyboard, level1, lives);
 }
 
+var wait = (ms) => {
+    const start = Date.now();
+    let now = start;
+    while (now - start < ms) {
+        now = Date.now();
+    }
+}
+
 function clearAllSounds() {
     world.character.walking_sound.pause();
     world.character.jumping_sound.pause();
