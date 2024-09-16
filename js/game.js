@@ -5,6 +5,8 @@ let lives = 3;
 let level = 1;
 let gameRunning = 0;
 
+
+
 function init() {
     canvas = document.getElementById('canvas');
 

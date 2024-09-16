@@ -22,10 +22,14 @@ class World {
 
     lastThrow = 0;
 
+    gameOver = false;
+
 
     constructor(canvas, keyboard, level, lives) {
 
         this.character = new Character(lives);
+
+        this.gameoverscreen = new GameOverScreen();
 
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
@@ -71,8 +75,10 @@ class World {
             if (world.character.lives >= 1) {
                 startGame(this.level, this.character.lives)
             } else {
-                //clearAllIntervals();
-                //game over
+                clearAllIntervals();
+                this.gameOver = true;
+
+
 
             }
 
@@ -164,7 +170,7 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
-        this.ctx.fillText(`Level: ${this.level_no}`, 0, this.canvas.height);
+        this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height);
         this.ctx.translate(-this.camera_x, 0);
 
 
@@ -180,12 +186,17 @@ class World {
         this.addToMap(this.LivesStatus);
         this.ctx.fillText(this.character.lives, 65, 48);
 
-
-
         // character
         this.ctx.translate(this.camera_x, 0);
         this.addToMap(this.character);
         this.ctx.translate(-this.camera_x, 0);
+
+
+        // game over screen
+        if (this.gameOver) {
+            this.addToMap(this.gameoverscreen);
+        }
+
 
         // draw() immer wieder aufgerufen
         let self = this;
