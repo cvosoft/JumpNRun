@@ -1,7 +1,7 @@
 class World {
 
     level;
-    level_no = 1;
+    level_no;
 
     canvas;
     ctx;
@@ -10,6 +10,7 @@ class World {
     //StatusBarHealth = new StatusBarHealth();
     //StatusBarCoin = new StatusBarCoin();
     //StatusBarBottle = new StatusBarBottle();
+    StatusBarHealthEnemy = new StatusBarHealthEnemy();
     CoinStatus = new CoinStatus();
     BottleStatus = new BottleStatus();
     LivesStatus = new LivesStatus();
@@ -23,6 +24,7 @@ class World {
     lastThrow = 0;
 
     gameOver = false;
+    win = false;
 
     gameOverImg = "img/9_intro_outro_screens/game_over/game over!.png";
     winImg = "img/9_intro_outro_screens/win/win_1.png";
@@ -30,7 +32,7 @@ class World {
     fullscreen = false;
 
 
-    constructor(canvas, keyboard, level, lives) {
+    constructor(canvas, keyboard, level_no, lives) {
 
         this.character = new Character(lives);
 
@@ -40,7 +42,27 @@ class World {
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
         this.ctx.fillStyle = "white";
-        this.level = level;
+
+        // level init
+        switch (level_no) {
+            case 1:
+                initLevel1();
+                this.level = level1;
+                break;
+
+            case 2:
+                initLevel2();
+                this.level = level2;
+                break;
+            case 3:
+                initLevel3();
+                this.level = level3;
+                break;
+        }
+
+
+        //this.level = level;
+        this.level_no = level_no;
         this.canvas = canvas;
         this.keyboard = keyboard;
         this.draw();
@@ -63,9 +85,27 @@ class World {
             this.checkCollisions();
             this.checkIsDead();
             this.checkToggleFullscreen();
+            this.checkLevelComplete();
         }, 1000 / 10);
 
     }
+
+
+    checkLevelComplete() {
+        if (this.level.enemies == 0) {
+            clearAllIntervals();
+            this.level_no++;
+
+            if (this.level_no <= 3) {
+                startGame(this.level_no, this.character.lives);
+            }
+            else {
+                this.win = true;
+                clearAllIntervals();
+            }
+        }
+    }
+
 
 
     checkToggleFullscreen() {
@@ -93,10 +133,11 @@ class World {
 
             // neustart aktuelles level
             if (world.character.lives >= 1) {
-                startGame(this.level, this.character.lives)
+                startGame(this.level_no, this.character.lives)
             } else {
-                clearAllIntervals();
+
                 this.gameOver = true;
+                clearAllIntervals();
 
 
 
@@ -199,6 +240,7 @@ class World {
         //this.addToMap(this.StatusBarHealth);
         //this.addToMap(this.StatusBarCoin);
         //this.addToMap(this.StatusBarBottle);
+        this.addToMap(this.StatusBarHealthEnemy);
         this.addToMap(this.CoinStatus);
         this.ctx.fillText(this.character.collectedCoins, 265, 48);
         this.addToMap(this.BottleStatus);
@@ -215,6 +257,10 @@ class World {
         // game over screen
         if (this.gameOver) {
             this.addToMap(this.gameoverscreen);
+        }
+        // win screen
+        if (this.win) {
+            this.addToMap(this.winscreen);
         }
 
 

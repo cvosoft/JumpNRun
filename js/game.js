@@ -2,7 +2,7 @@ let canvas;
 let world;
 let keyboard = new Keyboard();
 let lives = 3;
-let level = 1;
+let level_no = 1;
 let gameRunning = 0;
 
 
@@ -21,10 +21,10 @@ function init() {
 }
 
 
-function startGame(level, lives) {
+function startGame(level_no, lives) {
     clearAllIntervals();
-    initLevel1();
-    world = new World(canvas, keyboard, level1, lives);
+    //initLevel1();
+    world = new World(canvas, keyboard, level_no, lives);
 }
 
 var wait = (ms) => {
@@ -71,7 +71,7 @@ document.addEventListener('keydown', (event) => {
 
         if (gameRunning == 0) {
             gameRunning = 1;
-            startGame(level, lives)
+            startGame(level_no, lives)
 
 
 

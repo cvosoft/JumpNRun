@@ -34,10 +34,25 @@ class ThrowableObject extends MovableObject {
     }
 
 
+
+    checkHitEnemy() {
+        world.level.enemies.forEach((enemy) => {
+            world.throwableObjects.forEach((bottle) => {
+                if (bottle.isColliding(enemy)) {
+                    let index = world.level.enemies.indexOf(enemy);
+                    world.level.enemies[index].death_sound.play();
+                    world.level.enemies.splice(index, 1);
+                }
+            })
+        })
+    }
+
+
     animate() {
 
         setInterval(() => {
             this.x += 30;
+            this.checkHitEnemy();
         }, 60)
 
 
