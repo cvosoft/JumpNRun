@@ -24,12 +24,18 @@ class World {
 
     gameOver = false;
 
+    gameOverImg = "img/9_intro_outro_screens/game_over/game over!.png";
+    winImg = "img/9_intro_outro_screens/win/win_1.png";
+
+    fullscreen = false;
+
 
     constructor(canvas, keyboard, level, lives) {
 
         this.character = new Character(lives);
 
-        this.gameoverscreen = new GameOverScreen();
+        this.gameoverscreen = new OverlayScreen(this.gameOverImg);
+        this.winscreen = new OverlayScreen(this.winImg);
 
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
@@ -56,15 +62,27 @@ class World {
             this.checkCollectionOfCoins();
             this.checkCollisions();
             this.checkIsDead();
+            this.checkToggleFullscreen();
         }, 1000 / 10);
 
+    }
+
+
+    checkToggleFullscreen() {
+        if (this.keyboard.F) {
+            if (!this.fullscreen) {
+                this.canvas.requestFullscreen();
+            } else {
+                document.exitFullscreen();
+            }
+        }
     }
 
 
     checkIsDead() {
         if (world.character.isDead()) {
             //2 sekunden pause
-            wait(2000);
+            //wait(2000);
 
             //animation?
 

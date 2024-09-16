@@ -50,6 +50,11 @@ function clearAllIntervals() {
 }
 
 document.addEventListener('keydown', (event) => {
+    //console.log(event);
+    if (event.keyCode == 70) {
+        keyboard.F = true;
+    }
+    
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -81,6 +86,9 @@ document.addEventListener('keydown', (event) => {
 
 
 document.addEventListener('keyup', (event) => {
+    if (event.keyCode == 70) {
+        keyboard.F = false;
+    }
     if (event.keyCode == 39) {
         keyboard.RIGHT = false;
     }
