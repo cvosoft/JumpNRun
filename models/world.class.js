@@ -93,7 +93,9 @@ class World {
 
     checkLevelComplete() {
         if (this.level.enemies == 0) {
+            clearAllSounds();
             clearAllIntervals();
+
             this.level_no++;
 
             if (this.level_no <= 3) {
@@ -101,7 +103,6 @@ class World {
             }
             else {
                 this.win = true;
-                clearAllIntervals();
             }
         }
     }
@@ -133,11 +134,14 @@ class World {
 
             // neustart aktuelles level
             if (world.character.lives >= 1) {
+                clearAllIntervals();
+                clearAllSounds();
                 startGame(this.level_no, this.character.lives)
             } else {
 
                 this.gameOver = true;
                 clearAllIntervals();
+                clearAllSounds();
 
 
 

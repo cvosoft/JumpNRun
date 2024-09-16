@@ -37,10 +37,7 @@ var wait = (ms) => {
 
 function clearAllSounds() {
     world.character.walking_sound.pause();
-    world.character.jumping_sound.pause();
-    world.character.longidle_sound.pause();
-    world.character.isHurt_sound.pause();
-    world.character.isDead_sound.pause();
+    delete(world.character.walking_sound);
 }
 
 
