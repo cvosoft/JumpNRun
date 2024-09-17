@@ -4,6 +4,9 @@ class Endboss extends MovableObject {
     y = 400;
     x = 4000;
     speed = .5;
+    energy = 3
+    isDead = false;
+
 
     death_sound = new Audio('./audio/death_endboss.mp3');
 
@@ -79,6 +82,12 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_ALERT);
                 this.speed = 0;
             }
+
+            if (this.energy <= 0) {
+                this.playAnimation(this.IMAGES_DEAD);
+
+            }
+
 
         }, 200);
     }

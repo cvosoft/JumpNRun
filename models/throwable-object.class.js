@@ -39,9 +39,19 @@ class ThrowableObject extends MovableObject {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
                 if (bottle.isColliding(enemy)) {
-                    let index = world.level.enemies.indexOf(enemy);
-                    world.level.enemies[index].death_sound.play();
-                    world.level.enemies.splice(index, 1);
+
+                    if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
+
+                        let index = world.level.enemies.indexOf(enemy);
+                        world.level.enemies[index].death_sound.play();
+                        world.level.enemies.splice(index, 1);
+                    } else if (enemy instanceof Endboss) {
+                        let index = world.level.enemies.indexOf(enemy);
+                        world.level.enemies[index].energy--;
+
+                    }
+
+
                 }
             })
         })
