@@ -1,21 +1,14 @@
 Aufgaben
 -----------
 
-- check is colliding!
-
--Musik+Sounds
-    - Coins - kassensound
-    - Flaschen - pling und klirr
-- sterben
-
-
--Flaschenwurf optimieren
--Collision Flaschen mit Gegner
--Endgegner besiegen (Endgegner braucht auch Statusbar)
--Game over Screen
--Win Screen
--Fullscreen - canvas.requestFullscreen()
--Erklärung (welche Tasten?)
--Spiel wiederholen können
-- Level2?
+- statusbar einblenden und sinnvoll füllen vom endboss
+- delay bei hurt endboss
+- todesschrei pepe
+- schreie/sounds endboss
+- spiel wiederholen können
+- endboss muss still stehen wenn tot
+- enemies dürfen keinen schaden mehr anrichten wenn tot
+- flasche muss auf grund fliegen
+- flasche klirren 
+- flasche throw sound
 
