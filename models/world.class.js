@@ -194,7 +194,8 @@ class World {
                 //death sound+ remove
                 let index = this.level.enemies.indexOf(enemy);
                 this.level.enemies[index].death_sound.play();
-                this.level.enemies.splice(index, 1);
+                this.level.enemies[index].isDead = true;
+                //this.level.enemies.splice(index, 1);
 
 
 
