@@ -182,7 +182,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isJumpingOn(enemy)) {
+            if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
                 console.log("treffer!");
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
@@ -202,7 +202,7 @@ class World {
                 //death animation
             }
 
-            else if (this.character.isColliding(enemy) && !this.character.isJumpingOn(enemy)) {
+            else if (this.character.isColliding(enemy) && !enemy.isDead && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
                 //this.StatusBarHealth.setPercentage(this.character.energy);
 
@@ -248,7 +248,7 @@ class World {
         //this.addToMap(this.StatusBarBottle);
 
 
-        if (this.level.enemies[this.level.enemies.length-1].x < this.character.x + 450) {
+        if (this.level.enemies[this.level.enemies.length - 1].x < this.character.x + 450) {
             this.addToMap(this.StatusBarHealthEnemy);
         }
 

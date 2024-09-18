@@ -84,6 +84,7 @@ class Endboss extends MovableObject {
             }
 
             if (this.energy <= 0) {
+                this.isDead = true;
                 this.playAnimation(this.IMAGES_DEAD);
 
             }
