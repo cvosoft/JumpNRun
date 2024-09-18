@@ -6,6 +6,7 @@ class ThrowableObject extends MovableObject {
 
 
     throwSound = new Audio('./audio/throw.mp3');
+    clirrSound = new Audio('./audio/clirr.mp3');
 
     IMAGES_ROTATE = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -41,6 +42,7 @@ class ThrowableObject extends MovableObject {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
                 if (bottle.isColliding(enemy)) {
+                    bottle.clirrSound.play();
 
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
 
@@ -52,6 +54,7 @@ class ThrowableObject extends MovableObject {
                         world.level.enemies[index].energy--;
 
                     }
+
 
 
                 }
