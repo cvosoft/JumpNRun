@@ -1,7 +1,7 @@
 Aufgaben
 -----------
 
-- statusbar einblenden und sinnvoll füllen vom endboss
+- statusbar sinnvoll füllen vom endboss
 - delay bei hurt endboss
 - todesschrei pepe
 - schreie/sounds endboss
@@ -10,5 +10,5 @@ Aufgaben
 - enemies dürfen keinen schaden mehr anrichten wenn tot
 - flasche muss auf grund fliegen
 - flasche klirren 
-- flasche throw sound
+
 

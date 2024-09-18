@@ -216,6 +216,7 @@ class World {
             let actualThrow = new Date().getTime() / 1000; // [s]
             if (actualThrow - this.lastThrow > 0.5) { // nur alle 0,5s werfen können
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
+                bottle.throwSound.play();
                 this.lastThrow = actualThrow;
                 this.throwableObjects.push(bottle);
                 this.character.collectedBottles -= 1;
@@ -245,7 +246,13 @@ class World {
         //this.addToMap(this.StatusBarHealth);
         //this.addToMap(this.StatusBarCoin);
         //this.addToMap(this.StatusBarBottle);
-        this.addToMap(this.StatusBarHealthEnemy);
+
+
+        if (this.level.enemies[this.level.enemies.length-1].x < this.character.x + 450) {
+            this.addToMap(this.StatusBarHealthEnemy);
+        }
+
+
         this.addToMap(this.CoinStatus);
         this.ctx.fillText(this.character.collectedCoins, 265, 48);
         this.addToMap(this.BottleStatus);
