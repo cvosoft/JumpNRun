@@ -66,7 +66,7 @@ class Endboss extends MovableObject {
     animate() {
 
 
-        setInterval(() => {
+        let walkInterval = setInterval(() => {
             this.moveLeft();
         }, 1000 / 60)
 
@@ -85,6 +85,7 @@ class Endboss extends MovableObject {
 
             if (this.energy <= 0) {
                 this.isDead = true;
+                clearInterval(walkInterval);
                 this.playAnimation(this.IMAGES_DEAD);
 
             }

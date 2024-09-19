@@ -106,24 +106,16 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
         setInterval(() => {
 
-            //this.walking_sound.pause();
-            //console.log("pausiert");
-
-
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
                 this.longidle_sound.pause();
                 this.moveRight();
                 this.otherDirection = false;
-                //this.walking_sound.play();
-                console.log("played")
-
                 this.standingTimeStamp = new Date().getTime();
             }
             else if (this.world.keyboard.LEFT && this.x > 0) {
                 this.longidle_sound.pause();
                 this.moveLeft();
                 this.otherDirection = true;
-                //this.walking_sound.play();
                 this.standingTimeStamp = new Date().getTime();
             }
 

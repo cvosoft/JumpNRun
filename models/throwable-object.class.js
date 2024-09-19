@@ -3,7 +3,8 @@ class ThrowableObject extends MovableObject {
     x;
     y;
     scaleFactor = 0.2;
-
+    otherDirection;
+    onFloor = false;
 
     throwSound = new Audio('./audio/throw.mp3');
     clirrSound = new Audio('./audio/clirr.mp3');
@@ -34,13 +35,22 @@ class ThrowableObject extends MovableObject {
         this.speedY = 40;
         this.applyGravity();
         this.animate();
+        this.otherDirection = world.character.otherDirection;
     }
 
+
+    checkOnFloor() {
+        if (this.y > 360) {
+            this.onFloor = true;
+        };
+    }
 
 
     checkHitEnemy() {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
+
+
                 if (bottle.isColliding(enemy)) {
                     bottle.clirrSound.play();
 
@@ -66,8 +76,20 @@ class ThrowableObject extends MovableObject {
     animate() {
 
         setInterval(() => {
-            this.x += 30;
-            this.checkHitEnemy();
+
+            this.checkOnFloor();
+
+            if (!this.onFloor) {
+
+                if (this.otherDirection == false) {
+                    this.x += 30;
+                } else {
+                    this.x -= 30;
+                }
+                this.checkHitEnemy();
+
+            }
+
         }, 60)
 
 
