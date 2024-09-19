@@ -5,6 +5,7 @@ class ThrowableObject extends MovableObject {
     scaleFactor = 0.2;
     otherDirection;
     onFloor = false;
+    broken = false;
 
     throwSound = new Audio('./audio/throw.mp3');
     clirrSound = new Audio('./audio/clirr.mp3');
@@ -54,6 +55,7 @@ class ThrowableObject extends MovableObject {
 
                 if (bottle.isColliding(enemy)) {
                     bottle.clirrSound.play();
+                    bottle.broken = true;
 
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
 
@@ -76,7 +78,7 @@ class ThrowableObject extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        let interval = setInterval(() => {
 
             this.checkOnFloor();
 
@@ -98,7 +100,13 @@ class ThrowableObject extends MovableObject {
             if (!this.onFloor) {
                 this.playAnimation(this.IMAGES_ROTATE)
             }
-            else { this.playAnimation(this.IMAGES_SPLASH) }
+            else if (this.broken || this.onFloor) {
+                clearInterval(interval);
+                this.playAnimation(this.IMAGES_SPLASH);
+
+
+
+            }
         }, 50);
 
     }

@@ -7,7 +7,6 @@ Aufgaben
 - schreie/sounds endboss
 - spiel wiederholen können
 - endboss muss still stehen wenn tot
-- flasche muss auf grund fliegen
-- flasche klirren 
+- flasche knallt auf gegner und animation stoppt
 
 
