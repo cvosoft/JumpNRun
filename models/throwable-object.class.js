@@ -9,6 +9,7 @@ class ThrowableObject extends MovableObject {
     throwSound = new Audio('./audio/throw.mp3');
     clirrSound = new Audio('./audio/clirr.mp3');
 
+
     IMAGES_ROTATE = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
         'img/6_salsa_bottle/bottle_rotation/2_bottle_rotation.png',
@@ -94,7 +95,10 @@ class ThrowableObject extends MovableObject {
 
 
         setInterval(() => {
-            this.playAnimation(this.IMAGES_ROTATE)
+            if (!this.onFloor) {
+                this.playAnimation(this.IMAGES_ROTATE)
+            }
+            else { this.playAnimation(this.IMAGES_SPLASH) }
         }, 50);
 
     }
