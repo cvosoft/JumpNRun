@@ -65,6 +65,9 @@ class ThrowableObject extends MovableObject {
                     } else if (enemy instanceof Endboss) {
                         let index = world.level.enemies.indexOf(enemy);
                         world.level.enemies[index].energy--;
+                        world.level.enemies[index].hit();
+
+                        world.StatusBarHealthEnemy.setPercentage(world.level.enemies[index].energy);
 
                     }
 

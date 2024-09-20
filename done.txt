@@ -8,5 +8,6 @@ Aufgaben
 - spiel wiederholen können
 - endboss muss still stehen wenn tot
 - flasche knallt auf gegner und animation stoppt
+- level beenden können
 
 

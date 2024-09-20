@@ -4,7 +4,7 @@ class Endboss extends MovableObject {
     y = 400;
     x = 4000;
     speed = .5;
-    energy = 3
+    energy = 5;
     isDead = false;
 
 
