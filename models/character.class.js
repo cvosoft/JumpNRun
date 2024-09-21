@@ -106,7 +106,7 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
         setInterval(() => {
 
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x+720) {
                 this.longidle_sound.pause();
                 this.moveRight();
                 this.otherDirection = false;

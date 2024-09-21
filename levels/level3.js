@@ -87,7 +87,7 @@ function initLevel3() {
             new Bottle(1200),
             new Bottle(1600),
             new Bottle(2000),
-        ]
+        ], 6 * 719
     );
 
 }

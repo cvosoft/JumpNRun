@@ -93,7 +93,7 @@ class World {
 
     checkLevelComplete() {
         //if (this.level.enemies == 0) {
-        if (this.character.x >= this.level.level_end_x) {
+        if (this.character.x >= this.level.level_end_x + 720) {
             clearAllSounds();
             clearAllIntervals();
 
@@ -231,9 +231,9 @@ class World {
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
 
-        if (this.character.x < 1200) {
+        if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(this.camera_x, 0);
-        } else { this.ctx.translate(-1200, 0); }
+        } else { this.ctx.translate(-this.level.level_end_x + 100, 0); }
 
 
         this.addObjectsToMap(this.level.backgroundObjects);
@@ -242,12 +242,13 @@ class World {
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.throwableObjects);
-        this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height);
+        this.ctx.font = "30px serif";
+        this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height - 10);
 
 
-        if (this.character.x < 1200) {
+        if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(-this.camera_x, 0);
-        } else { this.ctx.translate(1200, 0); }
+        } else { this.ctx.translate(this.level.level_end_x - 100, 0); }
 
 
         // fixed objects:
@@ -260,7 +261,7 @@ class World {
             this.addToMap(this.StatusBarHealthEnemy);
         }
 
-
+        this.ctx.font = "50px serif";
         this.addToMap(this.CoinStatus);
         this.ctx.fillText(this.character.collectedCoins, 265, 48);
         this.addToMap(this.BottleStatus);
@@ -269,15 +270,15 @@ class World {
         this.ctx.fillText(this.character.lives, 65, 48);
 
         // character
-        if (this.character.x < 1200) {
+        if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(this.camera_x, 0);
-        } else { this.ctx.translate(-1200, 0); }
+        } else { this.ctx.translate(-this.level.level_end_x + 100, 0); }
 
         this.addToMap(this.character);
 
-        if (this.character.x < 1200) {
+        if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(-this.camera_x, 0);
-        } else { this.ctx.translate(1200, 0); }
+        } else { this.ctx.translate(this.level.level_end_x - 100, 0); }
 
 
         // game over screen
