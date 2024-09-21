@@ -1,7 +1,7 @@
 Aufgaben
 -----------
 
-- punkte/flashcen ins nächste level übertragen
+- punkte/flaschcen ins nächste level übertragen
 - statusbar sinnvoll füllen vom endboss
 - delay bei hurt endboss
 - todesschrei pepe
