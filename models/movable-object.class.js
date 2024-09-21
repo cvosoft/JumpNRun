@@ -95,7 +95,9 @@ class MovableObject extends DrawableObject {
         this.energy -= 1;
 
         if (this.energy > 0) {
-            this.scaleFactor = this.scaleFactor / 2;
+            if (this instanceof Character) { // nur pepe darf schrumpfen
+                this.scaleFactor = this.scaleFactor / 2;
+            }
             this.lastHit = new Date().getTime();
         }
     }
