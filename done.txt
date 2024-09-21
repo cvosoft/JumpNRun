@@ -2,12 +2,13 @@ Aufgaben
 -----------
 
 - statusbar sinnvoll füllen vom endboss
+- endboss darf nicht kleiner werden 
 - delay bei hurt endboss
 - todesschrei pepe
 - schreie/sounds endboss
 - spiel wiederholen können
 - endboss muss still stehen wenn tot
 - flasche knallt auf gegner und animation stoppt
-- level beenden können
+- level beenden können - durchlaufen!
 
 
