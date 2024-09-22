@@ -1,6 +1,7 @@
 Aufgaben
 -----------
 
+- flasche zerschellen animation muss stoppen
 - punkte/flaschcen ins nächste level übertragen
 - statusbar sinnvoll füllen vom endboss
 - delay bei hurt endboss

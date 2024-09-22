@@ -57,6 +57,11 @@ class ThrowableObject extends MovableObject {
                     bottle.clirrSound.play();
                     bottle.broken = true;
 
+                    // remove?
+                    //let index = world.throwableObjects.indexOf(bottle);
+                    //world.throwableObjects.splice(index, 1);
+
+
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
 
                         let index = world.level.enemies.indexOf(enemy);
@@ -81,7 +86,7 @@ class ThrowableObject extends MovableObject {
 
     animate() {
 
-        let interval = setInterval(() => {
+        setInterval(() => {
 
             this.checkOnFloor();
 
@@ -104,9 +109,8 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_ROTATE)
             }
             else if (this.broken || this.onFloor) {
-                clearInterval(interval);
-                this.playAnimation(this.IMAGES_SPLASH);
 
+                this.playAnimation(this.IMAGES_SPLASH);
 
 
             }
