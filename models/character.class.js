@@ -151,7 +151,15 @@ class Character extends MovableObject {
                 // wenn animation durchgelaufen
                 if (this.img_counter > 3) {
                     this.lives--;
-                    startGame(world.level_no, this.lives);
+                    if (this.lives >= 1) {
+                        clearAllIntervals();
+                        clearAllSounds();
+                        startGame(world.level_no, this.lives);
+                    } else {
+                        world.gameOver = true;
+                        clearAllIntervals();
+                        clearAllSounds();
+                    }
                 }
 
             } else if (this.isHurt()) {

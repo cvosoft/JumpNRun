@@ -288,10 +288,21 @@ class World {
         // game over screen
         if (this.gameOver) {
             this.addToMap(this.gameoverscreen);
+            if (this.keyboard.SPACE) {
+                clearAllIntervals();
+                clearAllSounds();
+                startGame(1, 3);
+            }
+
         }
         // win screen
         if (this.win) {
             this.addToMap(this.winscreen);
+            if (this.keyboard.SPACE) {
+                clearAllIntervals();
+                clearAllSounds();
+                startGame(1, 3);
+            }
         }
 
 
