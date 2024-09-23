@@ -289,9 +289,13 @@ class World {
         if (this.gameOver) {
             this.addToMap(this.gameoverscreen);
             if (this.keyboard.SPACE) {
+                this.gameOver = false;
+                this.win = false;
+                gameRunning = 0;
                 clearAllIntervals();
-                clearAllSounds();
-                startGame(1, 3);
+
+                //clearAllSounds();
+                init();
             }
 
         }
@@ -299,8 +303,10 @@ class World {
         if (this.win) {
             this.addToMap(this.winscreen);
             if (this.keyboard.SPACE) {
+                this.gameOver = false;
+                this.win = false;
                 clearAllIntervals();
-                clearAllSounds();
+                //clearAllSounds();
                 startGame(1, 3);
             }
         }
