@@ -18,6 +18,8 @@ class World {
     throwableObjects = [];
 
     gameMusic = new Audio('./audio/intromusic.mp3');
+    levelComplete = new Audio('./audio/level_complete.mp3');
+    gameWonMusic = new Audio('./audio/gameWon.mp3');
 
     fps = 60;
 
@@ -83,7 +85,7 @@ class World {
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
             this.checkCollisions();
-            this.checkIsDead();
+            //this.checkIsDead();
             this.checkToggleFullscreen();
             this.checkLevelComplete();
         }, 1000 / 10);
@@ -96,6 +98,7 @@ class World {
         if (this.character.x >= this.level.level_end_x + 720) {
             clearAllSounds();
             clearAllIntervals();
+            this.levelComplete.play();
 
             this.level_no++;
 
@@ -104,6 +107,7 @@ class World {
             }
             else {
                 this.win = true;
+                this.gameWonMusic.play();
             }
         }
     }
@@ -126,7 +130,7 @@ class World {
     checkIsDead() {
         if (world.character.isDead()) {
             //2 sekunden pause
-            //wait(2000);
+            wait(2000);
 
             //animation?
 

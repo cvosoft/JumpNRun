@@ -10,6 +10,8 @@ class Character extends MovableObject {
     collectedCoins = 0;
     lives;
 
+    img_counter = 0;
+
     offset = {
         top: 100,//130,
         bottom: 0, //145,
@@ -106,7 +108,7 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
         setInterval(() => {
 
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x+720) {
+            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x + 720) {
                 this.longidle_sound.pause();
                 this.moveRight();
                 this.otherDirection = false;
@@ -137,11 +139,20 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_LONGIDLE);
                 this.longidle_sound.play();
             } else if (this.isDead()) {
+
                 this.playAnimation(this.IMAGES_DEAD);
+                this.img_counter++;
+
                 this.isDead_sound.play();
+                //console.log("tot");
 
                 //restart level
-                this.lives--;
+                //this.lives--;
+                // wenn animation durchgelaufen
+                if (this.img_counter > 3) {
+                    this.lives--;
+                    startGame(world.level_no, this.lives);
+                }
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
