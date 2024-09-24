@@ -64,12 +64,22 @@ class World {
 
 
         //this.level = level;
-        this.level_no = level_no;
-        this.canvas = canvas;
-        this.keyboard = keyboard;
-        this.draw();
-        this.setWorld();
-        this.run();
+
+
+
+        //los gehts erst wenn ...
+        setTimeout(() => {
+            console.log("this is the first message");
+            this.level_no = level_no;
+            this.canvas = canvas;
+            this.keyboard = keyboard;
+            this.draw();
+            this.setWorld();
+            this.run();
+        }, 3000);
+
+
+
         //this.gameMusic.loop = true;
         //this.gameMusic.play();
 

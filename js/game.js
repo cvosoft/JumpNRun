@@ -17,7 +17,7 @@ function init() {
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
         console.log("dsgf");
-        
+
 
     }
 }
@@ -25,8 +25,11 @@ function init() {
 
 function startGame(level_no, lives) {
     clearAllIntervals();
+    
     //initLevel1();
     world = new World(canvas, keyboard, level_no, lives);
+
+    
 }
 
 var wait = (ms) => {
@@ -39,7 +42,7 @@ var wait = (ms) => {
 
 function clearAllSounds() {
     world.character.walking_sound.pause();
-    delete(world.character.walking_sound);
+    delete (world.character.walking_sound);
 }
 
 
@@ -53,7 +56,7 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 70) {
         keyboard.F = true;
     }
-    
+
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -70,7 +73,7 @@ document.addEventListener('keydown', (event) => {
 
         if (!gameRunning) {
             gameRunning = true;
-            startGame(level_no, lives)
+            startGame(level_no, lives);
 
 
 
