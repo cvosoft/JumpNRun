@@ -93,6 +93,7 @@ class World {
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
+            this.checkCollectionOfBonusItems();
             this.checkCollisions();
             //this.checkIsDead();
             this.checkToggleFullscreen();
@@ -178,6 +179,25 @@ class World {
         });
     }
 
+
+    checkCollectionOfBonusItems() {
+        this.level.bonusItems.forEach((item) => {
+            if (this.character.isColliding(item)) {
+                //console.log("flasche!");
+                //remove from screen
+                let index = this.level.bonusItems.indexOf(item);
+                this.level.bonusItems[index].collect_sound.play();
+                this.level.bonusItems.splice(index, 1);
+
+                if (this.character.energy == 1) {
+                    this.character.energy += 1;
+                    this.character.scaleFactor *= 2;
+                }
+            }
+        });
+    }
+
+
     checkCollectionOfCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -254,7 +274,9 @@ class World {
         this.addObjectsToMap(this.level.enemies);
         this.addObjectsToMap(this.level.coins);
         this.addObjectsToMap(this.level.bottles);
+        this.addObjectsToMap(this.level.bonusItems);
         this.addObjectsToMap(this.throwableObjects);
+
         this.ctx.font = "30px serif";
         this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height - 10);
 
@@ -301,7 +323,7 @@ class World {
             this.gameOverSound.play();
             setTimeout(() => {
                 this.gameOverSound.pause();
-              }, 1000);
+            }, 1000);
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;

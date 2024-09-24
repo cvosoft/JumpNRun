@@ -13,11 +13,12 @@ function init() {
     // startscreen reinzeichnen
     let ctx = canvas.getContext('2d');
     let startImage = new Image();
-    startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
+    if (Math.random() > 0.5) {
+        startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
+    } else { startImage.src = './img/9_intro_outro_screens/start/startscreen_2.png'; }
+
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
-        console.log("dsgf");
-
 
     }
 }
@@ -25,11 +26,11 @@ function init() {
 
 function startGame(level_no, lives) {
     clearAllIntervals();
-    
+
     //initLevel1();
     world = new World(canvas, keyboard, level_no, lives);
 
-    
+
 }
 
 var wait = (ms) => {

@@ -87,7 +87,11 @@ function initLevel2() {
             new Bottle(1200),
             new Bottle(1600),
             new Bottle(2000),
-        ], 6 * 719
+        ],
+        6 * 719,
+        [
+            new BonusItem(1300, 75),
+        ]
     );
 
 }

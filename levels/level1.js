@@ -89,7 +89,9 @@ function initLevel1() {
             new Bottle(2000),
         ],
 
-        6*719
+        6 * 719,
+        [],
+
     );
 
 }

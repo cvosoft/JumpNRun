@@ -1,15 +1,12 @@
 Aufgaben
 -----------
+- endboss is hurt animation
+- endboss animation allg muss stoppen
+- punkte/flaschen/energy ins nächste level übertragen
+- nach tod KLEIN anfangen!
+- level 2 + 3 schneller/anders
+- collisions/jumping update
 
-- flasche zerschellen animation muss stoppen
-- punkte/flaschcen ins nächste level übertragen
-- statusbar sinnvoll füllen vom endboss
-- delay bei hurt endboss
-- todesschrei pepe
-- schreie/sounds endboss
-- spiel wiederholen können
-- endboss muss still stehen wenn tot
-- flasche knallt auf gegner und animation stoppt
 
 
 
