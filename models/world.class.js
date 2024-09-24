@@ -20,6 +20,7 @@ class World {
     gameMusic = new Audio('./audio/intromusic.mp3');
     levelComplete = new Audio('./audio/level_complete.mp3');
     gameWonMusic = new Audio('./audio/gameWon.mp3');
+    gameOverSound = new Audio('./audio/gameOver.mp3');
 
     fps = 60;
 
@@ -67,16 +68,14 @@ class World {
 
 
 
-        //los gehts erst wenn ...
-        setTimeout(() => {
-            console.log("this is the first message");
-            this.level_no = level_no;
-            this.canvas = canvas;
-            this.keyboard = keyboard;
-            this.draw();
-            this.setWorld();
-            this.run();
-        }, 3000);
+
+        this.level_no = level_no;
+        this.canvas = canvas;
+        this.keyboard = keyboard;
+        this.draw();
+        this.setWorld();
+        this.run();
+
 
 
 
@@ -297,13 +296,19 @@ class World {
 
         // game over screen
         if (this.gameOver) {
+            gameRunning = false;
             this.addToMap(this.gameoverscreen);
+            this.gameOverSound.play();
+            setTimeout(() => {
+                this.gameOverSound.pause();
+              }, 1000);
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
                 gameRunning = false;
                 clearAllIntervals();
                 //clearAllSounds();
+
                 init();
             }
 

@@ -53,9 +53,10 @@ class ThrowableObject extends MovableObject {
             world.throwableObjects.forEach((bottle) => {
 
 
-                if (bottle.isColliding(enemy)) {
+                if (bottle.isColliding(enemy) && !bottle.broken && !bottle.onFloor) {
+
                     bottle.clirrSound.play();
-                    bottle.broken = true;
+
 
                     // remove?
                     //let index = world.throwableObjects.indexOf(bottle);
@@ -63,16 +64,24 @@ class ThrowableObject extends MovableObject {
 
 
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
-
                         let index = world.level.enemies.indexOf(enemy);
                         world.level.enemies[index].death_sound.play();
                         world.level.enemies.splice(index, 1);
+                        bottle.broken = true;
+
                     } else if (enemy instanceof Endboss) {
+                        // nur wenn der nicht gerade schon getroffen wurde
                         let index = world.level.enemies.indexOf(enemy);
-                        world.level.enemies[index].energy--;
+
+                        bottle.broken = true;
+
+
+
                         world.level.enemies[index].hit();
 
+
                         world.StatusBarHealthEnemy.setPercentage(world.level.enemies[index].energy);
+
 
                     }
 
@@ -104,7 +113,7 @@ class ThrowableObject extends MovableObject {
         }, 60)
 
 
-        setInterval(() => {
+        let interval = setInterval(() => {
             if (!this.onFloor) {
                 this.playAnimation(this.IMAGES_ROTATE)
             }
@@ -112,6 +121,9 @@ class ThrowableObject extends MovableObject {
 
                 this.playAnimation(this.IMAGES_SPLASH);
 
+                if (this.currentImage > 5) {
+                    clearInterval(interval);
+                }
 
             }
         }, 50);
