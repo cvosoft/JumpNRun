@@ -291,9 +291,8 @@ class World {
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
-                gameRunning = 0;
+                gameRunning = false;
                 clearAllIntervals();
-
                 //clearAllSounds();
                 init();
             }
@@ -305,9 +304,11 @@ class World {
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
+                gameRunning = false;
                 clearAllIntervals();
                 //clearAllSounds();
-                startGame(1, 3);
+                this.gameWonMusic.pause();
+                init();
             }
         }
 
@@ -315,7 +316,9 @@ class World {
         // draw() immer wieder aufgerufen
         let self = this;
         requestAnimationFrame(function () {
-            self.draw()
+            if (gameRunning) {
+                self.draw()
+            }
         });
 
     }

@@ -3,7 +3,7 @@ let world;
 let keyboard = new Keyboard();
 let lives = 3;
 let level_no = 1;
-let gameRunning = 0;
+let gameRunning = false;
 
 
 
@@ -16,6 +16,8 @@ function init() {
     startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
+        console.log("dsgf");
+        
 
     }
 }
@@ -66,8 +68,8 @@ document.addEventListener('keydown', (event) => {
     }
     if (event.keyCode == 32) {
 
-        if (gameRunning == 0) {
-            gameRunning = 1;
+        if (!gameRunning) {
+            gameRunning = true;
             startGame(level_no, lives)
 
 
