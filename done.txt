@@ -1,6 +1,7 @@
 Aufgaben
 -----------
 - endboss is hurt animation
+- flaschenwurf???
 - endboss animation allg muss stoppen
 - punkte/flaschen/energy ins nächste level übertragen
 - nach tod KLEIN anfangen!
