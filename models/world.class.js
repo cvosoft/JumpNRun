@@ -192,7 +192,7 @@ class World {
                 if (this.character.energy == 1) {
                     this.character.energy += 1;
                     this.character.scaleFactor *= 2;
-                }
+                } else { this.character.lives++; }
             }
         });
     }
