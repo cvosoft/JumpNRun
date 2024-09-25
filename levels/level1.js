@@ -90,7 +90,9 @@ function initLevel1() {
         ],
 
         6 * 719,
-        [],
+        [
+            new BonusItem(700, 300),
+        ]
 
     );
 

@@ -2,7 +2,8 @@ class Character extends MovableObject {
     x = 120;
     y = 370;
 
-    scaleFactor = 0.275
+    scaleFactor = 0.275 / 2;
+    energy = 1;
 
     speed = 10;
 
