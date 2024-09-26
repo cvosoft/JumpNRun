@@ -9,7 +9,7 @@ class MovableObject extends DrawableObject {
 
     energy;
 
-    lastHit = 0;
+    lastHit;
 
     standingTimeStamp;
 
@@ -93,6 +93,8 @@ class MovableObject extends DrawableObject {
 
     hit() {
         //this.energy -= 5;
+        // egal wer ... speichern
+        this.lastHit = new Date().getTime();
         if (this.energy > 0) {
             this.energy--;
         }
@@ -101,7 +103,6 @@ class MovableObject extends DrawableObject {
             if (this instanceof Character) { // nur pepe darf schrumpfen
                 this.scaleFactor = this.scaleFactor / 2;
             }
-            this.lastHit = new Date().getTime();
         }
     }
 
@@ -109,7 +110,7 @@ class MovableObject extends DrawableObject {
         return this.energy <= 0;
     }
 
-    isHurt() {
+    isHurt() {     
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000;
         return timepassed < 1;

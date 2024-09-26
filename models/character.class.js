@@ -5,6 +5,8 @@ class Character extends MovableObject {
     scaleFactor = 0.275 / 2;
     energy = 1;
 
+    lastHit = 0;
+
     speed = 10;
 
     collectedBottles = 0;

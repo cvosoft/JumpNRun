@@ -1,14 +1,16 @@
 class OverlayScreen extends DrawableObject {
 
-    y = 405;
     x = 0;
+    y = 405;
     //width = 720;
     //height = 405;
     scaleFactor = 0.375; // macht aus 1920 -> 720
-    
 
-    constructor(image) {
+
+    constructor(image, x, y) {
         super().loadImage(image);
+        this.x = x;
+        this.y = y;
     }
 
 }

@@ -217,7 +217,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
-                console.log("treffer!");
+                console.log("Kill by jumping!");
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
                     this.character.jumping_sound.play();
@@ -337,7 +337,7 @@ class World {
         }
         // win screen
         if (this.win) {
-            this.addToMap(this.winscreen);
+            this.addToMap(this.winscreen,720/2,405/2);
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
@@ -372,7 +372,7 @@ class World {
             this.flipImage(mo);
         }
         mo.draw(this.ctx);
-        //mo.drawFrame(this.ctx); -> for debugging
+        mo.drawFrame(this.ctx); //-> for debugging
 
         if (mo.otherDirection) {
             this.flipImageBack(mo);

@@ -6,6 +6,9 @@ class Endboss extends MovableObject {
     speed = .5;
     energy = 5;
     isDead = false;
+    lastHit = 0;
+    isHurt;
+    actualImage;
 
 
     death_sound = new Audio('./audio/death_endboss.mp3');
@@ -71,7 +74,7 @@ class Endboss extends MovableObject {
         }, 1000 / 60)
 
 
-        setInterval(() => {
+        let interval = setInterval(() => {
             this.speed = 0.5;
             this.playAnimation(this.IMAGES_WALKING);
             if (this.x < world.character.x + 300) {
@@ -84,14 +87,23 @@ class Endboss extends MovableObject {
             }
 
             if (this.energy <= 0) {
+                this.actualImage = this.currentImage;
                 this.isDead = true;
                 clearInterval(walkInterval);
                 this.playAnimation(this.IMAGES_DEAD);
+     
+                //if (this.currentImage > 20) {
+                //    clearInterval(interval);
+                //}
+
 
             }
 
-
-        }, 200);
+            if (this.isHurt) {
+                console.log("endboss verletzt!");
+                this.playAnimation(this.IMAGES_HURT);
+            }
+        }, 50);
     }
 
 }
