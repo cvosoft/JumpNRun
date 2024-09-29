@@ -7,11 +7,12 @@ class Endboss extends MovableObject {
     energy = 5;
     isDead = false;
     lastHit = 0;
-    isHurt;
+
     actualImage;
 
 
     death_sound = new Audio('./audio/death_endboss.mp3');
+    hurt_sound = new Audio('./audio/chicken_cry.mp3');
 
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -71,7 +72,7 @@ class Endboss extends MovableObject {
 
         let walkInterval = setInterval(() => {
             this.moveLeft();
-        }, 1000 / 60)
+        }, 60)
 
 
         let interval = setInterval(() => {
@@ -91,7 +92,7 @@ class Endboss extends MovableObject {
                 this.isDead = true;
                 clearInterval(walkInterval);
                 this.playAnimation(this.IMAGES_DEAD);
-     
+
                 //if (this.currentImage > 20) {
                 //    clearInterval(interval);
                 //}
@@ -99,11 +100,13 @@ class Endboss extends MovableObject {
 
             }
 
-            if (this.isHurt) {
-                console.log("endboss verletzt!");
+            if (this.isHurt()) {
+                this.hurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
+
             }
-        }, 50);
+
+        }, 150);
     }
 
 }

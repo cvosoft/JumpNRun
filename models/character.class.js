@@ -167,6 +167,7 @@ class Character extends MovableObject {
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+                console.log("pepe is hurt");
                 this.isHurt_sound.play();
             }
             else if (this.isAboveGround()) {
