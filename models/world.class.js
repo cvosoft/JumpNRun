@@ -39,8 +39,8 @@ class World {
 
         this.character = new Character(lives);
 
-        this.gameoverscreen = new OverlayScreen(this.gameOverImg);
-        this.winscreen = new OverlayScreen(this.winImg);
+        this.gameoverscreen = new OverlayScreen(this.gameOverImg, 0, 405);
+        this.winscreen = new OverlayScreen(this.winImg, 720/4, 405/2);
 
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
@@ -337,7 +337,7 @@ class World {
         }
         // win screen
         if (this.win) {
-            this.addToMap(this.winscreen,720/2,405/2);
+            this.addToMap(this.winscreen);
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;

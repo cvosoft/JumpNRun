@@ -95,8 +95,7 @@ class MovableObject extends DrawableObject {
         //this.energy -= 5;
         // egal wer ... speichern
         this.lastHit = new Date().getTime();
-        console.log(this.lastHit);
-        
+
         if (this.energy > 0) {
             this.energy--;
         }
@@ -112,7 +111,7 @@ class MovableObject extends DrawableObject {
         return this.energy <= 0;
     }
 
-    isHurt() {     
+    isHurt() {
         let timepassed = new Date().getTime() - this.lastHit; // difference in ms
         timepassed = timepassed / 1000;
         return timepassed < 1;

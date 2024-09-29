@@ -8,9 +8,10 @@ class OverlayScreen extends DrawableObject {
 
 
     constructor(image, x, y) {
-        super().loadImage(image);
+        super();
         this.x = x;
         this.y = y;
+        this.loadImage(image);
     }
 
 }
