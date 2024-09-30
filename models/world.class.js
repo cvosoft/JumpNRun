@@ -227,7 +227,7 @@ class World {
                 bottle.throwSound.play();
                 this.lastThrow = actualThrow;
                 this.throwableObjects.push(bottle);
-                this.character.collectedBottles -= 1;
+                this.character.collectedBottles--;
             }
         }
     }

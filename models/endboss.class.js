@@ -91,6 +91,7 @@ class Endboss extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.death_sound.play();
                 clearInterval(walkInterval);
                 clearInterval(interval);
                 this.y = 450;

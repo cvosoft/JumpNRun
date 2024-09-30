@@ -68,6 +68,7 @@ class ThrowableObject extends MovableObject {
                         world.level.enemies[index].death_sound.play();
                         world.level.enemies.splice(index, 1);
                         bottle.broken = true;
+        
 
                     } else if (enemy instanceof Endboss) {
                         // nur wenn der nicht gerade schon getroffen wurde
