@@ -35,12 +35,12 @@ class World {
     fullscreen = false;
 
 
-    constructor(canvas, keyboard, level_no, lives) {
+    constructor(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins) {
 
-        this.character = new Character(lives);
+        this.character = new Character(lives, energy, collectedBottles, collectedCoins);
 
         this.gameoverscreen = new OverlayScreen(this.gameOverImg, 0, 405);
-        this.winscreen = new OverlayScreen(this.winImg, 720/4, 405/2);
+        this.winscreen = new OverlayScreen(this.winImg, 720 / 4, 405 / 2);
 
         this.ctx = canvas.getContext('2d');
         this.ctx.font = "50px serif";
@@ -95,7 +95,6 @@ class World {
             this.checkCollectionOfCoins();
             this.checkCollectionOfBonusItems();
             this.checkCollisions();
-            //this.checkIsDead();
             this.checkToggleFullscreen();
             this.checkLevelComplete();
         }, 1000 / 10);
@@ -113,7 +112,7 @@ class World {
             this.level_no++;
 
             if (this.level_no <= 3) {
-                startGame(this.level_no, this.character.lives);
+                startGame(this.level_no, this.character.lives, this.character.energy, this.character.collectedBottles, this.character.collectedCoins);
             }
             else {
                 this.win = true;
@@ -137,33 +136,7 @@ class World {
     }
 
 
-    checkIsDead() {
-        if (world.character.isDead()) {
-            //2 sekunden pause
-            wait(2000);
 
-            //animation?
-
-
-            world.character.lives--;
-
-            // neustart aktuelles level
-            if (world.character.lives >= 1) {
-                clearAllIntervals();
-                clearAllSounds();
-                startGame(this.level_no, this.character.lives)
-            } else {
-
-                this.gameOver = true;
-                clearAllIntervals();
-                clearAllSounds();
-
-
-
-            }
-
-        }
-    }
 
     checkCollectionOfBottles() {
         this.level.bottles.forEach((bottle) => {
@@ -217,7 +190,7 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isJumpingOn(enemy) && !enemy.isDead) {
-                console.log("Kill by jumping!");
+                //console.log("Kill by jumping!");
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
                     this.character.jumping_sound.play();

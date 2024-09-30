@@ -2,8 +2,8 @@ class Character extends MovableObject {
     x = 120;
     y = 370;
 
-    scaleFactor = 0.275 / 2;
-    energy = 1;
+    scaleFactor;
+    energy;
 
     lastHit = 0;
 
@@ -93,9 +93,14 @@ class Character extends MovableObject {
     isHurt_sound = new Audio('./audio/autsch.mp3');
     isDead_sound = new Audio('./audio/pepe_death2.mp3');
 
-    constructor(lives) {
+    constructor(lives, energy, collectedBottles, collectedCoins) {
         super().loadImage('./img/2_character_pepe/1_idle/idle/I-1.png');
         this.lives = lives;
+        this.energy = energy;
+        this.collectedBottles = collectedBottles;
+        this.collectedCoins = collectedCoins;
+        this.scaleFactor = 0.275 / 2 * this.energy;
+
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -157,7 +162,7 @@ class Character extends MovableObject {
                     if (this.lives >= 1) {
                         clearAllIntervals();
                         clearAllSounds();
-                        startGame(world.level_no, this.lives);
+                        startGame(world.level_no, this.lives, 1, 0, 0);
                     } else {
                         world.gameOver = true;
                         clearAllIntervals();

@@ -1,11 +1,7 @@
 Aufgaben
 -----------
-- flaschenwurf???
-- endboss animation allg muss stoppen
-- punkte/flaschen/energy ins nächste level übertragen
-- nach tod KLEIN anfangen!
-- level 2 + 3 schneller/anders
 - collisions/jumping update
+- music/sound fx shortcuts
 
 
 

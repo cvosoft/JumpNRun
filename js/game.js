@@ -1,7 +1,12 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+
 let lives = 3;
+let collectedBottles = 0;
+let collectedCoins = 0;
+let energy = 1;
+
 let level_no = 1;
 let gameRunning = false;
 
@@ -24,13 +29,11 @@ function init() {
 }
 
 
-function startGame(level_no, lives) {
+function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     clearAllIntervals();
 
     //initLevel1();
-    world = new World(canvas, keyboard, level_no, lives);
-
-
+    world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
 }
 
 var wait = (ms) => {
@@ -74,7 +77,7 @@ document.addEventListener('keydown', (event) => {
 
         if (!gameRunning) {
             gameRunning = true;
-            startGame(level_no, lives);
+            startGame(level_no, lives, energy, collectedBottles, collectedCoins);
 
 
 
