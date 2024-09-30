@@ -4,8 +4,8 @@ class Chicken extends MovableObject {
     x = 1000 + Math.random() * 500;
     y = 365;
     scaleFactor = 0.375;
+    energy = 1;
 
-    isDead = false;
 
     speed = 0.15 + Math.random() * 0.5;
     IMAGES_WALKING = [
@@ -34,7 +34,7 @@ class Chicken extends MovableObject {
 
 
         setInterval(() => {
-            if (!this.isDead) {
+            if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING)
             } else {
                 clearInterval(interval);

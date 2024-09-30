@@ -1,6 +1,6 @@
 Aufgaben
 -----------
-- collisions/jumping update
+- collisions/jumping on update
 - music/sound fx shortcuts
 
 

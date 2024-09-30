@@ -5,7 +5,6 @@ class Endboss extends MovableObject {
     x = 4000;
     speed = .5;
     energy = 5;
-    isDead = false;
     lastHit = 0;
 
 
@@ -88,8 +87,9 @@ class Endboss extends MovableObject {
                 this.hurt_sound.play();
                 this.playAnimation(this.IMAGES_HURT);
                 this.speed += 2;
-            } else if (this.energy <= 0) {
-                this.isDead = true;
+            }
+
+            if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 clearInterval(walkInterval);
                 clearInterval(interval);

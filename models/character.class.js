@@ -101,9 +101,9 @@ class Character extends MovableObject {
         this.collectedBottles = collectedBottles;
         this.collectedCoins = collectedCoins;
         this.scaleFactor = 0.275 / 2 * this.energy;
-        this.offsetFactor = 0.5;
+        this.offsetFactor = 0.5 * this.energy;
 
-        
+
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -146,10 +146,12 @@ class Character extends MovableObject {
             this.walking_sound.pause();
             this.playAnimation(this.IMAGES_IDLE);
 
-            if (this.isLongIdle()) {
+            if (this.isLongIdle() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
                 this.longidle_sound.play();
-            } else if (this.isDead()) {
+            }
+
+            if (this.isDead()) {
 
                 this.playAnimation(this.IMAGES_DEAD);
                 this.img_counter++;

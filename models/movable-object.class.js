@@ -20,6 +20,8 @@ class MovableObject extends DrawableObject {
         right: 0,
     }
 
+    offsetFactor = 1;
+
 
 
     moveRight() {
@@ -84,10 +86,10 @@ class MovableObject extends DrawableObject {
 
         //y1: links UNTEN!
         //y2 : links oben, also links unten MINUS height
-        return this.x + this.width - this.offset.right > mo.x - mo.offset.left &&  // x2_ch > x1_mo
-            this.y - this.offset.bottom > mo.y - mo.height + mo.offset.top && // y1_ch > y2_mo 
-            this.x + this.offset.left < mo.x + mo.width - mo.offset.right && // x1_ch < x2_mo
-            this.y - this.height + this.offset.top < mo.y - mo.offset.top; // y2_ch > y1_mo
+        return this.x + this.width - this.offset.right * this.offsetFactor > mo.x - mo.offset.left * mo.offsetFactor &&  // x2_ch > x1_mo
+            this.y - this.offset.bottom * this.offsetFactor > mo.y - mo.height + mo.offset.top * mo.offsetFactor && // y1_ch > y2_mo 
+            this.x + this.offset.left * this.offsetFactor < mo.x + mo.width - mo.offset.right * mo.offsetFactor && // x1_ch < x2_mo
+            this.y - this.height + this.offset.top * this.offsetFactor < mo.y - mo.offset.top * mo.offsetFactor; // y2_ch > y1_mo
     }
 
 
@@ -121,8 +123,6 @@ class MovableObject extends DrawableObject {
     isLongIdle() {
         let timepassed = new Date().getTime() - this.standingTimeStamp; // difference in ms
         timepassed = timepassed / 1000;
-        //console.log(timepassed);
-
         return timepassed > 10;
     }
 

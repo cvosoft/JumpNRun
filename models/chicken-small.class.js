@@ -10,7 +10,7 @@ class SmallChicken extends MovableObject {
 
     death_sound = new Audio('./audio/chicken.mp3');
 
-    isDead = false;
+    energy = 1;
 
     IMAGES_WALKING = [
         'img/3_enemies_chicken/chicken_small/1_walk/1_w.png',
@@ -39,7 +39,7 @@ class SmallChicken extends MovableObject {
         }, 3000);
 
         setInterval(() => {
-            if (!this.isDead) {
+            if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
             } else {
                 clearInterval(intervalMove);
