@@ -79,8 +79,8 @@ class World {
 
 
 
-        //this.gameMusic.loop = true;
-        //this.gameMusic.play();
+        this.gameMusic.loop = true;
+        this.gameMusic.play();
 
     }
 
@@ -97,7 +97,7 @@ class World {
             this.checkCollisions();
             this.checkToggleFullscreen();
             this.checkLevelComplete();
-        }, 1000 / 10);
+        }, 1000 / 60);
 
     }
 
@@ -190,8 +190,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isJumpingOn(enemy) && !enemy.isDead()) {
-                //console.log("Kill by jumping!");
+            if (this.character.isColliding(enemy) && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
                     this.character.jumping_sound.play();
@@ -203,18 +202,9 @@ class World {
                 let index = this.level.enemies.indexOf(enemy);
                 this.level.enemies[index].death_sound.play();
                 this.level.enemies[index].energy--;
-
-
-
-
-                //death animation
             }
-
             else if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
-                //this.StatusBarHealth.setPercentage(this.character.energy);
-
-
             }
         });
     }

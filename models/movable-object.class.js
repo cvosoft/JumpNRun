@@ -68,14 +68,19 @@ class MovableObject extends DrawableObject {
 
 
 
-    isJumpingOn(mo) {
-        //console.log(Math.round(this.y - 15));
-        return this.x + 65 >= mo.x &&
-            this.x + this.img.naturalWidth * this.scaleFactor - 130 <= mo.x + mo.img.naturalWidth * mo.scaleFactor &&
-            this.y - 15 <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
-            this.y - 15 >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
-    }
+    // isJumpingOn(mo) {
+    //     //console.log(Math.round(this.y - 15));
+    //     return this.x + 65 >= mo.x &&
+    //         this.x + this.img.naturalWidth * this.scaleFactor - 130 <= mo.x + mo.img.naturalWidth * mo.scaleFactor &&
+    //         this.y - 15 <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
+    //         this.y - 15 >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
+    // }
 
+
+    isJumpingOn(mo) {
+        return this.y <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
+            this.y >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
+    }
 
 
     isColliding(mo) {

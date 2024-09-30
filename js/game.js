@@ -47,6 +47,7 @@ var wait = (ms) => {
 function clearAllSounds() {
     world.character.walking_sound.pause();
     delete (world.character.walking_sound);
+    world.gameMusic.pause();
 }
 
 
