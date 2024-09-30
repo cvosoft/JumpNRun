@@ -190,7 +190,7 @@ class World {
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
-            if (this.character.isColliding(enemy) && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
+            if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
                     this.character.jumping_sound.play();
