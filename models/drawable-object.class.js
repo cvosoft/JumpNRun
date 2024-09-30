@@ -43,10 +43,10 @@ class DrawableObject {
             //ctx.rect(this.x, this.y, this.width, this.height);
             // this.y - this.img.naturalHeight * this.scaleFactor,
             ctx.rect(
-                this.x + this.offset.left,
-                this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top,
-                this.img.naturalWidth * this.scaleFactor - this.offset.right,
-                this.img.naturalHeight * this.scaleFactor - this.offset.top - this.offset.bottom,
+                this.x + this.offset.left * this.offsetFactor,
+                this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top * this.offsetFactor,
+                this.img.naturalWidth * this.scaleFactor - this.offset.right * this.offsetFactor,
+                this.img.naturalHeight * this.scaleFactor - this.offset.top * this.offsetFactor - this.offset.bottom * this.offsetFactor,
                 //this.x + this.offset.right, 
                 //this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top,
                 //this.img.naturalWidth * this.scaleFactor - this.offset.left,

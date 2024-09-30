@@ -16,11 +16,12 @@ class Character extends MovableObject {
     img_counter = 0;
 
     offset = {
-        top: 100,//130,
-        bottom: 0, //145,
-        left: 20, //30,
+        top: 130,//130,
+        bottom: 15, //145,
+        left: 30, //30,
         right: 80, //80,
     }
+    offsetFactor;
 
     IMAGES_WALKING = [
         'img/2_character_pepe/2_walk/W-21.png',
@@ -100,7 +101,9 @@ class Character extends MovableObject {
         this.collectedBottles = collectedBottles;
         this.collectedCoins = collectedCoins;
         this.scaleFactor = 0.275 / 2 * this.energy;
+        this.offsetFactor = 0.5;
 
+        
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -172,7 +175,7 @@ class Character extends MovableObject {
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                console.log("pepe is hurt");
+                //console.log("pepe is hurt");
                 this.isHurt_sound.play();
             }
             else if (this.isAboveGround()) {

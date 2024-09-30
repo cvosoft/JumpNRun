@@ -103,6 +103,7 @@ class MovableObject extends DrawableObject {
         if (this.energy > 0) {
             if (this instanceof Character) { // nur pepe darf schrumpfen
                 this.scaleFactor = this.scaleFactor / 2;
+                this.offsetFactor = this.offsetFactor / 2;
             }
         }
     }
