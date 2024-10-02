@@ -4,6 +4,8 @@ Aufgaben
 - auf handy spielbar
 - anleitung
 - fullscreen toggle repair
+- throw repair?
+
 
 
 

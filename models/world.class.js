@@ -33,6 +33,7 @@ class World {
     winImg = "img/9_intro_outro_screens/win/win_1.png";
 
     fullscreen = false;
+    playMusic = true;
 
 
     constructor(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins) {
@@ -74,11 +75,8 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.run();
-
-
-
-
+        this.runFastIntervals();
+        this.runSlowIntervals();
         this.gameMusic.loop = true;
         this.gameMusic.play();
 
@@ -88,19 +86,23 @@ class World {
         this.character.world = this;
     }
 
-    run() {
+    runFastIntervals() {
         setInterval(() => {
             this.checkThrowObjects();
             this.checkCollectionOfBottles();
             this.checkCollectionOfCoins();
             this.checkCollectionOfBonusItems();
             this.checkCollisions();
-            this.checkToggleFullscreen();
             this.checkLevelComplete();
         }, 1000 / 60);
-
     }
 
+    runSlowIntervals() {
+        setInterval(() => {
+            this.checkToggleFullscreen();
+            this.checkToggleMusic();
+        }, 100);
+    }
 
     checkLevelComplete() {
         //if (this.level.enemies == 0) {
@@ -131,6 +133,18 @@ class World {
             } else {
                 document.exitFullscreen();
                 this.fullscreen = false;
+            }
+        }
+    }
+
+    checkToggleMusic() {
+        if (this.keyboard.M) {
+            if (this.playMusic) {
+                this.gameMusic.pause();
+                this.playMusic = false;
+            } else {
+                this.gameMusic.play();
+                this.playMusic = true;
             }
         }
     }
