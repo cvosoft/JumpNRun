@@ -3,7 +3,7 @@ Aufgaben
 - music/sound fx shortcuts
 - auf handy spielbar
 - anleitung
-
+- fullscreen toggle repair
 
 
 
