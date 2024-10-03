@@ -1,10 +1,8 @@
 Aufgaben
 -----------
-- klickbare icons anzeigen (music, sounds, fullscreen)
+- klickbare icons im canvas anzeigen (music, sounds, fullscreen)
 - auf handy spielbar
-- anleitung
 - throw repair? (nur auf laptop?!)
-- escape taste?
 - load balken images onload 
 
 
