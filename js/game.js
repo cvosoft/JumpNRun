@@ -13,6 +13,8 @@ let gameRunning = false;
 let gameMusic = true;
 let gameSoundFX = true;
 
+let showInstructionScreen = false;
+
 
 
 
@@ -29,6 +31,7 @@ function init() {
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
         ctx.font = '30px Zabars';
+        ctx.fillStyle = "black";
         ctx.fillText('Press Space to start                              Press I for instructions', 100, 390);
     }
 }
@@ -54,7 +57,27 @@ function clearAllSounds() {
     world.gameMusic.pause();
 }
 
-function showInstructions(){
+function showInstructions() {
+    canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+    let instructionsImage = new Image();
+    instructionsImage.src = './img/5_background/first_half_background.png';
+
+    instructionsImage.onload = function () {
+        ctx.drawImage(instructionsImage, 0, 0, canvas.width, canvas.height);
+        ctx.font = '30px Zabars';
+        ctx.fillStyle = "black";
+        ctx.fillText('arrow keys: move left and right', 40, 70);
+        ctx.fillText('space: jump', 40, 110);
+        ctx.fillText('D: throw bottle', 40, 150);
+
+        ctx.fillText('M: toggle music', 490, 70);
+        ctx.fillText('S: toggle sound FX', 490, 110);
+        ctx.fillText('ESC: quit game', 490, 150);
+
+        ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
+    }
+
 
 }
 
@@ -65,12 +88,22 @@ function clearAllIntervals() {
 }
 
 document.addEventListener('keydown', (event) => {
-    console.log(event);
+
+
     if (event.keyCode == 70) {
         keyboard.F = true;
     }
+
     if (event.keyCode == 73) {
         keyboard.I = true;
+        if (!showInstructionScreen && !gameRunning) {
+            showInstructions();
+            showInstructionScreen = true;
+        } else if (!gameRunning) {
+            showInstructionScreen = false;
+            init();
+        }
+
     }
     if (event.keyCode == 27) {
         keyboard.ESC = true;
