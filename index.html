@@ -36,13 +36,18 @@
     <script src="./js/game.js"></script>
 </head>
 
-<body onload="init()">
+<body onload="init(); makeButtonsClickable();">
 
     <h1>EL POLLO LOCO</h1>
     <!--<h2>Press Space to start - Press F for fullscreen</h2> -->
 
     <canvas id="canvas" width="720" height="405"> <!-- 405 statt 480, so ist es 16:9 -->
     </canvas>
+
+    <div class="container">
+        <div id="btnLeft">&lt;</div>
+        <div id="btnLeft">&gt;</div>
+    </div>
 
 
 

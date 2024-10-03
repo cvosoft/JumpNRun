@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    align-items: center;
+    /*align-items: center;*/
     max-height: 100vh;
     margin: 0;
     background-image: url('./img/desert.jpg');
@@ -29,6 +29,23 @@ canvas {
     display: block;
 }
 
+
+.container {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+#btnLeft,
+#btnRight {
+    border-radius: 30px;
+    font-size: 30px;
+    color: black;
+    background-color: yellow;
+    padding: 15px;
+    border: 1px solid black;
+    cursor: pointer;
+}
 
 @media only screen and (max-width: 720px) {
     canvas {

@@ -10,4 +10,8 @@ class Keyboard {
     S = false;
     ESC = false;
     I = false;
+
+
+
+
 }

@@ -17,7 +17,6 @@ let showInstructionScreen = false;
 
 
 
-
 function init() {
     canvas = document.getElementById('canvas');
 
@@ -34,6 +33,8 @@ function init() {
         ctx.fillStyle = "black";
         ctx.fillText('Press Space to start                              Press I for instructions', 100, 390);
     }
+
+
 }
 
 
@@ -87,9 +88,9 @@ function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
+
+
 document.addEventListener('keydown', (event) => {
-
-
     if (event.keyCode == 70) {
         keyboard.F = true;
     }
@@ -143,6 +144,11 @@ document.addEventListener('keydown', (event) => {
 })
 
 
+
+
+
+
+
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 73) {
         keyboard.I = false;
@@ -178,3 +184,17 @@ document.addEventListener('keyup', (event) => {
         keyboard.D = false;
     }
 })
+
+
+function makeButtonsClickable() {
+    document.getElementById('btnLeft').addEventListener('touchstart', () => {
+        keyboard.LEFT = true;
+        console.log("clicked!");
+    })
+    document.getElementById('btnLeft').addEventListener('touchend', () => {
+        keyboard.LEFT = false;
+        console.log("click los!");
+    })
+}
+
+
