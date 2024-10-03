@@ -28,7 +28,8 @@ function init() {
 
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
-
+        ctx.font = '30px Zabars';
+        ctx.fillText('Press space to start', 270, 390);
     }
 }
 
@@ -61,9 +62,12 @@ function clearAllIntervals() {
 }
 
 document.addEventListener('keydown', (event) => {
-    console.log(event);
+    //console.log(event);
     if (event.keyCode == 70) {
         keyboard.F = true;
+    }
+    if (event.keyCode == 27) {
+        keyboard.ESC = true;
     }
     if (event.keyCode == 77) {
         keyboard.M = true;
@@ -103,6 +107,9 @@ document.addEventListener('keydown', (event) => {
 
 
 document.addEventListener('keyup', (event) => {
+    if (event.keyCode == 27) {
+        keyboard.ESC = false;
+    }
     if (event.keyCode == 70) {
         keyboard.F = false;
     }

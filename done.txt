@@ -1,10 +1,11 @@
 Aufgaben
 -----------
-- sound fx shortcuts
+- klickbare icons anzeigen (music, sounds, fullscreen)
 - auf handy spielbar
 - anleitung
-- fullscreen toggle repair
-- throw repair?
+- throw repair? (nur auf laptop?!)
+- escape taste?
+- load balken images onload 
 
 
 

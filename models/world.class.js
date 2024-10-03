@@ -113,6 +113,7 @@ class World {
             this.checkToggleFullscreen();
             this.checkToggleMusic();
             this.checkToggleSoundFX();
+            this.checkQuitGame();
         }, 100);
     }
 
@@ -135,6 +136,17 @@ class World {
         }
     }
 
+    checkQuitGame() {
+        if (this.keyboard.ESC) {
+            this.gameOver = false;
+            this.win = false;
+            gameRunning = false;
+            clearAllIntervals();
+            clearAllSounds();
+            init();
+
+        }
+    }
 
 
     checkToggleFullscreen() {
@@ -320,10 +332,14 @@ class World {
         if (this.gameOver) {
             gameRunning = false;
             this.addToMap(this.gameoverscreen);
+
             if (gameSoundFX) { this.gameOverSound.play(); }
             setTimeout(() => {
                 this.gameOverSound.pause();
+                this.ctx.font = '30px Zabars';
+                this.ctx.fillText('Press space to try again', 250, 385);
             }, 1000);
+
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
@@ -338,6 +354,10 @@ class World {
         // win screen
         if (this.win) {
             this.addToMap(this.winscreen);
+
+            this.ctx.font = '30px Zabars';
+            this.ctx.fillText('Press space to play again', 250, 385);
+
             if (this.keyboard.SPACE) {
                 this.gameOver = false;
                 this.win = false;
