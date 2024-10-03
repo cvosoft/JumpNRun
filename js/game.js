@@ -29,7 +29,7 @@ function init() {
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
         ctx.font = '30px Zabars';
-        ctx.fillText('Press space to start', 270, 390);
+        ctx.fillText('Press Space to start                              Press I for instructions', 100, 390);
     }
 }
 
@@ -51,8 +51,11 @@ var wait = (ms) => {
 
 function clearAllSounds() {
     world.character.walking_sound.pause();
-    delete (world.character.walking_sound);
     world.gameMusic.pause();
+}
+
+function showInstructions(){
+
 }
 
 
@@ -62,9 +65,12 @@ function clearAllIntervals() {
 }
 
 document.addEventListener('keydown', (event) => {
-    //console.log(event);
+    console.log(event);
     if (event.keyCode == 70) {
         keyboard.F = true;
+    }
+    if (event.keyCode == 73) {
+        keyboard.I = true;
     }
     if (event.keyCode == 27) {
         keyboard.ESC = true;
@@ -94,8 +100,6 @@ document.addEventListener('keydown', (event) => {
             gameRunning = true;
             startGame(level_no, lives, energy, collectedBottles, collectedCoins);
 
-
-
         } else {
             keyboard.SPACE = true;
         }
@@ -107,6 +111,9 @@ document.addEventListener('keydown', (event) => {
 
 
 document.addEventListener('keyup', (event) => {
+    if (event.keyCode == 73) {
+        keyboard.I = false;
+    }
     if (event.keyCode == 27) {
         keyboard.ESC = false;
     }
