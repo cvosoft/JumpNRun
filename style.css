@@ -34,10 +34,14 @@ canvas {
     display: flex;
     justify-content: start;
     align-items: start;
+    gap: 10px;
+    margin-top: -70px;
+    margin-left: 10px;
 }
 
 #btnLeft,
-#btnRight {
+#btnRight,
+#btnPlay {
     border-radius: 30px;
     font-size: 30px;
     color: black;

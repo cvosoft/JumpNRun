@@ -8,9 +8,6 @@
     <link rel="icon" type="image/png" href="favicon.png" />
     <link rel="stylesheet" href="style.css">
     <script src="./models/drawable-object.class.js"></script>
-    <!-- <script src="./models/status-bar-bottle.js"></script>
-    <script src="./models/status-bar-coin.js"></script>
-    <script src="./models/status-bar-health.class.js"></script> -->
     <script src="./models/status-bar-health-enemy.class.js"></script>
     <script src="./models/movable-object.class.js"></script>
     <script src="./models/character.class.js"></script>
@@ -39,15 +36,20 @@
 <body onload="init(); makeButtonsClickable();">
 
     <h1>EL POLLO LOCO</h1>
+
+
     <!--<h2>Press Space to start - Press F for fullscreen</h2> -->
+
+    <div id="btnPlay">PLAY</div>
 
     <canvas id="canvas" width="720" height="405"> <!-- 405 statt 480, so ist es 16:9 -->
     </canvas>
 
     <div class="container">
         <div id="btnLeft">&lt;</div>
-        <div id="btnLeft">&gt;</div>
+        <div id="btnRight">&gt;</div>
     </div>
+
 
 
 

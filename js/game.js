@@ -187,13 +187,32 @@ document.addEventListener('keyup', (event) => {
 
 
 function makeButtonsClickable() {
-    document.getElementById('btnLeft').addEventListener('touchstart', () => {
+    document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
+        e.preventDefault();
         keyboard.LEFT = true;
-        console.log("clicked!");
+
     })
-    document.getElementById('btnLeft').addEventListener('touchend', () => {
+    document.getElementById('btnLeft').addEventListener('touchend', (e) => {
+        e.preventDefault();
         keyboard.LEFT = false;
-        console.log("click los!");
+
+    })
+    document.getElementById('btnRight').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+
+    })
+    document.getElementById('btnRight').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+
+    })
+
+    document.getElementById('btnPlay').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        gameRunning = true;
+        startGame(level_no, lives, energy, collectedBottles, collectedCoins);
+
     })
 }
 
