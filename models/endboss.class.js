@@ -84,14 +84,14 @@ class Endboss extends MovableObject {
             }
 
             if (this.isHurt()) {
-                this.hurt_sound.play();
+                if (gameSoundFX) { this.hurt_sound.play(); }
                 this.playAnimation(this.IMAGES_HURT);
                 this.speed += 2;
             }
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-                this.death_sound.play();
+                if (gameSoundFX) { this.death_sound.play(); }
                 clearInterval(walkInterval);
                 clearInterval(interval);
                 this.y = 450;

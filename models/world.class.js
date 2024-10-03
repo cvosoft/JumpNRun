@@ -17,10 +17,15 @@ class World {
 
     throwableObjects = [];
 
+
+
     gameMusic = new Audio('./audio/intromusic.mp3');
+
+
     levelComplete = new Audio('./audio/level_complete.mp3');
     gameWonMusic = new Audio('./audio/gameWon.mp3');
     gameOverSound = new Audio('./audio/gameOver.mp3');
+
 
     fps = 60;
 
@@ -33,7 +38,6 @@ class World {
     winImg = "img/9_intro_outro_screens/win/win_1.png";
 
     fullscreen = false;
-    playMusic = true;
 
 
     constructor(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins) {
@@ -77,8 +81,15 @@ class World {
         this.setWorld();
         this.runFastIntervals();
         this.runSlowIntervals();
+
+
         this.gameMusic.loop = true;
+        if (!gameMusic) {
+            this.gameMusic.volume = 0;
+        }
         this.gameMusic.play();
+
+
 
     }
 
@@ -101,6 +112,7 @@ class World {
         setInterval(() => {
             this.checkToggleFullscreen();
             this.checkToggleMusic();
+            this.checkToggleSoundFX();
         }, 100);
     }
 
@@ -109,7 +121,7 @@ class World {
         if (this.character.x >= this.level.level_end_x + 720) {
             clearAllSounds();
             clearAllIntervals();
-            this.levelComplete.play();
+            if (gameSoundFX) { this.levelComplete.play(); }
 
             this.level_no++;
 
@@ -118,7 +130,7 @@ class World {
             }
             else {
                 this.win = true;
-                this.gameWonMusic.play();
+                if (gameSoundFX) { this.gameWonMusic.play(); }
             }
         }
     }
@@ -139,12 +151,22 @@ class World {
 
     checkToggleMusic() {
         if (this.keyboard.M) {
-            if (this.playMusic) {
-                this.gameMusic.pause();
-                this.playMusic = false;
+            if (gameMusic) {
+                this.gameMusic.volume = 0;
+                gameMusic = false;
             } else {
-                this.gameMusic.play();
-                this.playMusic = true;
+                this.gameMusic.volume = 1;
+                gameMusic = true;
+            }
+        }
+    }
+
+    checkToggleSoundFX() {
+        if (this.keyboard.S) {
+            if (gameSoundFX) {
+                gameSoundFX = false;
+            } else {
+                gameSoundFX = true;
             }
         }
     }
@@ -158,7 +180,7 @@ class World {
                 //console.log("flasche!");
                 //remove from screen
                 let index = this.level.bottles.indexOf(bottle);
-                this.level.bottles[index].collect_sound.play();
+                if (gameSoundFX) { this.level.bottles[index].collect_sound.play(); }
                 this.level.bottles.splice(index, 1);
                 //update counter
                 this.character.collectedBottles += 1;
@@ -173,7 +195,7 @@ class World {
                 //console.log("flasche!");
                 //remove from screen
                 let index = this.level.bonusItems.indexOf(item);
-                this.level.bonusItems[index].collect_sound.play();
+                if (gameSoundFX) { this.level.bonusItems[index].collect_sound.play(); }
                 this.level.bonusItems.splice(index, 1);
 
                 if (this.character.energy == 1) {
@@ -192,7 +214,7 @@ class World {
                 //console.log("coin!");
                 //remove from screen
                 let index = this.level.coins.indexOf(coin);
-                this.level.coins[index].collect_sound.play();
+                if (gameSoundFX) { this.level.coins[index].collect_sound.play(); }
                 this.level.coins.splice(index, 1);
                 //update counter
                 this.character.collectedCoins += 1;
@@ -207,14 +229,14 @@ class World {
             if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
-                    this.character.jumping_sound.play();
+                    if (gameSoundFX) { this.character.jumping_sound.play(); }
                 }
                 else {
                     this.character.jump(20);
                 }
                 //death sound+ remove
                 let index = this.level.enemies.indexOf(enemy);
-                this.level.enemies[index].death_sound.play();
+                if (gameSoundFX) { this.level.enemies[index].death_sound.play(); }
                 this.level.enemies[index].energy--;
             }
             else if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isJumpingOn(enemy)) {
@@ -228,7 +250,7 @@ class World {
             let actualThrow = new Date().getTime() / 1000; // [s]
             if (actualThrow - this.lastThrow > 0.5) { // nur alle 0,5s werfen können
                 let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-                bottle.throwSound.play();
+                if (gameSoundFX) { bottle.throwSound.play(); }
                 this.lastThrow = actualThrow;
                 this.throwableObjects.push(bottle);
                 this.character.collectedBottles--;
@@ -298,7 +320,7 @@ class World {
         if (this.gameOver) {
             gameRunning = false;
             this.addToMap(this.gameoverscreen);
-            this.gameOverSound.play();
+            if (gameSoundFX) { this.gameOverSound.play(); }
             setTimeout(() => {
                 this.gameOverSound.pause();
             }, 1000);

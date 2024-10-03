@@ -10,6 +10,10 @@ let energy = 1;
 let level_no = 1;
 let gameRunning = false;
 
+let gameMusic = true;
+let gameSoundFX = true;
+
+
 
 
 function init() {
@@ -64,6 +68,9 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 77) {
         keyboard.M = true;
     }
+    if (event.keyCode == 83) {
+        keyboard.S = true;
+    }
 
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
@@ -101,6 +108,9 @@ document.addEventListener('keyup', (event) => {
     }
     if (event.keyCode == 77) {
         keyboard.M = false;
+    }
+    if (event.keyCode == 83) {
+        keyboard.S = false;
     }
     if (event.keyCode == 39) {
         keyboard.RIGHT = false;

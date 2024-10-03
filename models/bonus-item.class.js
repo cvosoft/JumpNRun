@@ -14,7 +14,6 @@ class BonusItem extends MovableObject {
         super().loadImage(this.IMAGE);
         this.x = x;
         this.y = y;
-
     }
 
 }

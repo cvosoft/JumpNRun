@@ -135,7 +135,7 @@ class Character extends MovableObject {
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.longidle_sound.pause();
                 this.jump(30);
-                this.jumping_sound.play();
+                if (gameSoundFX) { this.jumping_sound.play(); }
                 this.standingTimeStamp = new Date().getTime();
             }
 
@@ -148,7 +148,7 @@ class Character extends MovableObject {
 
             if (this.isLongIdle() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
-                this.longidle_sound.play();
+                if (gameSoundFX) { this.longidle_sound.play(); }
             }
 
             if (this.isDead()) {
@@ -156,7 +156,7 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.img_counter++;
 
-                this.isDead_sound.play();
+                if (gameSoundFX) { this.isDead_sound.play(); }
                 //console.log("tot");
 
                 //restart level
@@ -178,7 +178,7 @@ class Character extends MovableObject {
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 //console.log("pepe is hurt");
-                this.isHurt_sound.play();
+                if (gameSoundFX) { this.isHurt_sound.play(); }
             }
             else if (this.isAboveGround()) {
 
@@ -196,7 +196,7 @@ class Character extends MovableObject {
                 if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                     // walk animaton
                     this.playAnimation(this.IMAGES_WALKING);
-                    this.walking_sound.play();
+                    if (gameSoundFX) { this.walking_sound.play(); }
 
                 }
             }

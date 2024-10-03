@@ -1,6 +1,6 @@
 Aufgaben
 -----------
-- music/sound fx shortcuts
+- sound fx shortcuts
 - auf handy spielbar
 - anleitung
 - fullscreen toggle repair
