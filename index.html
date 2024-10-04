@@ -39,32 +39,41 @@
 
     <!--<h2>Press Space to start - Press F for fullscreen</h2> -->
 
-    <div>
+    <div class="main">
 
-        <img id="playIcon" src="./icons/play.png"
-            onclick="gameRunning = true;startGame(level_no, lives, energy, collectedBottles, collectedCoins);">
+        <div class="upperButtons">
 
-        <img id="muteIcon" src="./icons/mute.png" onclick="toggleMute()">
+            <img id="playIcon" src="./icons/play.png"
+                onclick="gameRunning = true;startGame(level_no, lives, energy, collectedBottles, collectedCoins);">
 
-        <canvas id="canvas" width="720" height="405"> <!-- 405 statt 480, so ist es 16:9 -->
-        </canvas>
+            <img id="muteIcon" src="./icons/mute.png" onclick="toggleMute()">
 
-        <div class="container">
-            <div id="btnLeft">&larr;</div>
-            <div id="btnRight">&rarr;</div>
         </div>
-        <div class="containerRight">
-            <div id="btnJump">&uarr;</div>
-            <div id="btnThrow">&#10138;</div>
+
+
+        <canvas id="canvas" width="720" height="405"></canvas>
+
+
+        <div class="mobile-buttons">
+            <div class="containerLeft">
+                <div id="btnLeft">&larr;</div>
+                <div id="btnRight">&rarr;</div>
+            </div>
+            <div class="containerRight">
+                <div id="btnJump">&uarr;</div>
+                <div id="btnThrow">&#10138;</div>
+            </div>
         </div>
 
     </div>
 
-
-    <a href="https://www.flaticon.com/de/kostenlose-icons/stumm" title="stumm Icons">Stumm Icons erstellt von
-        Kiranshastry - Flaticon</a>
-    <a href="https://www.flaticon.com/de/kostenlose-icons/google-play-musik" title="google play musik Icons">Google play
-        musik Icons erstellt von Smashicons - Flaticon</a>
+    <div class="footer">
+        <a href="https://www.flaticon.com/de/kostenlose-icons/stumm" title="stumm Icons">Stumm Icons erstellt von
+            Kiranshastry - Flaticon</a>
+        <a href="https://www.flaticon.com/de/kostenlose-icons/google-play-musik" title="google play musik Icons">Google
+            play
+            musik Icons erstellt von Smashicons - Flaticon</a>
+    </div>
 
 </body>
 
