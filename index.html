@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" translate="no">
 
 <head>
     <meta charset="UTF-8">
@@ -33,26 +33,34 @@
     <script src="./js/game.js"></script>
 </head>
 
-<body onload="init(); makeButtonsClickable();">
+<body onload="init(); makeButtonsTouchable();">
 
     <h1>EL POLLO LOCO</h1>
 
-
     <!--<h2>Press Space to start - Press F for fullscreen</h2> -->
 
-    <div id="btnPlay">PLAY</div>
+    <div>
 
-    <canvas id="canvas" width="720" height="405"> <!-- 405 statt 480, so ist es 16:9 -->
-    </canvas>
+        <img id="playIcon" src="./icons/play.png"
+            onclick="gameRunning = true;startGame(level_no, lives, energy, collectedBottles, collectedCoins);">
 
-    <div class="container">
-        <div id="btnLeft">&lt;</div>
-        <div id="btnRight">&gt;</div>
+        <img id="muteIcon" src="./icons/mute.png" onclick="toggleMute()">
+
+        <canvas id="canvas" width="720" height="405"> <!-- 405 statt 480, so ist es 16:9 -->
+        </canvas>
+
+        <div class="container">
+            <div id="btnLeft">&lt;</div>
+            <div id="btnRight">&gt;</div>
+        </div>
+
     </div>
 
 
-
-
+    <a href="https://www.flaticon.com/de/kostenlose-icons/stumm" title="stumm Icons">Stumm Icons erstellt von
+        Kiranshastry - Flaticon</a>
+    <a href="https://www.flaticon.com/de/kostenlose-icons/google-play-musik" title="google play musik Icons">Google play
+        musik Icons erstellt von Smashicons - Flaticon</a>
 
 </body>
 

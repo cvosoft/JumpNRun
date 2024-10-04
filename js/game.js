@@ -186,7 +186,7 @@ document.addEventListener('keyup', (event) => {
 })
 
 
-function makeButtonsClickable() {
+function makeButtonsTouchable() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
@@ -208,7 +208,7 @@ function makeButtonsClickable() {
 
     })
 
-    document.getElementById('btnPlay').addEventListener('touchstart', (e) => {
+    document.getElementById('playIcon').addEventListener('touchstart', (e) => {
         e.preventDefault();
         gameRunning = true;
         startGame(level_no, lives, energy, collectedBottles, collectedCoins);

@@ -8,7 +8,7 @@ body {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    /*align-items: center;*/
+    align-items: center;
     max-height: 100vh;
     margin: 0;
     background-image: url('./img/desert.jpg');
@@ -39,9 +39,15 @@ canvas {
     margin-left: 10px;
 }
 
+#muteIcon,
+#playIcon {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
 #btnLeft,
-#btnRight,
-#btnPlay {
+#btnRight {
     border-radius: 30px;
     font-size: 30px;
     color: black;
@@ -52,6 +58,10 @@ canvas {
 }
 
 @media only screen and (max-width: 720px) {
+    h1 {
+        display: none;
+    }
+
     canvas {
         width: 100%;
     }

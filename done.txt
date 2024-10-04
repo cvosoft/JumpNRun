@@ -1,9 +1,11 @@
 Aufgaben
 -----------
 - klickbare icons im canvas anzeigen (music, sounds, fullscreen)
+- fontawesome?
 - auf handy spielbar
 - throw repair? (nur auf laptop?!)
 - load balken images onload 
+- orientation check: landscape etc.
 
 
 
