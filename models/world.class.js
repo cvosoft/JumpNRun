@@ -84,6 +84,7 @@ class World {
 
 
         this.gameMusic.loop = true;
+        this.gameMusic.volume = 0.4;
         if (!gameMusic) {
             this.gameMusic.volume = 0;
         }
@@ -167,7 +168,7 @@ class World {
                 this.gameMusic.volume = 0;
                 gameMusic = false;
             } else {
-                this.gameMusic.volume = 1;
+                this.gameMusic.volume = 0.4;
                 gameMusic = true;
             }
         }
