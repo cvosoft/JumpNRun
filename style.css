@@ -14,13 +14,15 @@
 body {
     font-family: 'Zabars', Arial, Helvetica, sans-serif;
     display: flex;
-    /*justify-content: center;*/
+    justify-content: center;
     flex-direction: column;
     align-items: center;
     max-height: 100vh;
     margin: 0;
     background-image: url('./img/desert.jpg');
     background-position: center;
+    background-repeat: no-repeat;
+    max-width: 100vw;
 }
 
 
@@ -69,7 +71,7 @@ canvas {
     display: block;
 }
 
-.mobile-buttons {
+.mobileButtons {
     position: absolute;
     display: flex;
     justify-content: space-between;
@@ -129,12 +131,10 @@ canvas {
     bottom: 0px;
     display: flex;
     gap: 40px;
-
     a {
         font-size: 20px;
         color: white;
     }
-
 }
 
 @media only screen and (max-width: 720px) {
@@ -144,6 +144,10 @@ canvas {
 
     .mobile-buttons {
         display: flex;
+    }
+
+    .footer {
+        display: none;
     }
 
     canvas {

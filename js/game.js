@@ -37,6 +37,8 @@ function init() {
     document.getElementById('homeIcon').classList.add("d-none");
 
 
+    document.getElementById('mobileButtons').classList.add("d-none");
+
     canvas = document.getElementById('canvas');
 
     // startscreen reinzeichnen
@@ -68,6 +70,7 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusic()");
     document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
 
+    document.getElementById('mobileButtons').classList.remove("d-none");
 
     clearAllIntervals();
 
