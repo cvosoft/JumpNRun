@@ -65,6 +65,7 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
 
     // umdefinieren
     document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusic()");
+    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusic()");
 
 
     clearAllIntervals();

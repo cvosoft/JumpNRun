@@ -171,15 +171,15 @@ class World {
 
     toggleMusic() {
         if (gameMusic) {
-            this.gameMusic.volume = 0;
             gameMusic = false;
             gameSoundFX = false;
+            this.gameMusic.volume = 0;
             document.getElementById('muteIcon').classList.remove("d-none");
             document.getElementById('audioIcon').classList.add("d-none");
         } else {
-            this.gameMusic.volume = 0.4;
             gameMusic = true;
             gameSoundFX = true;
+            this.gameMusic.volume = 0.4;
             document.getElementById('muteIcon').classList.add("d-none");
             document.getElementById('audioIcon').classList.remove("d-none");
         }
