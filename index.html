@@ -37,17 +37,18 @@
 
     <h1>EL POLLO LOCO</h1>
 
-    <!--<h2>Press Space to start - Press F for fullscreen</h2> -->
-
     <div class="main">
 
-        <div class="upperButtons">
-
+        <div class="playButtonContainer">
             <img id="playIcon" src="./icons/play.png"
                 onclick="gameRunning = true;startGame(level_no, lives, energy, collectedBottles, collectedCoins);">
+        </div>
 
-            <img id="muteIcon" src="./icons/mute.png" onclick="toggleMute()">
-
+        <div class="upperButtons">
+            <img id="homeIcon" class="d-none" src="./icons/home.png" onclick="init()">
+            <img id="instructionsIcon" src="./icons/manual.png" onclick="showInstructions()">
+            <img id="muteIcon" class="d-none" src="./icons/mute.png" onclick="toggleAudio()">
+            <img id="audioIcon" src="./icons/audio.png" onclick="toggleAudio()">
         </div>
 
 
@@ -65,20 +66,19 @@
             </div>
         </div>
 
+
     </div>
+
+
+
+
 
     <div class="footer">
-        <a href="https://www.flaticon.com/de/kostenlose-icons/stumm" title="stumm Icons">Stumm Icons erstellt von
-            Kiranshastry - Flaticon</a>
-        <a href="https://www.flaticon.com/de/kostenlose-icons/google-play-musik" title="google play musik Icons">Google
-            play
-            musik Icons erstellt von Smashicons - Flaticon</a>
-        Bild von <a
-            href="https://pixabay.com/de/users/mohamed_hassan-5229782/?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2384492">Mohamed
-            Hassan</a> auf <a
-            href="https://pixabay.com/de//?utm_source=link-attribution&utm_medium=referral&utm_campaign=image&utm_content=2384492">Pixabay</a>
-
+        <a href="./legalNotice.html">Legal Notice</a>
+        <a href="./imprint.html">Imprint</a>
     </div>
+
+
 
 </body>
 

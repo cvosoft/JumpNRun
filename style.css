@@ -5,12 +5,16 @@
 
 * {
     box-sizing: border-box;
-  }
+}
+
+.d-none {
+    display: none;
+}
 
 body {
     font-family: 'Zabars', Arial, Helvetica, sans-serif;
     display: flex;
-    justify-content: center;
+    /*justify-content: center;*/
     flex-direction: column;
     align-items: center;
     max-height: 100vh;
@@ -18,6 +22,8 @@ body {
     background-image: url('./img/desert.jpg');
     background-position: center;
 }
+
+
 
 h1 {
     margin: 0;
@@ -27,42 +33,74 @@ h1 {
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
 }
 
+.main {
+    position: relative;
+}
+
+.playButtonContainer {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+#playIcon {
+    width: 100px;
+    height: 100px;
+}
+
+
+.upperButtons {
+    position: absolute;
+    top: 15px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 0px 20px;
+    gap: 30px;
+}
+
+
 canvas {
     background-color: black;
-    border: 5px solid black;
+    border: 3px solid black;
     display: block;
 }
 
 .mobile-buttons {
-    position: relative;
+    position: absolute;
     display: flex;
     justify-content: space-between;
-    top: -60px;
+    width: 100%;
+    bottom: 8px;
     padding: 0px 12px;
+    display: none;
 }
 
 .containerLeft {
     display: flex;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
+    padding-bottom: 50px;
 }
 
 .containerRight {
     display: flex;
+    align-items: end;
     gap: 10px;
 }
 
-.upperButtons {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 20px;
-    position: relative;
-    top: 50px
-}
+
 
 #muteIcon,
-#playIcon {
-    width: 30px;
-    height: 30px;
+#instructionsIcon,
+#audioIcon,
+#homeIcon {
+    width: 25px;
+    height: 25px;
     cursor: pointer;
 }
 
@@ -79,7 +117,7 @@ canvas {
     font-size: 30px;
     border-radius: 50px;
     color: black;
-    background-color: yellow;
+    background-color: #ffbe00;
     border: 1px solid black;
     cursor: pointer;
 }
@@ -87,6 +125,10 @@ canvas {
 @media only screen and (max-width: 720px) {
     h1 {
         display: none;
+    }
+
+    .mobile-buttons {
+        display: flex;
     }
 
     canvas {
@@ -98,4 +140,9 @@ canvas {
     canvas {
         height: 100vh;
     }
+
+    h1 {
+        display: none;
+    }
+
 }

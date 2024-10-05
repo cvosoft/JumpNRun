@@ -16,8 +16,25 @@ let gameSoundFX = true;
 let showInstructionScreen = false;
 
 
+function toggleAudio() {
+    if (gameMusic && gameSoundFX) {
+        gameMusic = false;
+        gameSoundFX = false;
+        document.getElementById('muteIcon').classList.remove("d-none");
+        document.getElementById('audioIcon').classList.add("d-none");
+    } else {
+        gameMusic = true;
+        gameSoundFX = true;
+        document.getElementById('muteIcon').classList.add("d-none");
+        document.getElementById('audioIcon').classList.remove("d-none");
+    }
+}
+
 
 function init() {
+    document.getElementById('instructionsIcon').classList.remove("d-none");
+    document.getElementById('homeIcon').classList.add("d-none");
+
     canvas = document.getElementById('canvas');
 
     // startscreen reinzeichnen
@@ -39,6 +56,12 @@ function init() {
 
 
 function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
+
+    document.getElementById("playIcon").classList.add("d-none");
+    document.getElementById("instructionsIcon").classList.add("d-none");
+    document.getElementById("homeIcon").classList.remove("d-none");
+
+
     clearAllIntervals();
 
     //initLevel1();
@@ -59,6 +82,9 @@ function clearAllSounds() {
 }
 
 function showInstructions() {
+    document.getElementById('instructionsIcon').classList.add("d-none");
+    document.getElementById('homeIcon').classList.remove("d-none");
+
     canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
     let instructionsImage = new Image();
@@ -72,12 +98,13 @@ function showInstructions() {
         ctx.fillText('space: jump', 40, 110);
         ctx.fillText('D: throw bottle', 40, 150);
 
-        ctx.fillText('M: toggle music', 490, 70);
-        ctx.fillText('S: toggle sound FX', 490, 110);
-        ctx.fillText('ESC: quit game', 490, 150);
+        ctx.fillText('M: toggle music/sound FX', 430, 70);
+        ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
+        ctx.fillText('ESC: quit game', 430, 150);
 
         ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
     }
+
 
 
 }
