@@ -35,6 +35,7 @@ function init() {
     document.getElementById('instructionsIcon').classList.remove("d-none");
     document.getElementById('homeIcon').classList.add("d-none");
 
+
     canvas = document.getElementById('canvas');
 
     // startscreen reinzeichnen
@@ -62,6 +63,9 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     document.getElementById("homeIcon").classList.remove("d-none");
     //document.getElementById("zoomIcon").classList.remove("d-none");
 
+    // umdefinieren
+    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusic()");
+
 
     clearAllIntervals();
 
@@ -69,13 +73,13 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
 }
 
-var wait = (ms) => {
-    const start = Date.now();
-    let now = start;
-    while (now - start < ms) {
-        now = Date.now();
-    }
-}
+// var wait = (ms) => {
+//     const start = Date.now();
+//     let now = start;
+//     while (now - start < ms) {
+//         now = Date.now();
+//     }
+// }
 
 function clearAllSounds() {
     world.character.walking_sound.pause();

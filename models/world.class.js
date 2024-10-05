@@ -113,7 +113,7 @@ class World {
         setInterval(() => {
             this.checkToggleFullscreen();
             this.checkToggleMusic();
-            this.checkToggleSoundFX();
+            //this.checkToggleSoundFX();
             this.checkQuitGame();
         }, 100);
     }
@@ -164,25 +164,39 @@ class World {
 
     checkToggleMusic() {
         if (this.keyboard.M) {
-            if (gameMusic) {
-                this.gameMusic.volume = 0;
-                gameMusic = false;
-            } else {
-                this.gameMusic.volume = 0.4;
-                gameMusic = true;
-            }
+            this.toggleMusic();
         }
     }
 
-    checkToggleSoundFX() {
-        if (this.keyboard.S) {
-            if (gameSoundFX) {
-                gameSoundFX = false;
-            } else {
-                gameSoundFX = true;
-            }
+
+    toggleMusic() {
+        if (gameMusic) {
+            this.gameMusic.volume = 0;
+            gameMusic = false;
+            gameSoundFX = false;
+            document.getElementById('muteIcon').classList.remove("d-none");
+            document.getElementById('audioIcon').classList.add("d-none");
+        } else {
+            this.gameMusic.volume = 0.4;
+            gameMusic = true;
+            gameSoundFX = true;
+            document.getElementById('muteIcon').classList.add("d-none");
+            document.getElementById('audioIcon').classList.remove("d-none");
         }
     }
+
+
+
+
+    // checkToggleSoundFX() {
+    //     if (this.keyboard.S) {
+    //         if (gameSoundFX) {
+    //             gameSoundFX = false;
+    //         } else {
+    //             gameSoundFX = true;
+    //         }
+    //     }
+    // }
 
 
 
