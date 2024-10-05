@@ -33,7 +33,8 @@ function showInitScreenIcons() {
     document.getElementById("playIcon").classList.remove("d-none");
     document.getElementById('instructionsIcon').classList.remove("d-none");
     document.getElementById('homeIcon').classList.add("d-none");
-    document.getElementById('mobileButtonContainer').style.display = "none";
+    //document.getElementById('mobileButtonContainer').style.display = "none";
+    document.getElementById('mobileButtonContainer').classList.add("d-none");
 }
 
 function randomStartScreenImage() {
@@ -78,7 +79,8 @@ function setFunctionsForIcons() {
 function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     hideInitScreenIcons();
     setFunctionsForIcons();
-    document.getElementById('mobileButtonContainer').style.display = "flex";
+    //document.getElementById('mobileButtonContainer').style.display = "flex";
+    document.getElementById('mobileButtonContainer').classList.remove("d-none");
     clearAllIntervals();
     world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
 }
