@@ -311,9 +311,9 @@ class World {
 
         this.ctx.font = "50px serif";
         this.addToMap(this.CoinStatus);
-        this.ctx.fillText(this.character.collectedCoins, 265, 48);
+        this.ctx.fillText(this.character.collectedCoins, 215, 48);
         this.addToMap(this.BottleStatus);
-        this.ctx.fillText(this.character.collectedBottles, 165, 48);
+        this.ctx.fillText(this.character.collectedBottles, 140, 48);
         this.addToMap(this.LivesStatus);
         this.ctx.fillText(this.character.lives, 65, 48);
 

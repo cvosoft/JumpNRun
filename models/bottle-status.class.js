@@ -1,6 +1,6 @@
 class BottleStatus extends DrawableObject {
 
-    x = 120;
+    x = 95;
     y = 55;
     scaleFactor = 0.275;
     img = 'img/7_statusbars/3_icons/icon_salsa_bottle.png';

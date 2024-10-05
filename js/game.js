@@ -60,6 +60,7 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     document.getElementById("playIcon").classList.add("d-none");
     document.getElementById("instructionsIcon").classList.add("d-none");
     document.getElementById("homeIcon").classList.remove("d-none");
+    //document.getElementById("zoomIcon").classList.remove("d-none");
 
 
     clearAllIntervals();
