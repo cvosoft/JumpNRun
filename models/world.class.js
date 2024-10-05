@@ -137,15 +137,18 @@ class World {
         }
     }
 
+    quitGame() {
+        this.gameOver = false;
+        this.win = false;
+        gameRunning = false;
+        clearAllIntervals();
+        clearAllSounds();
+        init();
+    }
+
     checkQuitGame() {
         if (this.keyboard.ESC) {
-            this.gameOver = false;
-            this.win = false;
-            gameRunning = false;
-            clearAllIntervals();
-            clearAllSounds();
-            init();
-
+            this.quitGame();
         }
     }
 
@@ -353,6 +356,7 @@ class World {
                 this.gameOverSound.pause();
                 this.ctx.font = '30px Zabars';
                 this.ctx.fillText('Press space to try again', 250, 385);
+                document.getElementById("playIcon").classList.remove("d-none");
             }, 1000);
 
             if (this.keyboard.SPACE) {

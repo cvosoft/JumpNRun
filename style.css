@@ -123,6 +123,20 @@ canvas {
     cursor: pointer;
 }
 
+
+.footer {
+    position: absolute;
+    bottom: 0px;
+    display: flex;
+    gap: 40px;
+
+    a {
+        font-size: 20px;
+        color: white;
+    }
+
+}
+
 @media only screen and (max-width: 720px) {
     h1 {
         display: none;

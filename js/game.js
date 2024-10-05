@@ -32,6 +32,7 @@ function toggleAudio() {
 
 
 function init() {
+    document.getElementById("playIcon").classList.remove("d-none");
     document.getElementById('instructionsIcon').classList.remove("d-none");
     document.getElementById('homeIcon').classList.add("d-none");
 
@@ -57,7 +58,6 @@ function init() {
 
 
 function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
-
     document.getElementById("playIcon").classList.add("d-none");
     document.getElementById("instructionsIcon").classList.add("d-none");
     document.getElementById("homeIcon").classList.remove("d-none");
@@ -66,6 +66,7 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     // umdefinieren
     document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusic()");
     document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusic()");
+    document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
 
 
     clearAllIntervals();
