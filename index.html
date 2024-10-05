@@ -47,16 +47,13 @@
         <div class="upperButtons">
             <img id="homeIcon" class="d-none" src="./icons/home.png" onclick="init()">
             <img id="instructionsIcon" src="./icons/manual.png" onclick="showInstructions()">
-            <img id="muteIcon" class="d-none" src="./icons/mute.png" onclick="toggleAudio()">
-            <img id="audioIcon" src="./icons/audio.png" onclick="toggleAudio()">
-            <!--<img id="zoomIcon" class="d-none" src="./icons/zoom.png" onclick="world.checkToggleFullscreen()">-->
+            <img id="muteIcon" class="d-none" src="./icons/mute.png" onclick="preGameToggleAudio()">
+            <img id="audioIcon" src="./icons/audio.png" onclick="preGameToggleAudio()">
         </div>
-
 
         <canvas id="canvas" width="720" height="405"></canvas>
 
-
-        <div id="mobileButtons" class="mobileButtons">
+        <div id="mobileButtonContainer" class="mobileButtons">
             <div class="containerLeft">
                 <div id="btnLeft">&larr;</div>
                 <div id="btnRight">&rarr;</div>
@@ -67,19 +64,12 @@
             </div>
         </div>
 
-
     </div>
-
-
-
-
 
     <div class="footer">
         <a href="./legalNotice.html">Legal Notice</a>
         <a href="./imprint.html">Imprint</a>
     </div>
-
-
 
 </body>
 

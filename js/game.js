@@ -8,15 +8,14 @@ let collectedCoins = 0;
 let energy = 1;
 
 let level_no = 1;
-let gameRunning = false;
 
+let gameRunning = false;
 let gameMusic = true;
 let gameSoundFX = true;
 
 let showInstructionScreen = false;
 
-
-function toggleAudio() {
+function preGameToggleAudio() {
     if (gameMusic && gameSoundFX) {
         gameMusic = false;
         gameSoundFX = false;
@@ -30,23 +29,31 @@ function toggleAudio() {
     }
 }
 
-
-function init() {
+function showInitScreenIcons() {
     document.getElementById("playIcon").classList.remove("d-none");
     document.getElementById('instructionsIcon').classList.remove("d-none");
     document.getElementById('homeIcon').classList.add("d-none");
+    document.getElementById('mobileButtonContainer').style.display = "none";
+}
+
+function randomStartScreenImage() {
+    let image;
+    if (Math.random() > 0.5) {
+        image = './img/9_intro_outro_screens/start/startscreen_1.png';
+    } else {
+        image = './img/9_intro_outro_screens/start/startscreen_2.png';
+    }
+    return image;
+}
 
 
-    document.getElementById('mobileButtons').classList.add("d-none");
+function init() {
+    showInitScreenIcons();
 
     canvas = document.getElementById('canvas');
-
-    // startscreen reinzeichnen
     let ctx = canvas.getContext('2d');
     let startImage = new Image();
-    if (Math.random() > 0.5) {
-        startImage.src = './img/9_intro_outro_screens/start/startscreen_1.png';
-    } else { startImage.src = './img/9_intro_outro_screens/start/startscreen_2.png'; }
+    startImage.src = randomStartScreenImage();
 
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
@@ -54,37 +61,27 @@ function init() {
         ctx.fillStyle = "black";
         ctx.fillText('Press Space to start                              Press I for instructions', 100, 390);
     }
-
-
 }
 
-
-function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
+function hideInitScreenIcons() {
     document.getElementById("playIcon").classList.add("d-none");
     document.getElementById("instructionsIcon").classList.add("d-none");
     document.getElementById("homeIcon").classList.remove("d-none");
-    //document.getElementById("zoomIcon").classList.remove("d-none");
+}
 
-    // umdefinieren
+function setFunctionsForIcons() {
     document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusic()");
     document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusic()");
     document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
-
-    document.getElementById('mobileButtons').classList.remove("d-none");
-
-    clearAllIntervals();
-
-    //initLevel1();
-    world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
 }
 
-// var wait = (ms) => {
-//     const start = Date.now();
-//     let now = start;
-//     while (now - start < ms) {
-//         now = Date.now();
-//     }
-// }
+function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
+    hideInitScreenIcons();
+    setFunctionsForIcons();
+    document.getElementById('mobileButtonContainer').style.display = "flex";
+    clearAllIntervals();
+    world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
+}
 
 function clearAllSounds() {
     world.character.walking_sound.pause();
@@ -107,31 +104,21 @@ function showInstructions() {
         ctx.fillText('arrow keys: move left and right', 40, 70);
         ctx.fillText('space: jump', 40, 110);
         ctx.fillText('D: throw bottle', 40, 150);
-
         ctx.fillText('M: toggle music/sound FX', 430, 70);
         ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
         ctx.fillText('ESC: quit game', 430, 150);
-
         ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
     }
-
-
-
 }
 
-
-/* Alternative (quick and dirty), um alle Intervalle zu beenden. */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
-
-
 
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 70) {
         keyboard.F = true;
     }
-
     if (event.keyCode == 73) {
         keyboard.I = true;
         if (!showInstructionScreen && !gameRunning) {
@@ -141,7 +128,6 @@ document.addEventListener('keydown', (event) => {
             showInstructionScreen = false;
             init();
         }
-
     }
     if (event.keyCode == 27) {
         keyboard.ESC = true;
@@ -152,7 +138,6 @@ document.addEventListener('keydown', (event) => {
     if (event.keyCode == 83) {
         keyboard.S = true;
     }
-
     if (event.keyCode == 39) {
         keyboard.RIGHT = true;
     }
@@ -166,11 +151,9 @@ document.addEventListener('keydown', (event) => {
         keyboard.DOWN = true;
     }
     if (event.keyCode == 32) {
-
         if (!gameRunning) {
             gameRunning = true;
             startGame(level_no, lives, energy, collectedBottles, collectedCoins);
-
         } else {
             keyboard.SPACE = true;
         }
@@ -179,12 +162,6 @@ document.addEventListener('keydown', (event) => {
         keyboard.D = true;
     }
 })
-
-
-
-
-
-
 
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 73) {
@@ -222,54 +199,38 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
-
 function makeButtonsTouchable() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.LEFT = true;
-
     })
     document.getElementById('btnLeft').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.LEFT = false;
-
     })
     document.getElementById('btnRight').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.RIGHT = true;
-
     })
     document.getElementById('btnRight').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.RIGHT = false;
-
-    })
-
-    document.getElementById('playIcon').addEventListener('touchstart', (e) => {
-        e.preventDefault();
-        gameRunning = true;
-        startGame(level_no, lives, energy, collectedBottles, collectedCoins);
-
     })
     document.getElementById('btnJump').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.SPACE = true;
-
     })
     document.getElementById('btnJump').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.SPACE = false;
-
     })
     document.getElementById('btnThrow').addEventListener('touchstart', (e) => {
         e.preventDefault();
         keyboard.D = true;
-
     })
     document.getElementById('btnThrow').addEventListener('touchend', (e) => {
         e.preventDefault();
         keyboard.D = false;
-
     })
 }
 
