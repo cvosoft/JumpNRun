@@ -1,10 +1,8 @@
 class ThrowableObject extends MovableObject {
-
     x;
     y;
     scaleFactor = 0.2;
     otherDirection;
-    onFloor = false;
     broken = false;
 
     throwSound = new Audio('./audio/throw.mp3');
@@ -47,53 +45,41 @@ class ThrowableObject extends MovableObject {
     }
 
 
-    checkOnFloor() {
-        if (this.y > 360) {
-            this.onFloor = true;
-        };
+    onFloor() {
+        return (this.y > 360)
     }
 
 
     checkHitEnemy() {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
-
-
-                if (bottle.isColliding(enemy) && !bottle.broken && !bottle.onFloor) {
+                if (bottle.isColliding(enemy) && !bottle.broken && !bottle.onFloor()) {
 
                     if (gameSoundFX) { bottle.clirrSound.play(); }
+                    this.playAnimation(this.IMAGES_SPLASH);
 
+                    let index = world.throwableObjects.indexOf(bottle);
+                    setTimeout(() => world.throwableObjects.splice(index, 1), 500);
 
-                    // remove?
-                    //let index = world.throwableObjects.indexOf(bottle);
-                    //world.throwableObjects.splice(index, 1);
 
 
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                         let index = world.level.enemies.indexOf(enemy);
                         if (gameSoundFX) { world.level.enemies[index].death_sound.play(); }
-                        world.level.enemies.splice(index, 1);
+                        //world.level.enemies.splice(index, 1);
+
+                        world.level.enemies[index].energy--;
+
                         bottle.broken = true;
 
 
                     } else if (enemy instanceof Endboss) {
                         // nur wenn der nicht gerade schon getroffen wurde
                         let index = world.level.enemies.indexOf(enemy);
-
                         bottle.broken = true;
-
-
-
                         world.level.enemies[index].hit();
-
-
                         world.StatusBarHealthEnemy.setPercentage(world.level.enemies[index].energy);
-
-
                     }
-
-
-
                 }
             })
         })
@@ -104,9 +90,7 @@ class ThrowableObject extends MovableObject {
 
         setInterval(() => {
 
-            this.checkOnFloor();
-
-            if (!this.onFloor) {
+            if (!this.onFloor()) {
 
                 if (this.otherDirection == false) {
                     this.x += 30;
@@ -121,16 +105,17 @@ class ThrowableObject extends MovableObject {
 
 
         let interval = setInterval(() => {
-            if (!this.onFloor) {
+            if (!this.onFloor()) {
                 this.playAnimation(this.IMAGES_ROTATE)
             }
-            else if (this.broken || this.onFloor) {
+            else if (this.broken || this.onFloor()) {
 
                 this.playAnimation(this.IMAGES_SPLASH);
 
-                if (this.currentImage > 5) {
-                    clearInterval(interval);
-                }
+                setTimeout(() => {
+                    clearInterval(interval); console.log(this);
+                }, 100);
+
 
             }
         }, 50);
