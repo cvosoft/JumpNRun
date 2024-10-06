@@ -137,6 +137,10 @@ canvas {
     }
 }
 
+#rotate {
+    display: none;
+}
+
 @media only screen and (max-width: 720px) {
     h1 {
         display: none;
@@ -160,4 +164,34 @@ canvas {
         display: none;
     }
 
+}
+
+
+@media screen and (orientation:portrait) {
+
+
+    h1 {
+        display: none;
+    }
+
+    .main {
+        display: none;
+
+    }
+
+    body {
+        background-image: none;
+    }
+
+    #rotate {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        font-size: 30px;
+    }
+
+    img {
+        width: 100vw;
+    }
 }
