@@ -1,16 +1,10 @@
 class MovableObject extends DrawableObject {
-
     speed = 0.15;
-
-
     otherDirection = false;
     speedY = 0;
     acceleration = 2.5;
-
     energy;
-
     lastHit;
-
     standingTimeStamp;
 
     offset = {
@@ -22,12 +16,9 @@ class MovableObject extends DrawableObject {
 
     offsetFactor = 1;
 
-
-
     moveRight() {
         this.x += this.speed;
     }
-
 
     moveLeft() {
         this.x -= this.speed;
@@ -60,28 +51,15 @@ class MovableObject extends DrawableObject {
         }
     }
 
-
     jump(speedY) {
         this.currentImage = 0;
         this.speedY = speedY;
     }
 
-
-
-    // isJumpingOn(mo) {
-    //     //console.log(Math.round(this.y - 15));
-    //     return this.x + 65 >= mo.x &&
-    //         this.x + this.img.naturalWidth * this.scaleFactor - 130 <= mo.x + mo.img.naturalWidth * mo.scaleFactor &&
-    //         this.y - 15 <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
-    //         this.y - 15 >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
-    // }
-
-
     isJumpingOn(mo) {
         return this.y <= (mo.y - mo.img.naturalHeight * mo.scaleFactor) + 50 &&
             this.y >= (mo.y - mo.img.naturalHeight * mo.scaleFactor) - 50
     }
-
 
     isColliding(mo) {
         this.width = this.img.naturalWidth * this.scaleFactor;
@@ -89,26 +67,19 @@ class MovableObject extends DrawableObject {
         mo.width = mo.img.naturalWidth * mo.scaleFactor;
         mo.height = mo.img.naturalHeight * mo.scaleFactor;
 
-        //y1: links UNTEN!
-        //y2 : links oben, also links unten MINUS height
         return this.x + this.width - this.offset.right * this.offsetFactor > mo.x - mo.offset.left * mo.offsetFactor &&  // x2_ch > x1_mo
             this.y - this.offset.bottom * this.offsetFactor > mo.y - mo.height + mo.offset.top * mo.offsetFactor && // y1_ch > y2_mo 
             this.x + this.offset.left * this.offsetFactor < mo.x + mo.width - mo.offset.right * mo.offsetFactor && // x1_ch < x2_mo
             this.y - this.height + this.offset.top * this.offsetFactor < mo.y - mo.offset.top * mo.offsetFactor; // y2_ch > y1_mo
     }
 
-
     hit() {
-        //this.energy -= 5;
-        // egal wer ... speichern
         this.lastHit = new Date().getTime();
-
         if (this.energy > 0) {
             this.energy--;
         }
-
         if (this.energy > 0) {
-            if (this instanceof Character) { // nur pepe darf schrumpfen
+            if (this instanceof Character) {
                 this.scaleFactor = this.scaleFactor / 2;
                 this.offsetFactor = this.offsetFactor / 2;
             }
@@ -130,5 +101,4 @@ class MovableObject extends DrawableObject {
         timepassed = timepassed / 1000;
         return timepassed > 10;
     }
-
 }

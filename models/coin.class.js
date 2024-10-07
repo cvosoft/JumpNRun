@@ -1,9 +1,7 @@
 class Coin extends MovableObject {
-
     x;
     y;
     scaleFactor = 0.375;
-
     collect_sound = new Audio('./audio/cash.mp3');
 
     IMAGES = [
@@ -19,7 +17,5 @@ class Coin extends MovableObject {
         setInterval(() => {
             this.playAnimation(this.IMAGES)
         }, 200);
-
     }
-
 }

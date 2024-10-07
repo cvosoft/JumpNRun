@@ -1,15 +1,10 @@
 class SmallChicken extends MovableObject {
-
-
     x = 2500 + Math.random() * 500;
     y = 365;
     scaleFactor = 0.375;
     speedY = 20;
-
     speed = 0.15 + Math.random() * 0.5;
-
     death_sound = new Audio('./audio/chicken.mp3');
-
     energy = 1;
 
     IMAGES_WALKING = [
@@ -28,16 +23,9 @@ class SmallChicken extends MovableObject {
         this.animate();
     }
 
-
     animate() {
-        let intervalMove = setInterval(() => {
-            this.moveLeft();
-        }, 1000 / 60);
-
-        let intervalJump = setInterval(() => {
-            this.jump(30);
-        }, 3000);
-
+        let intervalMove = setInterval(() => { this.moveLeft();}, 1000 / 60);
+        let intervalJump = setInterval(() => { this.jump(30); }, 3000);
         setInterval(() => {
             if (!this.isDead()) {
                 this.playAnimation(this.IMAGES_WALKING);
@@ -48,5 +36,4 @@ class SmallChicken extends MovableObject {
             }
         }, 200);
     }
-
 }

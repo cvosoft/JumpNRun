@@ -1,18 +1,13 @@
 class Character extends MovableObject {
     x = 120;
     y = 370;
-
     scaleFactor;
     energy;
-
     lastHit = 0;
-
     speed = 10;
-
     collectedBottles = 0;
     collectedCoins = 0;
     lives;
-
     img_counter = 0;
 
     offset = {
@@ -31,7 +26,6 @@ class Character extends MovableObject {
         'img/2_character_pepe/2_walk/W-25.png',
         'img/2_character_pepe/2_walk/W-26.png',
     ];
-
 
     IMAGES_JUMPING = [
         'img/2_character_pepe/3_jump/J-31.png',
@@ -102,8 +96,6 @@ class Character extends MovableObject {
         this.collectedCoins = collectedCoins;
         this.scaleFactor = 0.275 / 2 * this.energy;
         this.offsetFactor = 0.5 * this.energy;
-
-
         this.loadImages(this.IMAGES_WALKING);
         this.loadImages(this.IMAGES_JUMPING);
         this.loadImages(this.IMAGES_DEAD);
@@ -112,13 +104,10 @@ class Character extends MovableObject {
         this.loadImages(this.IMAGES_LONGIDLE);
         this.applyGravity();
         this.animate();
-
     }
 
-    animate() {
-        this.standingTimeStamp = new Date().getTime();
+    animateMovements() {
         setInterval(() => {
-
             if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x + 720) {
                 this.longidle_sound.pause();
                 this.moveRight();
@@ -131,81 +120,77 @@ class Character extends MovableObject {
                 this.otherDirection = true;
                 this.standingTimeStamp = new Date().getTime();
             }
-
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.longidle_sound.pause();
                 this.jump(30);
                 if (gameSoundFX) { this.jumping_sound.play(); }
                 this.standingTimeStamp = new Date().getTime();
             }
-
             this.world.camera_x = -this.x + 100;
-        }, 1000 / 60); // quasi speed!
+        }, 1000 / 60);
+    }
 
+    animateImages() {
         setInterval(() => {
             this.walking_sound.pause();
             this.playAnimation(this.IMAGES_IDLE);
-
             if (this.isLongIdle() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
                 if (gameSoundFX) { this.longidle_sound.play(); }
             }
-
             if (this.isDead()) {
-
-                this.playAnimation(this.IMAGES_DEAD);
-                this.img_counter++;
-
-                if (gameSoundFX) { this.isDead_sound.play(); }
-                //console.log("tot");
-
-                //restart level
-                //this.lives--;
-                // wenn animation durchgelaufen
-                if (this.img_counter > 3) {
-                    this.lives--;
-                    if (this.lives >= 1) {
-                        clearAllIntervals();
-                        clearAllSounds();
-                        startGame(world.level_no, this.lives, 1, 0, 0);
-                    } else {
-                        world.gameOver = true;
-                        clearAllIntervals();
-                        clearAllSounds();
-                    }
-                }
-
+                this.handleCharacterIsDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                //console.log("pepe is hurt");
                 if (gameSoundFX) { this.isHurt_sound.play(); }
             }
             else if (this.isAboveGround()) {
-
-                if (this.currentImage > 3 && this.speedY >= 0) {
-                    this.currentImage = 3;
-                } else if (this.currentImage > 4 && this.speedY < 0 && this.speedY > -20) {
-                    this.currentImage = 4;
-                } else if (this.currentImage > this.IMAGES_JUMPING.length && this.speedY < 0) {
-                    this.currentImage = this.IMAGES_JUMPING.length;
-                }
-
-                this.playAnimation(this.IMAGES_JUMPING);
-
+                this.handleJumpingImages();
             } else {
-                if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
-                    // walk animaton
-                    this.playAnimation(this.IMAGES_WALKING);
-                    if (gameSoundFX) { this.walking_sound.play(); }
-
-                }
+                this.handleWalkingImages();
             }
         }, 125);
     }
 
+    animate() {
+        this.standingTimeStamp = new Date().getTime();
+        this.animateMovements();
+        this.animateImages();
+    }
 
+    handleCharacterIsDead() {
+        this.playAnimation(this.IMAGES_DEAD);
+        this.img_counter++;
+        if (gameSoundFX) { this.isDead_sound.play(); }
+        if (this.img_counter > 3) {
+            this.lives--;
+            if (this.lives >= 1) {
+                clearAllIntervals();
+                clearAllSounds();
+                startGame(world.level_no, this.lives, 1, 0, 0);
+            } else {
+                world.gameOver = true;
+                clearAllIntervals();
+                clearAllSounds();
+            }
+        }
+    }
 
+    handleWalkingImages() {
+        if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
+            this.playAnimation(this.IMAGES_WALKING);
+            if (gameSoundFX) { this.walking_sound.play(); }
+        }
+    }
 
-
-
+    handleJumpingImages() {
+        if (this.currentImage > 3 && this.speedY >= 0) {
+            this.currentImage = 3;
+        } else if (this.currentImage > 4 && this.speedY < 0 && this.speedY > -20) {
+            this.currentImage = 4;
+        } else if (this.currentImage > this.IMAGES_JUMPING.length && this.speedY < 0) {
+            this.currentImage = this.IMAGES_JUMPING.length;
+        }
+        this.playAnimation(this.IMAGES_JUMPING);
+    }
 }

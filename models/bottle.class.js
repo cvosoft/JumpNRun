@@ -1,9 +1,7 @@
 class Bottle extends MovableObject {
-
     x;
-    y = 360; // ground
+    y = 360;
     scaleFactor = 0.2;
-
     collect_sound = new Audio('./audio/bottle.mp3');
 
     IMAGES = [
@@ -19,5 +17,4 @@ class Bottle extends MovableObject {
             this.playAnimation(this.IMAGES)
         }, 1500);
     }
-
 }

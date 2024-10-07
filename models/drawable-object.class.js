@@ -1,5 +1,4 @@
 class DrawableObject {
-
     x;
     y;
     scaleFactor;
@@ -22,45 +21,25 @@ class DrawableObject {
     }
 
     draw(ctx) {
-        //ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
-        //this.scaleFactor = 1;
-        //ctx.drawImage(this.img, this.x, this.y, this.img.naturalWidth * this.scaleFactor, this.img.naturalHeight * this.scaleFactor);
-
-
         ctx.drawImage(this.img,
             this.x,
-            this.y - this.img.naturalHeight * this.scaleFactor,  // Höhe wird abgezogen
+            this.y - this.img.naturalHeight * this.scaleFactor,
             this.img.naturalWidth * this.scaleFactor,
             this.img.naturalHeight * this.scaleFactor);
     }
-
 
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken) {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'red';
-            //ctx.rect(this.x, this.y, this.width, this.height);
-            // this.y - this.img.naturalHeight * this.scaleFactor,
             ctx.rect(
                 this.x + this.offset.left * this.offsetFactor,
                 this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top * this.offsetFactor,
                 this.img.naturalWidth * this.scaleFactor - this.offset.right * this.offsetFactor,
                 this.img.naturalHeight * this.scaleFactor - this.offset.top * this.offsetFactor - this.offset.bottom * this.offsetFactor,
-                //this.x + this.offset.right, 
-                //this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top,
-                //this.img.naturalWidth * this.scaleFactor - this.offset.left,
-                //this.img.naturalHeight * this.scaleFactor - this.offset.bottom
             );
-
             ctx.stroke();
-
-            //ctx.font = "15px serif";
-            //ctx.fillText(`${Math.round(this.x)}/${Math.round(this.y)}`, this.x, this.y);
-            //ctx.fillText(`${Math.round(this.x)}/${Math.round(this.y - this.img.naturalHeight * this.scaleFactor)}`, this.x, this.y - this.img.naturalHeight * this.scaleFactor);
-
         }
-
-
     }
 }

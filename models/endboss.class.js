@@ -1,15 +1,13 @@
 class Endboss extends MovableObject {
-
     scaleFactor = 0.375;
     y = 400;
     x = 4000;
     speed = .5;
     energy = 5;
     lastHit = 0;
-
-
     death_sound = new Audio('./audio/death_endboss.mp3');
     hurt_sound = new Audio('./audio/chicken_cry.mp3');
+    img_counter = 0;
 
     IMAGES_WALKING = [
         'img/4_enemie_boss_chicken/1_walk/G1.png',
@@ -52,7 +50,6 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/5_dead/G26.png'
     ];
 
-
     constructor() {
         super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_WALKING);
@@ -63,18 +60,10 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
-
     animate() {
-
-
-        let walkInterval = setInterval(() => {
-            this.moveLeft();
-        }, 60)
-
-
+        let walkInterval = setInterval(() => { this.moveLeft(); }, 60)
         let interval = setInterval(() => {
             this.playAnimation(this.IMAGES_WALKING);
-
             if (this.x < world.character.x + 300) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.speed += 1;
@@ -82,23 +71,22 @@ class Endboss extends MovableObject {
                 this.playAnimation(this.IMAGES_ALERT);
                 this.speed = +0.5;
             }
-
             if (this.isHurt()) {
                 if (gameSoundFX) { this.hurt_sound.play(); }
                 this.playAnimation(this.IMAGES_HURT);
                 this.speed += 2;
             }
-
             if (this.isDead()) {
+                clearInterval(walkInterval);
+                this.img_counter++;
                 this.playAnimation(this.IMAGES_DEAD);
                 if (gameSoundFX) { this.death_sound.play(); }
-                clearInterval(walkInterval);
-                clearInterval(interval);
-                this.y = 450;
-
+                if (this.img_counter >= 3) {
+                    this.loadImage(this.IMAGES_DEAD[2]);
+                    clearInterval(interval);
+                    this.y = 450;
+                }
             }
-
         }, 150);
     }
-
 }

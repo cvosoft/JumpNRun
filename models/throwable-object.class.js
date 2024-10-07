@@ -4,10 +4,8 @@ class ThrowableObject extends MovableObject {
     scaleFactor = 0.2;
     otherDirection;
     broken = false;
-
     throwSound = new Audio('./audio/throw.mp3');
     clirrSound = new Audio('./audio/clirr.mp3');
-
 
     IMAGES_ROTATE = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -25,7 +23,6 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png',
     ]
 
-
     constructor(x, y) {
         super().loadImage(this.IMAGES_ROTATE[0]);
         this.loadImages(this.IMAGES_ROTATE);
@@ -36,14 +33,11 @@ class ThrowableObject extends MovableObject {
         this.applyGravity();
         this.animate();
         this.otherDirection = world.character.otherDirection;
-
         if (!gameSoundFX) {
             this.throwSound.volume = 0;
             this.clirrSound.volume = 0;
         }
-
     }
-
 
     onFloor() {
         return (this.y > 360)
