@@ -20,6 +20,10 @@ class StatusBarHealthEnemy extends DrawableObject {
         this.setPercentage(5);
     }
 
+    /**
+     * function to set the percentage of the health status bar of the endboss
+     * @param {} percentage 
+     */
     setPercentage(percentage) {
         this.percentage = percentage;
         let path = this.IMAGES[this.percentage];

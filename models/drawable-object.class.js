@@ -6,11 +6,19 @@ class DrawableObject {
     imageCache = {};
     currentImage = 0;
 
+    /**
+     * function to load an image
+     * @param {*} path 
+     */
     loadImage(path) {
         this.img = new Image();
         this.img.src = path;
     }
 
+    /**
+     * function to load an array of images
+     * @param {} arr 
+     */
     loadImages(arr) {
         arr.forEach(path => {
             let img = new Image();
@@ -20,6 +28,10 @@ class DrawableObject {
 
     }
 
+    /**
+     * function to draw images into the canvas
+     * @param {*} ctx 
+     */
     draw(ctx) {
         ctx.drawImage(this.img,
             this.x,
@@ -28,6 +40,10 @@ class DrawableObject {
             this.img.naturalHeight * this.scaleFactor);
     }
 
+    /**
+     * function to draw a frame around objects in the canvas (for debugging)
+     * @param {*} ctx 
+     */
     drawFrame(ctx) {
         if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken) {
             ctx.beginPath();

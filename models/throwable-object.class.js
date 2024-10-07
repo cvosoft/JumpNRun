@@ -30,12 +30,16 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
-        this.speedY = 30 ;
+        this.speedY = 30;
         this.applyGravity();
         this.animate();
         this.otherDirection = world.character.otherDirection;
     }
 
+    /**
+     * function to remove a thrown bottle from the canvas
+     * @param {} bottle 
+     */
     removeBottleFromGame(bottle) {
         bottle.broken = true;
         world.playSoundFX(bottle.clirrSound);
@@ -44,6 +48,9 @@ class ThrowableObject extends MovableObject {
         setTimeout(() => world.throwableObjects.splice(index, 1), 100);
     }
 
+    /**
+     * function to check if a bottle landed on the ground
+     */
     checkHitGround() {
         world.throwableObjects.forEach((bottle) => {
             if (bottle.y == 370 && bottle.speedY < 0) {
@@ -52,6 +59,9 @@ class ThrowableObject extends MovableObject {
         });
     }
 
+    /**
+     * function to check if a bottle hit an enemy
+     */
     checkHitEnemy() {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
@@ -71,6 +81,9 @@ class ThrowableObject extends MovableObject {
         })
     }
 
+    /**
+     * animation function for the throwable bottes
+     */
     animate() {
         setInterval(() => {
             if (this.isAboveGround()) {

@@ -11,10 +11,10 @@ class Character extends MovableObject {
     img_counter = 0;
 
     offset = {
-        top: 130,//130,
-        bottom: 15, //15,
-        left: 30, //30,
-        right: 55, //80,
+        top: 130,
+        bottom: 15,
+        left: 30,
+        right: 55,
     }
     offsetFactor;
 
@@ -106,6 +106,9 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    /**
+     * function to handle the movements to the right of the character
+     */
     handleMovementToRight() {
         this.longidle_sound.pause();
         this.moveRight();
@@ -113,6 +116,9 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
     }
 
+    /**
+     * function to handle the movements to the left of the character
+     */
     handleMovementToLeft() {
         this.longidle_sound.pause();
         this.moveLeft();
@@ -120,6 +126,9 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
     }
 
+    /**
+     * function to handle the jumps of the character
+     */
     handleJumps() {
         this.longidle_sound.pause();
         this.jump(30);
@@ -127,14 +136,16 @@ class Character extends MovableObject {
         this.standingTimeStamp = new Date().getTime();
     }
 
+    /**
+     * function to animate the movements of the character
+     */
     animateMovements() {
         setInterval(() => {
             if (this.world.keyboard.RIGHT && this.x < endboss.x) {
                 this.handleMovementToRight();
             } else if (this.world.keyboard.RIGHT && endboss.isDead()) {
                 this.handleMovementToRight();
-            }
-            else if (this.world.keyboard.LEFT && this.x > 0) {
+            } else if (this.world.keyboard.LEFT && this.x > 0) {
                 this.handleMovementToLeft();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
@@ -144,6 +155,9 @@ class Character extends MovableObject {
         }, 1000 / 60);
     }
 
+    /**
+     * function to handle the different animation arrays
+     */
     animateImages() {
         setInterval(() => {
             this.walking_sound.pause();
@@ -151,45 +165,48 @@ class Character extends MovableObject {
             if (this.isLongIdle() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
                 world.playSoundFX(this.longidle_sound);
-            }
-            if (this.isDead()) {
+            } if (this.isDead()) {
                 this.handleCharacterIsDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
                 world.playSoundFX(this.isHurt_sound);
-            }
-            else if (this.isAboveGround()) {
+            } else if (this.isAboveGround()) {
                 this.handleJumpingImages();
-            } else {
-                this.handleWalkingImages();
-            }
+            } else { this.handleWalkingImages(); }
         }, 125);
     }
 
+    /**
+     * main function to animate the character
+     */
     animate() {
         this.standingTimeStamp = new Date().getTime();
         this.animateMovements();
         this.animateImages();
     }
 
+    /**
+     * function to handle the actions when character is dead
+     */
     handleCharacterIsDead() {
         this.playAnimation(this.IMAGES_DEAD);
         this.img_counter++;
         world.playSoundFX(this.isDead_sound);
         if (this.img_counter > 3) {
             this.lives--;
+            clearAllIntervals();
+            clearAllSounds();
             if (this.lives >= 1) {
-                clearAllIntervals();
-                clearAllSounds();
                 startGame(world.level_no, this.lives, 1, 0, 0);
             } else {
                 world.gameOver = true;
-                clearAllIntervals();
-                clearAllSounds();
             }
         }
     }
 
+    /**
+     * function to handle the actions when character is walking
+     */
     handleWalkingImages() {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);
@@ -197,6 +214,9 @@ class Character extends MovableObject {
         }
     }
 
+    /**
+     * function to handle the animation when character is jumping
+     */
     handleJumpingImages() {
         if (this.currentImage > 3 && this.speedY >= 0) {
             this.currentImage = 3;
