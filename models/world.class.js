@@ -41,11 +41,20 @@ class World {
 
     setGameMusic() {
         this.gameMusic.loop = true;
-        this.gameMusic.volume = 0.4;
-        if (!gameMusic) {
+        this.gameMusic.volume = gameVolume;
+        if (!gameMusicAndSound) {
             this.gameMusic.volume = 0;
         }
         this.gameMusic.play();
+    }
+
+    playSoundFX(sound) {
+        if (gameMusicAndSound) {
+            sound.volume = gameVolume;
+        } else {
+            sound.volume = 0;
+        }
+        sound.play();
     }
 
     levelinit(level_no) {
@@ -83,7 +92,7 @@ class World {
     runSlowIntervals() {
         setInterval(() => {
             this.checkToggleFullscreen();
-            this.checkToggleMusic();
+            this.checkToggleSoundAndMusic();
             this.checkQuitGame();
         }, 100);
     }
@@ -92,14 +101,14 @@ class World {
         if (this.character.x >= this.level.level_end_x + 720 && endboss.isDead()) {
             clearAllSounds();
             clearAllIntervals();
-            if (gameSoundFX) { this.levelComplete.play(); }
+            this.playSoundFX(this.levelComplete);
             this.level_no++;
             if (this.level_no <= 3) {
                 startGame(this.level_no, this.character.lives, this.character.energy, this.character.collectedBottles, this.character.collectedCoins);
             }
             else {
                 this.win = true;
-                if (gameSoundFX) { this.gameWonMusic.play(); }
+                this.playSoundFX(this.gameWonMusic);
             }
         }
     }
@@ -131,23 +140,21 @@ class World {
         }
     }
 
-    checkToggleMusic() {
+    checkToggleSoundAndMusic() {
         if (this.keyboard.M) {
-            this.toggleMusic();
+            this.toggleSoundAndMusic();
         }
     }
 
-    toggleMusic() {
-        if (gameMusic) {
-            gameMusic = false;
-            gameSoundFX = false;
+    toggleSoundAndMusic() {
+        if (gameMusicAndSound) {
+            gameMusicAndSound = false;
             this.gameMusic.volume = 0;
             document.getElementById('muteIcon').classList.remove("d-none");
             document.getElementById('audioIcon').classList.add("d-none");
         } else {
-            gameMusic = true;
-            gameSoundFX = true;
-            this.gameMusic.volume = 0.4;
+            gameMusicAndSound = true;
+            this.gameMusic.volume = gameVolume;
             document.getElementById('muteIcon').classList.add("d-none");
             document.getElementById('audioIcon').classList.remove("d-none");
         }
@@ -157,7 +164,7 @@ class World {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 let index = this.level.bottles.indexOf(bottle);
-                if (gameSoundFX) { this.level.bottles[index].collect_sound.play(); }
+                this.playSoundFX(this.level.bottles[index].collect_sound);
                 this.level.bottles.splice(index, 1);
                 this.character.collectedBottles += 1;
             }
@@ -168,7 +175,7 @@ class World {
         this.level.bonusItems.forEach((item) => {
             if (this.character.isColliding(item)) {
                 let index = this.level.bonusItems.indexOf(item);
-                if (gameSoundFX) { this.level.bonusItems[index].collect_sound.play(); }
+                this.playSoundFX(this.level.bonusItems[index].collect_sound);
                 this.level.bonusItems.splice(index, 1);
                 if (this.character.energy == 1) {
                     this.character.energy += 1;
@@ -183,7 +190,7 @@ class World {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 let index = this.level.coins.indexOf(coin);
-                if (gameSoundFX) { this.level.coins[index].collect_sound.play(); }
+                this.playSoundFX(this.level.coins[index].collect_sound);
                 this.level.coins.splice(index, 1);
                 this.character.collectedCoins += 1;
             }
@@ -195,7 +202,7 @@ class World {
             if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
-                    if (gameSoundFX) { this.character.jumping_sound.play(); }
+                    this.playSoundFX(this.character.jumping_sound);
                 }
                 else { this.character.jump(20); }
                 this.enemyIsKilledByJumpingOn(enemy);
@@ -208,7 +215,7 @@ class World {
 
     enemyIsKilledByJumpingOn(enemy) {
         let index = this.level.enemies.indexOf(enemy);
-        if (gameSoundFX) { this.level.enemies[index].death_sound.play(); }
+        this.playSoundFX(this.level.enemies[index].death_sound);
         this.level.enemies[index].energy--;
     }
 
@@ -216,8 +223,8 @@ class World {
         if (this.keyboard.D && this.character.collectedBottles > 0) {
             let actualThrow = new Date().getTime() / 1000;
             if (actualThrow - this.lastThrow > 0.5) {
-                let bottle = new ThrowableObject(this.character.x + 100, this.character.y + 100);
-                if (gameSoundFX) { bottle.throwSound.play(); }
+                let bottle = new ThrowableObject(this.character.x + 100 * this.character.offsetFactor, this.character.y - 100);
+                this.playSoundFX(bottle.throwSound);
                 this.lastThrow = actualThrow;
                 this.throwableObjects.push(bottle);
                 this.character.collectedBottles--;
@@ -283,7 +290,7 @@ class World {
         if (this.gameOver) {
             gameRunning = false;
             this.addToMap(this.gameoverscreen);
-            if (gameSoundFX) { this.gameOverSound.play(); }
+            this.playSoundFX(this.gameOverSound);
             setTimeout(() => {
                 this.gameOverSound.pause();
                 this.ctx.font = '30px Zabars';

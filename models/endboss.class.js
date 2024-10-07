@@ -72,7 +72,7 @@ class Endboss extends MovableObject {
                 this.speed = +0.5;
             }
             if (this.isHurt()) {
-                if (gameSoundFX) { this.hurt_sound.play(); }
+                world.playSoundFX(this.hurt_sound);
                 this.playAnimation(this.IMAGES_HURT);
                 this.speed += 2;
             }
@@ -80,7 +80,7 @@ class Endboss extends MovableObject {
                 clearInterval(walkInterval);
                 this.img_counter++;
                 this.playAnimation(this.IMAGES_DEAD);
-                if (gameSoundFX) { this.death_sound.play(); }
+                world.playSoundFX(this.death_sound);
                 if (this.img_counter >= 3) {
                     this.loadImage(this.IMAGES_DEAD[2]);
                     clearInterval(interval);

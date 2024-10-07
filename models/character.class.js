@@ -123,7 +123,7 @@ class Character extends MovableObject {
     handleJumps() {
         this.longidle_sound.pause();
         this.jump(30);
-        if (gameSoundFX) { this.jumping_sound.play(); }
+        world.playSoundFX(this.jumping_sound);
         this.standingTimeStamp = new Date().getTime();
     }
 
@@ -150,13 +150,13 @@ class Character extends MovableObject {
             this.playAnimation(this.IMAGES_IDLE);
             if (this.isLongIdle() && !this.isHurt()) {
                 this.playAnimation(this.IMAGES_LONGIDLE);
-                if (gameSoundFX) { this.longidle_sound.play(); }
+                world.playSoundFX(this.longidle_sound);
             }
             if (this.isDead()) {
                 this.handleCharacterIsDead();
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-                if (gameSoundFX) { this.isHurt_sound.play(); }
+                world.playSoundFX(this.isHurt_sound);
             }
             else if (this.isAboveGround()) {
                 this.handleJumpingImages();
@@ -175,7 +175,7 @@ class Character extends MovableObject {
     handleCharacterIsDead() {
         this.playAnimation(this.IMAGES_DEAD);
         this.img_counter++;
-        if (gameSoundFX) { this.isDead_sound.play(); }
+        world.playSoundFX(this.isDead_sound);
         if (this.img_counter > 3) {
             this.lives--;
             if (this.lives >= 1) {
@@ -193,7 +193,7 @@ class Character extends MovableObject {
     handleWalkingImages() {
         if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
             this.playAnimation(this.IMAGES_WALKING);
-            if (gameSoundFX) { this.walking_sound.play(); }
+            world.playSoundFX(this.walking_sound);
         }
     }
 

@@ -30,19 +30,15 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_SPLASH);
         this.x = x;
         this.y = y;
-        this.speedY = 40;
+        this.speedY = 30 ;
         this.applyGravity();
         this.animate();
         this.otherDirection = world.character.otherDirection;
-        if (!gameSoundFX) {
-            this.throwSound.volume = 0;
-            this.clirrSound.volume = 0;
-        }
     }
 
     removeBottleFromGame(bottle) {
         bottle.broken = true;
-        if (gameSoundFX) { bottle.clirrSound.play(); }
+        world.playSoundFX(bottle.clirrSound);
         this.playAnimation(this.IMAGES_SPLASH);
         let index = world.throwableObjects.indexOf(bottle);
         setTimeout(() => world.throwableObjects.splice(index, 1), 100);
@@ -62,7 +58,7 @@ class ThrowableObject extends MovableObject {
                 if (bottle.isColliding(enemy) && !enemy.isDead() && !bottle.broken) {
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                         let index = world.level.enemies.indexOf(enemy);
-                        if (gameSoundFX) { world.level.enemies[index].death_sound.play(); }
+                        world.playSoundFX(world.level.enemies[index].death_sound);
                         world.level.enemies[index].energy--;
                     } else if (enemy instanceof Endboss) {
                         let index = world.level.enemies.indexOf(enemy);

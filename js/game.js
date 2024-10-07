@@ -7,19 +7,17 @@ let collectedBottles = 0;
 let collectedCoins = 0;
 let level_no = 1;
 let gameRunning = false;
-let gameMusic = true;
-let gameSoundFX = true;
+let gameMusicAndSound = true;
+let gameVolume = 0.3;
 let showInstructionScreen = false;
 
 function preGameToggleAudio() {
-    if (gameMusic && gameSoundFX) {
-        gameMusic = false;
-        gameSoundFX = false;
+    if (gameMusicAndSound) {
+        gameMusicAndSound = false;
         document.getElementById('muteIcon').classList.remove("d-none");
         document.getElementById('audioIcon').classList.add("d-none");
     } else {
-        gameMusic = true;
-        gameSoundFX = true;
+        gameMusicAndSound = true;
         document.getElementById('muteIcon').classList.add("d-none");
         document.getElementById('audioIcon').classList.remove("d-none");
     }
@@ -63,8 +61,8 @@ function hideInitScreenIcons() {
 }
 
 function setFunctionsForIcons() {
-    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusic()");
-    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusic()");
+    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusicAndSound()");
+    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusicAndSound()");
     document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
 }
 
