@@ -8,7 +8,7 @@ let collectedCoins = 0;
 let level_no = 1;
 let gameRunning = false;
 let gameMusicAndSound = true;
-let gameVolume = 0.3;
+let gameVolume = 0.2;
 let showInstructionScreen = false;
 
 function preGameToggleAudio() {

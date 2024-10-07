@@ -33,11 +33,13 @@ class DrawableObject {
             ctx.beginPath();
             ctx.lineWidth = '1';
             ctx.strokeStyle = 'red';
+            this.width = this.img.naturalWidth * this.scaleFactor;
+            this.height = this.img.naturalHeight * this.scaleFactor;
             ctx.rect(
                 this.x + this.offset.left * this.offsetFactor,
-                this.y - this.img.naturalHeight * this.scaleFactor + this.offset.top * this.offsetFactor,
-                this.img.naturalWidth * this.scaleFactor - this.offset.right * this.offsetFactor,
-                this.img.naturalHeight * this.scaleFactor - this.offset.top * this.offsetFactor - this.offset.bottom * this.offsetFactor,
+                this.y - this.height + this.offset.top * this.offsetFactor,
+                this.width - this.offset.right * this.offsetFactor,
+                this.height - this.offset.top * this.offsetFactor - this.offset.bottom * this.offsetFactor,
             );
             ctx.stroke();
         }
