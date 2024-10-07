@@ -39,6 +39,9 @@ class World {
         this.runSlowIntervals();
     }
 
+    /**
+     * function to set the game music
+     */
     setGameMusic() {
         this.gameMusic.loop = true;
         this.gameMusic.volume = gameVolume;
@@ -48,6 +51,10 @@ class World {
         this.gameMusic.play();
     }
 
+    /**
+     * function to play a sound effect in the game
+     * @param {} sound 
+     */
     playSoundFX(sound) {
         if (gameMusicAndSound) {
             sound.volume = gameVolume;
@@ -57,6 +64,10 @@ class World {
         sound.play();
     }
 
+    /**
+     * function to initialize a level
+     * @param {} level_no 
+     */
     levelinit(level_no) {
         switch (level_no) {
             case 1:
@@ -74,10 +85,16 @@ class World {
         }
     }
 
+    /**
+     * function to make the world known to the character class
+     */
     setWorld() {
         this.character.world = this;
     }
 
+    /**
+     * function to run the fast intervals (60fps) in the game
+     */
     runFastIntervals() {
         setInterval(() => {
             this.checkThrowObjects();
@@ -89,6 +106,9 @@ class World {
         }, 1000 / 60);
     }
 
+    /**
+     * function to run the slower intervals in the game (every 100ms)
+     */
     runSlowIntervals() {
         setInterval(() => {
             this.checkToggleFullscreen();
@@ -97,6 +117,9 @@ class World {
         }, 100);
     }
 
+    /**
+     * function to check if a level is complete
+     */
     checkLevelComplete() {
         if (this.character.x >= this.level.level_end_x + 720 && endboss.isDead()) {
             clearAllSounds();
@@ -113,6 +136,9 @@ class World {
         }
     }
 
+    /**
+     * function that runs when the game is quit
+     */
     quitGame() {
         this.gameOver = false;
         this.win = false;
@@ -122,12 +148,18 @@ class World {
         init();
     }
 
+    /**
+     * function to check if the game is quit (esc button pressed)
+     */
     checkQuitGame() {
         if (this.keyboard.ESC) {
             this.quitGame();
         }
     }
 
+    /**
+    * function to check if fullscreen is wanted
+    */
     checkToggleFullscreen() {
         if (this.keyboard.F) {
             if (!this.fullscreen) {
@@ -140,12 +172,18 @@ class World {
         }
     }
 
+    /**
+     * function to check if sound/music is toggled
+     */
     checkToggleSoundAndMusic() {
         if (this.keyboard.M) {
             this.toggleSoundAndMusic();
         }
     }
 
+    /**
+     * function to toggle sound/music in the game
+     */
     toggleSoundAndMusic() {
         if (gameMusicAndSound) {
             gameMusicAndSound = false;
@@ -160,6 +198,9 @@ class World {
         }
     }
 
+    /**
+     * function to check the collection of bottles
+     */
     checkCollectionOfBottles() {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
@@ -171,6 +212,9 @@ class World {
         });
     }
 
+    /**
+     * function to check the collection of bonus items
+     */
     checkCollectionOfBonusItems() {
         this.level.bonusItems.forEach((item) => {
             if (this.character.isColliding(item)) {
@@ -186,6 +230,9 @@ class World {
         });
     }
 
+    /**
+     * function to check the collection of coins
+    */
     checkCollectionOfCoins() {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
@@ -197,6 +244,9 @@ class World {
         });
     }
 
+    /**
+     * function to check the collisions of objects
+     */
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
@@ -213,12 +263,19 @@ class World {
         });
     }
 
+    /**
+     * function to call when an enemy is killed by being jumoed on
+     * @param {*} enemy 
+     */
     enemyIsKilledByJumpingOn(enemy) {
         let index = this.level.enemies.indexOf(enemy);
         this.playSoundFX(this.level.enemies[index].death_sound);
         this.level.enemies[index].energy--;
     }
 
+    /**
+     * function to check if an object/bottle shall be thrown
+     */
     checkThrowObjects() {
         if (this.keyboard.D && this.character.collectedBottles > 0) {
             let actualThrow = new Date().getTime() / 1000;
@@ -232,12 +289,18 @@ class World {
         }
     }
 
+    /**
+     * function which adds the health status bar of the endboss
+     */
     addEndbossStatusBar() {
         if (this.level.enemies[this.level.enemies.length - 1].x < this.character.x + 450) {
             this.addToMap(this.StatusBarHealthEnemy);
         }
     }
 
+    /**
+     * function to add the status bars to the map
+     */
     addStatusBarsToMap() {
         this.ctx.font = "50px serif";
         this.addToMap(this.CoinStatus);
@@ -249,6 +312,9 @@ class World {
         this.addEndbossStatusBar();
     }
 
+    /**
+     * function to add all objects to the map
+     */
     addAllObjectsToMap() {
         this.addObjectsToMap(this.level.backgroundObjects);
         this.addObjectsToMap(this.level.clouds);
@@ -259,6 +325,7 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
     }
 
+    
     drawLevelInfoToMap() {
         this.ctx.font = "30px serif";
         this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height - 10);
