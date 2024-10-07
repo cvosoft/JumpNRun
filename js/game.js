@@ -1,18 +1,14 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
 let lives = 3;
+let energy = 1;
 let collectedBottles = 0;
 let collectedCoins = 0;
-let energy = 1;
-
 let level_no = 1;
-
 let gameRunning = false;
 let gameMusic = true;
 let gameSoundFX = true;
-
 let showInstructionScreen = false;
 
 function preGameToggleAudio() {
@@ -33,7 +29,6 @@ function showInitScreenIcons() {
     document.getElementById("playIcon").classList.remove("d-none");
     document.getElementById('instructionsIcon').classList.remove("d-none");
     document.getElementById('homeIcon').classList.add("d-none");
-    //document.getElementById('mobileButtonContainer').style.display = "none";
     document.getElementById('mobileButtonContainer').classList.add("d-none");
 }
 
@@ -47,15 +42,12 @@ function randomStartScreenImage() {
     return image;
 }
 
-
 function init() {
     showInitScreenIcons();
-
     canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
     let startImage = new Image();
     startImage.src = randomStartScreenImage();
-
     startImage.onload = function () {
         ctx.drawImage(startImage, 0, 0, canvas.width, canvas.height);
         ctx.font = '30px Zabars';
@@ -79,7 +71,6 @@ function setFunctionsForIcons() {
 function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     hideInitScreenIcons();
     setFunctionsForIcons();
-    //document.getElementById('mobileButtonContainer').style.display = "flex";
     document.getElementById('mobileButtonContainer').classList.remove("d-none");
     clearAllIntervals();
     world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
@@ -90,26 +81,28 @@ function clearAllSounds() {
     world.gameMusic.pause();
 }
 
+function addInstructionText(ctx){
+    ctx.font = '30px Zabars';
+    ctx.fillStyle = "black";
+ctx.fillText('arrow keys: move left and right', 40, 70);
+ctx.fillText('space: jump', 40, 110);
+ctx.fillText('D: throw bottle', 40, 150);
+ctx.fillText('M: toggle music/sound FX', 430, 70);
+ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
+ctx.fillText('ESC: quit game', 430, 150);
+ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
+}
+
 function showInstructions() {
     document.getElementById('instructionsIcon').classList.add("d-none");
     document.getElementById('homeIcon').classList.remove("d-none");
-
     canvas = document.getElementById('canvas');
     let ctx = canvas.getContext('2d');
     let instructionsImage = new Image();
     instructionsImage.src = './img/5_background/first_half_background.png';
-
     instructionsImage.onload = function () {
         ctx.drawImage(instructionsImage, 0, 0, canvas.width, canvas.height);
-        ctx.font = '30px Zabars';
-        ctx.fillStyle = "black";
-        ctx.fillText('arrow keys: move left and right', 40, 70);
-        ctx.fillText('space: jump', 40, 110);
-        ctx.fillText('D: throw bottle', 40, 150);
-        ctx.fillText('M: toggle music/sound FX', 430, 70);
-        ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
-        ctx.fillText('ESC: quit game', 430, 150);
-        ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
+        addInstructionText(ctx);
     }
 }
 
