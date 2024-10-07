@@ -17,11 +17,12 @@ body {
     justify-content: center;
     flex-direction: column;
     align-items: center;
-    max-height: 100vh;
+    height: 100vh;
     margin: 0;
     background-image: url('./img/desert.jpg');
     background-position: center;
     background-repeat: no-repeat;
+    background-size: cover;
     max-width: 100vw;
 }
 
