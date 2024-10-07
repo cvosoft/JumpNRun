@@ -325,24 +325,35 @@ class World {
         this.addObjectsToMap(this.throwableObjects);
     }
 
-    
+    /**
+     * function to write the level info to the map
+     */
     drawLevelInfoToMap() {
         this.ctx.font = "30px serif";
         this.ctx.fillText(`Level: ${this.level_no}`, 80, this.canvas.height - 10);
     }
 
+    /**
+     * function to translate the camera before the object are drawn
+     */
     translateCameraBeforeObjects() {
         if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(this.camera_x, 0);
         } else { this.ctx.translate(-this.level.level_end_x + 100, 0); }
     }
 
+    /**
+     * function to translate the camera after the object are drawn
+     */
     translateCameraAfterObjects() {
         if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(-this.camera_x, 0);
         } else { this.ctx.translate(this.level.level_end_x - 100, 0); }
     }
 
+    /**
+     * function to draw the character to the map
+     */
     drawCharacterToMap() {
         if (this.character.x < this.level.level_end_x) {
             this.ctx.translate(this.camera_x, 0);
@@ -353,6 +364,9 @@ class World {
         } else { this.ctx.translate(this.level.level_end_x - 100, 0); }
     }
 
+    /**
+     * function to show the game over screen
+     */
     showGameOver() {
         if (this.gameOver) {
             gameRunning = false;
@@ -368,6 +382,9 @@ class World {
         }
     }
 
+    /**
+     * function to wait for a restart of the game
+     */
     waitForRestart() {
         if (this.keyboard.SPACE) {
             this.gameOver = false;
@@ -379,6 +396,9 @@ class World {
         }
     }
 
+    /**
+     * function to show the win screen
+     */
     showWinScreen() {
         if (this.win) {
             this.addToMap(this.winscreen);
@@ -388,6 +408,9 @@ class World {
         }
     }
 
+    /**
+     * function to draw everything needed to the canvas
+     */
     draw() {
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         this.translateCameraBeforeObjects();
@@ -404,12 +427,20 @@ class World {
         });
     }
 
+    /**
+     * function to add object to the map
+     * @param {} objects 
+     */
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
         })
     }
 
+    /**
+     * general function to add something to the map
+     * @param {*} mo 
+     */
     addToMap(mo) {
         if (mo.otherDirection) {
             this.flipImage(mo);
@@ -421,6 +452,10 @@ class World {
         }
     }
 
+    /**
+     * function to flip an image
+     * @param {*} mo 
+     */
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.img.naturalWidth * mo.scaleFactor, 0);
@@ -428,6 +463,10 @@ class World {
         mo.x = -mo.x;
     }
 
+    /**
+     * function to flip back an image
+     * @param {*} mo 
+     */
     flipImageBack(mo) {
         mo.x = -mo.x;
         this.ctx.restore();
