@@ -79,18 +79,20 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
 function clearAllSounds() {
     world.character.walking_sound.pause();
     world.gameMusic.pause();
+    world.gameWonMusic.pause();
+    world.gameOverSound.pause();
 }
 
-function addInstructionText(ctx){
+function addInstructionText(ctx) {
     ctx.font = '30px Zabars';
     ctx.fillStyle = "black";
-ctx.fillText('arrow keys: move left and right', 40, 70);
-ctx.fillText('space: jump', 40, 110);
-ctx.fillText('D: throw bottle', 40, 150);
-ctx.fillText('M: toggle music/sound FX', 430, 70);
-ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
-ctx.fillText('ESC: quit game', 430, 150);
-ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
+    ctx.fillText('arrow keys: move left and right', 40, 70);
+    ctx.fillText('space: jump', 40, 110);
+    ctx.fillText('D: throw bottle', 40, 150);
+    ctx.fillText('M: toggle music/sound FX', 430, 70);
+    ctx.fillText('F: toggle fullscreen (in game)', 430, 110);
+    ctx.fillText('ESC: quit game', 430, 150);
+    ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
 }
 
 function showInstructions() {
