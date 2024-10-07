@@ -106,25 +106,39 @@ class Character extends MovableObject {
         this.animate();
     }
 
+    handleMovementToRight() {
+        this.longidle_sound.pause();
+        this.moveRight();
+        this.otherDirection = false;
+        this.standingTimeStamp = new Date().getTime();
+    }
+
+    handleMovementToLeft() {
+        this.longidle_sound.pause();
+        this.moveLeft();
+        this.otherDirection = true;
+        this.standingTimeStamp = new Date().getTime();
+    }
+
+    handleJumps() {
+        this.longidle_sound.pause();
+        this.jump(30);
+        if (gameSoundFX) { this.jumping_sound.play(); }
+        this.standingTimeStamp = new Date().getTime();
+    }
+
     animateMovements() {
         setInterval(() => {
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x + 720) {
-                this.longidle_sound.pause();
-                this.moveRight();
-                this.otherDirection = false;
-                this.standingTimeStamp = new Date().getTime();
+            if (this.world.keyboard.RIGHT && this.x < endboss.x) {
+                this.handleMovementToRight();
+            } else if (this.world.keyboard.RIGHT && endboss.isDead()) {
+                this.handleMovementToRight();
             }
             else if (this.world.keyboard.LEFT && this.x > 0) {
-                this.longidle_sound.pause();
-                this.moveLeft();
-                this.otherDirection = true;
-                this.standingTimeStamp = new Date().getTime();
+                this.handleMovementToLeft();
             }
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.longidle_sound.pause();
-                this.jump(30);
-                if (gameSoundFX) { this.jumping_sound.play(); }
-                this.standingTimeStamp = new Date().getTime();
+                this.handleJumps();
             }
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);

@@ -12,7 +12,7 @@ function initLevel1() {
             new SmallChicken(),
             new SmallChicken(),
             new SmallChicken(),
-            new Endboss(),
+            endboss = new Endboss(),
         ],
 
         [

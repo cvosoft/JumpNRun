@@ -89,7 +89,7 @@ class World {
     }
 
     checkLevelComplete() {
-        if (this.character.x >= this.level.level_end_x + 720) {
+        if (this.character.x >= this.level.level_end_x + 720 && endboss.isDead()) {
             clearAllSounds();
             clearAllIntervals();
             if (gameSoundFX) { this.levelComplete.play(); }
