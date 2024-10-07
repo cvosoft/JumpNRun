@@ -11,6 +11,9 @@ let gameMusicAndSound = true;
 let gameVolume = 0.2;
 let showInstructionScreen = false;
 
+/**
+ * function to toggle audio before the game is running
+ */
 function preGameToggleAudio() {
     if (gameMusicAndSound) {
         gameMusicAndSound = false;
@@ -23,6 +26,9 @@ function preGameToggleAudio() {
     }
 }
 
+/**
+ * function to show the correct clickable icons on top of the start screen
+ */
 function showInitScreenIcons() {
     document.getElementById("playIcon").classList.remove("d-none");
     document.getElementById('instructionsIcon').classList.remove("d-none");
@@ -30,6 +36,10 @@ function showInitScreenIcons() {
     document.getElementById('mobileButtonContainer').classList.add("d-none");
 }
 
+/**
+ * function to generate a random start screen image
+ * @returns image
+ */
 function randomStartScreenImage() {
     let image;
     if (Math.random() > 0.5) {
@@ -40,6 +50,9 @@ function randomStartScreenImage() {
     return image;
 }
 
+/**
+ * init function which shows the start screen in the canvas
+ */
 function init() {
     showInitScreenIcons();
     canvas = document.getElementById('canvas');
@@ -54,18 +67,32 @@ function init() {
     }
 }
 
+/**
+ * function to hide the start screen icons
+ */
 function hideInitScreenIcons() {
     document.getElementById("playIcon").classList.add("d-none");
     document.getElementById("instructionsIcon").classList.add("d-none");
     document.getElementById("homeIcon").classList.remove("d-none");
 }
 
+/**
+ * function to update the onclick actions behind the icons for the game running
+ */
 function setFunctionsForIcons() {
-    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleMusicAndSound()");
-    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleMusicAndSound()");
+    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleSoundAndMusic()");
+    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleSoundAndMusic()");
     document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
 }
 
+/**
+ * function to start the game
+ * @param {*} level_no 
+ * @param {*} lives 
+ * @param {*} energy 
+ * @param {*} collectedBottles 
+ * @param {*} collectedCoins 
+ */
 function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     hideInitScreenIcons();
     setFunctionsForIcons();
@@ -74,6 +101,9 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
 }
 
+/**
+ * function to clear some possibly running sounds
+ */
 function clearAllSounds() {
     world.character.walking_sound.pause();
     world.gameMusic.pause();
@@ -81,6 +111,10 @@ function clearAllSounds() {
     world.gameOverSound.pause();
 }
 
+/**
+ * function to add the instructions text to the canvas
+ * @param {*} ctx 
+ */
 function addInstructionText(ctx) {
     ctx.font = '30px Zabars';
     ctx.fillStyle = "black";
@@ -93,6 +127,9 @@ function addInstructionText(ctx) {
     ctx.fillText('Press Space to start                              Press I for main screen', 100, 390);
 }
 
+/**
+ * function to show the instructions
+ */
 function showInstructions() {
     document.getElementById('instructionsIcon').classList.add("d-none");
     document.getElementById('homeIcon').classList.remove("d-none");
@@ -106,10 +143,16 @@ function showInstructions() {
     }
 }
 
+/**
+ * function to clear all running intervals (quick & dirty version)
+ */
 function clearAllIntervals() {
     for (let i = 1; i < 9999; i++) window.clearInterval(i);
 }
 
+/**
+ * function to add eventlisteners for the keyboard (keydown)
+ */
 document.addEventListener('keydown', (event) => {
     if (event.keyCode == 70) {
         keyboard.F = true;
@@ -158,6 +201,9 @@ document.addEventListener('keydown', (event) => {
     }
 })
 
+/**
+ * function to add eventlisteners for the keyboard (keyup)
+ */
 document.addEventListener('keyup', (event) => {
     if (event.keyCode == 73) {
         keyboard.I = false;
@@ -194,6 +240,9 @@ document.addEventListener('keyup', (event) => {
     }
 })
 
+/**
+ * function to make the play buttons (mobile mode) touchable
+ */
 function makeButtonsTouchable() {
     document.getElementById('btnLeft').addEventListener('touchstart', (e) => {
         e.preventDefault();

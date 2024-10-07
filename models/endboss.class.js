@@ -60,6 +60,40 @@ class Endboss extends MovableObject {
         this.animate();
     }
 
+    /**
+     * function how to handle animation when endboss is dead
+     */
+    handleEndbossDead(walkInterval, interval) {
+        clearInterval(walkInterval);
+        this.img_counter++;
+        this.playAnimation(this.IMAGES_DEAD);
+        world.playSoundFX(this.death_sound);
+        if (this.img_counter >= 3) {
+            this.loadImage(this.IMAGES_DEAD[2]);
+            clearInterval(interval);
+        }
+    }
+
+    /**
+    * function how to handle animation when endboss is hurt
+    */
+    handleEndbossHurt() {
+        world.playSoundFX(this.hurt_sound);
+        this.playAnimation(this.IMAGES_HURT);
+        this.speed += 2;
+    }
+
+    /**
+    * function how to handle animation when endboss is alert
+    */
+    handleEndbossAlert() {
+        this.playAnimation(this.IMAGES_ALERT);
+        this.speed = 0;
+    }
+
+    /**
+     * animation function for the endboss
+     */
     animate() {
         let walkInterval = setInterval(() => { this.moveLeft(); }, 60)
         let interval = setInterval(() => {
@@ -67,25 +101,9 @@ class Endboss extends MovableObject {
             if (this.x < world.character.x + 300) {
                 this.playAnimation(this.IMAGES_ATTACK);
                 this.speed += 1;
-            } else if (this.x < world.character.x + 350) {
-                this.playAnimation(this.IMAGES_ALERT);
-                this.speed = +0.5;
-            }
-            if (this.isHurt()) {
-                world.playSoundFX(this.hurt_sound);
-                this.playAnimation(this.IMAGES_HURT);
-                this.speed += 2;
-            }
-            if (this.isDead()) {
-                clearInterval(walkInterval);
-                this.img_counter++;
-                this.playAnimation(this.IMAGES_DEAD);
-                world.playSoundFX(this.death_sound);
-                if (this.img_counter >= 3) {
-                    this.loadImage(this.IMAGES_DEAD[2]);
-                    clearInterval(interval);
-                }
-            }
+            } else if (this.x < world.character.x + 350) { this.handleEndbossAlert() }
+            if (this.isHurt()) { this.handleEndbossHurt(); }
+            if (this.isDead()) { this.handleEndbossDead(walkInterval, interval); }
         }, 150);
     }
 }
