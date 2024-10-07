@@ -44,11 +44,7 @@ class MovableObject extends DrawableObject {
     }
 
     isAboveGround() {
-        if (this instanceof ThrowableObject) { // always fall
-            return true;
-        } else {
-            return this.y < 370;   //50; // start y des charakters
-        }
+        return this.y < 370;
     }
 
     jump(speedY) {

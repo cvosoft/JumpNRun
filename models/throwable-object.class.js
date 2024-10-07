@@ -6,6 +6,7 @@ class ThrowableObject extends MovableObject {
     broken = false;
     throwSound = new Audio('./audio/throw.mp3');
     clirrSound = new Audio('./audio/clirr.mp3');
+    imgCounter = 0;
 
     IMAGES_ROTATE = [
         'img/6_salsa_bottle/bottle_rotation/1_bottle_rotation.png',
@@ -39,80 +40,53 @@ class ThrowableObject extends MovableObject {
         }
     }
 
-    onFloor() {
-        return (this.y > 360)
+    removeBottleFromGame(bottle) {
+        bottle.broken = true;
+        if (gameSoundFX) { bottle.clirrSound.play(); }
+        this.playAnimation(this.IMAGES_SPLASH);
+        let index = world.throwableObjects.indexOf(bottle);
+        setTimeout(() => world.throwableObjects.splice(index, 1), 100);
     }
 
+    checkHitGround() {
+        world.throwableObjects.forEach((bottle) => {
+            if (bottle.y == 370 && bottle.speedY < 0) {
+                this.removeBottleFromGame(bottle);
+            }
+        });
+    }
 
     checkHitEnemy() {
         world.level.enemies.forEach((enemy) => {
             world.throwableObjects.forEach((bottle) => {
-                if (bottle.isColliding(enemy) && !bottle.broken && !bottle.onFloor()) {
-
-                    if (gameSoundFX) { bottle.clirrSound.play(); }
-                    this.playAnimation(this.IMAGES_SPLASH);
-
-                    let index = world.throwableObjects.indexOf(bottle);
-                    setTimeout(() => world.throwableObjects.splice(index, 1), 500);
-
-
-
+                if (bottle.isColliding(enemy) && !enemy.isDead() && !bottle.broken) {
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                         let index = world.level.enemies.indexOf(enemy);
                         if (gameSoundFX) { world.level.enemies[index].death_sound.play(); }
-                        //world.level.enemies.splice(index, 1);
-
                         world.level.enemies[index].energy--;
-
-                        bottle.broken = true;
-
-
                     } else if (enemy instanceof Endboss) {
-                        // nur wenn der nicht gerade schon getroffen wurde
                         let index = world.level.enemies.indexOf(enemy);
-                        bottle.broken = true;
                         world.level.enemies[index].hit();
                         world.StatusBarHealthEnemy.setPercentage(world.level.enemies[index].energy);
                     }
+                    this.removeBottleFromGame(bottle);
                 }
             })
         })
     }
 
-
     animate() {
-
         setInterval(() => {
-
-            if (!this.onFloor()) {
-
+            if (this.isAboveGround()) {
+                this.playAnimation(this.IMAGES_ROTATE)
                 if (this.otherDirection == false) {
                     this.x += 30;
                 } else {
                     this.x -= 30;
                 }
                 this.checkHitEnemy();
-
             }
-
-        }, 60)
-
-
-        let interval = setInterval(() => {
-            if (!this.onFloor()) {
-                this.playAnimation(this.IMAGES_ROTATE)
-            }
-            else if (this.broken || this.onFloor()) {
-
-                this.playAnimation(this.IMAGES_SPLASH);
-
-                setTimeout(() => {
-                    clearInterval(interval); console.log(this);
-                }, 100);
-
-
-            }
-        }, 50);
-
+            this.checkHitGround();
+        }, 50)
     }
 }

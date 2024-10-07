@@ -84,7 +84,6 @@ class Endboss extends MovableObject {
                 if (this.img_counter >= 3) {
                     this.loadImage(this.IMAGES_DEAD[2]);
                     clearInterval(interval);
-                    this.y = 450;
                 }
             }
         }, 150);
