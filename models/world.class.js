@@ -200,7 +200,7 @@ class World {
                 else { this.character.jump(20); }
                 this.enemyIsKilledByJumpingOn(enemy);
             }
-            else if (this.character.isColliding(enemy) && !enemy.isDead() && !this.character.isJumpingOn(enemy)) {
+            else if (this.character.isColliding(enemy) && !this.character.isHurt() && !enemy.isDead() && !this.character.isJumpingOn(enemy)) {
                 this.character.hit();
             }
         });
