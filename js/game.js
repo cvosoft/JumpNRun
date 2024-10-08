@@ -162,6 +162,31 @@ function clearAllIntervals() {
 }
 
 /**
+ * function to handle the actions when a space button is pressed to start a game
+ */
+function handleSpaceButtonPressed() {
+    if (!gameRunning) {
+        gameRunning = true;
+        startGame(level_no, lives, energy, collectedBottles, collectedCoins);
+    } else {
+        keyboard.SPACE = true;
+    }
+}
+
+/**
+ * function to toggle the display of instruction and start screen
+ */
+function toggleInstructionScreen() {
+    if (!showInstructionScreen && !gameRunning) {
+        showInstructions();
+        showInstructionScreen = true;
+    } else if (!gameRunning) {
+        showInstructionScreen = false;
+        init();
+    }
+}
+
+/**
  * function to add eventlisteners for the keyboard (keydown)
  */
 document.addEventListener('keydown', (event) => {
@@ -170,13 +195,7 @@ document.addEventListener('keydown', (event) => {
     }
     if (event.keyCode == 73) {
         keyboard.I = true;
-        if (!showInstructionScreen && !gameRunning) {
-            showInstructions();
-            showInstructionScreen = true;
-        } else if (!gameRunning) {
-            showInstructionScreen = false;
-            init();
-        }
+        toggleInstructionScreen();
     }
     if (event.keyCode == 27) {
         keyboard.ESC = true;
@@ -200,12 +219,7 @@ document.addEventListener('keydown', (event) => {
         keyboard.DOWN = true;
     }
     if (event.keyCode == 32) {
-        if (!gameRunning) {
-            gameRunning = true;
-            startGame(level_no, lives, energy, collectedBottles, collectedCoins);
-        } else {
-            keyboard.SPACE = true;
-        }
+        handleSpaceButtonPressed();
     }
     if (event.keyCode == 68) {
         keyboard.D = true;
