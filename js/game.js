@@ -7,24 +7,9 @@ let collectedBottles = 0;
 let collectedCoins = 0;
 let level_no = 1;
 let gameRunning = false;
-let gameMusicAndSound = true;
-let gameVolume = 0.2;
 let showInstructionScreen = false;
 
-/**
- * function to toggle audio before the game is running
- */
-function preGameToggleAudio() {
-    if (gameMusicAndSound) {
-        gameMusicAndSound = false;
-        document.getElementById('muteIcon').classList.remove("d-none");
-        document.getElementById('audioIcon').classList.add("d-none");
-    } else {
-        gameMusicAndSound = true;
-        document.getElementById('muteIcon').classList.add("d-none");
-        document.getElementById('audioIcon').classList.remove("d-none");
-    }
-}
+
 
 /**
  * function to show the correct clickable icons on top of the start screen
@@ -68,6 +53,42 @@ function init() {
 }
 
 /**
+* function that runs when the game is quit
+*/
+function quitGame() {
+    world.gameOver = false;
+    world.win = false;
+    gameRunning = false;
+    clearAllIntervals();
+    clearAllSounds();
+    init();
+}
+
+/**
+ * function to check if the game is quit (esc button pressed)
+ */
+function checkQuitGame() {
+    if (world.keyboard.ESC) {
+        world.quitGame();
+    }
+}
+
+/**
+* function to check if fullscreen is wanted
+*/
+function checkToggleFullscreen() {
+    if (world.keyboard.F) {
+        if (!world.fullscreen) {
+            world.canvas.requestFullscreen();
+            world.fullscreen = true;
+        } else {
+            document.exitFullscreen();
+            world.fullscreen = false;
+        }
+    }
+}
+
+/**
  * function to hide the start screen icons
  */
 function hideInitScreenIcons() {
@@ -80,9 +101,9 @@ function hideInitScreenIcons() {
  * function to update the onclick actions behind the icons for the game running
  */
 function setFunctionsForIcons() {
-    document.getElementById('audioIcon').setAttribute("onclick", "world.toggleSoundAndMusic()");
-    document.getElementById('muteIcon').setAttribute("onclick", "world.toggleSoundAndMusic()");
-    document.getElementById('homeIcon').setAttribute("onclick", "world.quitGame()");
+    document.getElementById('audioIcon').setAttribute("onclick", "toggleSoundAndMusic()");
+    document.getElementById('muteIcon').setAttribute("onclick", "toggleSoundAndMusic()");
+    document.getElementById('homeIcon').setAttribute("onclick", "quitGame()");
 }
 
 /**
@@ -99,16 +120,6 @@ function startGame(level_no, lives, energy, collectedBottles, collectedCoins) {
     document.getElementById('mobileButtonContainer').classList.remove("d-none");
     clearAllIntervals();
     world = new World(canvas, keyboard, level_no, lives, energy, collectedBottles, collectedCoins);
-}
-
-/**
- * function to clear some possibly running sounds
- */
-function clearAllSounds() {
-    world.character.walking_sound.pause();
-    world.gameMusic.pause();
-    world.gameWonMusic.pause();
-    world.gameOverSound.pause();
 }
 
 /**

@@ -42,7 +42,7 @@ class ThrowableObject extends MovableObject {
      */
     removeBottleFromGame(bottle) {
         bottle.broken = true;
-        world.playSoundFX(bottle.clirrSound);
+        playSoundFX(bottle.clirrSound);
         this.playAnimation(this.IMAGES_SPLASH);
         let index = world.throwableObjects.indexOf(bottle);
         setTimeout(() => world.throwableObjects.splice(index, 1), 100);
@@ -68,7 +68,7 @@ class ThrowableObject extends MovableObject {
                 if (bottle.isColliding(enemy) && !enemy.isDead() && !bottle.broken) {
                     if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
                         let index = world.level.enemies.indexOf(enemy);
-                        world.playSoundFX(world.level.enemies[index].death_sound);
+                        playSoundFX(world.level.enemies[index].death_sound);
                         world.level.enemies[index].energy--;
                     } else if (enemy instanceof Endboss) {
                         let index = world.level.enemies.indexOf(enemy);

@@ -34,34 +34,9 @@ class World {
         this.keyboard = keyboard;
         this.draw();
         this.setWorld();
-        this.setGameMusic();
         this.runFastIntervals();
         this.runSlowIntervals();
-    }
-
-    /**
-     * function to set the game music
-     */
-    setGameMusic() {
-        this.gameMusic.loop = true;
-        this.gameMusic.volume = gameVolume;
-        if (!gameMusicAndSound) {
-            this.gameMusic.volume = 0;
-        }
-        this.gameMusic.play();
-    }
-
-    /**
-     * function to play a sound effect in the game
-     * @param {} sound 
-     */
-    playSoundFX(sound) {
-        if (gameMusicAndSound) {
-            sound.volume = gameVolume;
-        } else {
-            sound.volume = 0;
-        }
-        sound.play();
+        setGameMusic(this);
     }
 
     /**
@@ -111,9 +86,9 @@ class World {
      */
     runSlowIntervals() {
         setInterval(() => {
-            this.checkToggleFullscreen();
-            this.checkToggleSoundAndMusic();
-            this.checkQuitGame();
+            checkToggleFullscreen(this);
+            checkToggleSoundAndMusic(this);
+            checkQuitGame(this);
         }, 100);
     }
 
@@ -124,77 +99,15 @@ class World {
         if (this.character.x >= this.level.level_end_x + 720 && endboss.isDead()) {
             clearAllSounds();
             clearAllIntervals();
-            this.playSoundFX(this.levelComplete);
+            playSoundFX(this.levelComplete);
             this.level_no++;
             if (this.level_no <= 3) {
                 startGame(this.level_no, this.character.lives, this.character.energy, this.character.collectedBottles, this.character.collectedCoins);
             }
             else {
                 this.win = true;
-                this.playSoundFX(this.gameWonMusic);
+                playSoundFX(this.gameWonMusic);
             }
-        }
-    }
-
-    /**
-     * function that runs when the game is quit
-     */
-    quitGame() {
-        this.gameOver = false;
-        this.win = false;
-        gameRunning = false;
-        clearAllIntervals();
-        clearAllSounds();
-        init();
-    }
-
-    /**
-     * function to check if the game is quit (esc button pressed)
-     */
-    checkQuitGame() {
-        if (this.keyboard.ESC) {
-            this.quitGame();
-        }
-    }
-
-    /**
-    * function to check if fullscreen is wanted
-    */
-    checkToggleFullscreen() {
-        if (this.keyboard.F) {
-            if (!this.fullscreen) {
-                this.canvas.requestFullscreen();
-                this.fullscreen = true;
-            } else {
-                document.exitFullscreen();
-                this.fullscreen = false;
-            }
-        }
-    }
-
-    /**
-     * function to check if sound/music is toggled
-     */
-    checkToggleSoundAndMusic() {
-        if (this.keyboard.M) {
-            this.toggleSoundAndMusic();
-        }
-    }
-
-    /**
-     * function to toggle sound/music in the game
-     */
-    toggleSoundAndMusic() {
-        if (gameMusicAndSound) {
-            gameMusicAndSound = false;
-            this.gameMusic.volume = 0;
-            document.getElementById('muteIcon').classList.remove("d-none");
-            document.getElementById('audioIcon').classList.add("d-none");
-        } else {
-            gameMusicAndSound = true;
-            this.gameMusic.volume = gameVolume;
-            document.getElementById('muteIcon').classList.add("d-none");
-            document.getElementById('audioIcon').classList.remove("d-none");
         }
     }
 
@@ -205,7 +118,7 @@ class World {
         this.level.bottles.forEach((bottle) => {
             if (this.character.isColliding(bottle)) {
                 let index = this.level.bottles.indexOf(bottle);
-                this.playSoundFX(this.level.bottles[index].collect_sound);
+                playSoundFX(this.level.bottles[index].collect_sound);
                 this.level.bottles.splice(index, 1);
                 this.character.collectedBottles += 1;
             }
@@ -219,7 +132,7 @@ class World {
         this.level.bonusItems.forEach((item) => {
             if (this.character.isColliding(item)) {
                 let index = this.level.bonusItems.indexOf(item);
-                this.playSoundFX(this.level.bonusItems[index].collect_sound);
+                playSoundFX(this.level.bonusItems[index].collect_sound);
                 this.level.bonusItems.splice(index, 1);
                 if (this.character.energy == 1) {
                     this.character.energy += 1;
@@ -237,7 +150,7 @@ class World {
         this.level.coins.forEach((coin) => {
             if (this.character.isColliding(coin)) {
                 let index = this.level.coins.indexOf(coin);
-                this.playSoundFX(this.level.coins[index].collect_sound);
+                playSoundFX(this.level.coins[index].collect_sound);
                 this.level.coins.splice(index, 1);
                 this.character.collectedCoins += 1;
             }
@@ -252,7 +165,7 @@ class World {
             if (this.character.isColliding(enemy) && this.character.speedY < 0 && this.character.isJumpingOn(enemy) && !enemy.isDead()) {
                 if (this.keyboard.SPACE) {
                     this.character.jump(40);
-                    this.playSoundFX(this.character.jumping_sound);
+                    playSoundFX(this.character.jumping_sound);
                 }
                 else { this.character.jump(20); }
                 this.enemyIsKilledByJumpingOn(enemy);
@@ -269,7 +182,7 @@ class World {
      */
     enemyIsKilledByJumpingOn(enemy) {
         let index = this.level.enemies.indexOf(enemy);
-        this.playSoundFX(this.level.enemies[index].death_sound);
+        playSoundFX(this.level.enemies[index].death_sound);
         this.level.enemies[index].energy--;
     }
 
@@ -281,7 +194,7 @@ class World {
             let actualThrow = new Date().getTime() / 1000;
             if (actualThrow - this.lastThrow > 0.5) {
                 let bottle = new ThrowableObject(this.character.x + 100 * this.character.offsetFactor, this.character.y - 100);
-                this.playSoundFX(bottle.throwSound);
+                playSoundFX(bottle.throwSound);
                 this.lastThrow = actualThrow;
                 this.throwableObjects.push(bottle);
                 this.character.collectedBottles--;
@@ -371,7 +284,7 @@ class World {
         if (this.gameOver) {
             gameRunning = false;
             this.addToMap(this.gameoverscreen);
-            this.playSoundFX(this.gameOverSound);
+            playSoundFX(this.gameOverSound);
             setTimeout(() => {
                 this.gameOverSound.pause();
                 this.ctx.font = '30px Zabars';

@@ -67,7 +67,7 @@ class Endboss extends MovableObject {
         clearInterval(walkInterval);
         this.img_counter++;
         this.playAnimation(this.IMAGES_DEAD);
-        world.playSoundFX(this.death_sound);
+        playSoundFX(this.death_sound);
         if (this.img_counter >= 3) {
             this.loadImage(this.IMAGES_DEAD[2]);
             clearInterval(interval);
@@ -78,7 +78,7 @@ class Endboss extends MovableObject {
     * function how to handle animation when endboss is hurt
     */
     handleEndbossHurt() {
-        world.playSoundFX(this.hurt_sound);
+        playSoundFX(this.hurt_sound);
         this.playAnimation(this.IMAGES_HURT);
         this.speed += 2;
     }
